@@ -1,0 +1,27 @@
+/* resets */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* our stuff */
+
+body {
+  background: white url(/images/stringball.jpg) bottom center no-repeat;
+  margin-bottom: 223px;
+}
+
+#container {
+  padding-top: 83px;
+}
+
+#readme {
+  font: normal 10px monospace;
+  margin: 0 auto;
+  white-space: pre;
+  width: 62.5em;
+}
