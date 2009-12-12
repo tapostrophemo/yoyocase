@@ -69,13 +69,17 @@ body {
   width: 625px;
 }
 
+#content h2 {
+  text-align: center;
+}
+
 #gallery {
   float: left;
   width: 452px;
 }
 
-.empty {
-  text-align: center;
+.dataEntry td {
+  vertical-align: top;
 }
 
 #sidebar {

@@ -22,9 +22,11 @@
 
 <div id="content">
 
+<h2>Add to your collection</h2>
+
 <div id="gallery" class="adding">
 
- <table border="0" cellspacing="0" cellpadding="0" width="100%">
+ <table class="dataEntry" border="0" cellspacing="0" cellpadding="0" width="100%">
   <tr>
    <td><label>Manufacturer</label></td>
    <td><input type="text"/></td>
@@ -45,31 +47,35 @@
    <td>&nbsp;</td>
    <td>
     <label>by:</label>
-    <input type="radio" name="acquisitionMethod"> trade&nbsp;&nbsp;
-    <input type="radio" name="acquisitionMethod"> pruchase&nbsp;&nbsp;
-    <input type="radio" name="acquisitionMethod"> gift
+    <input type="radio" name="acquisitionMethod"/> purchase&nbsp;&nbsp;
+    <input type="radio" name="acquisitionMethod"/> trade&nbsp;&nbsp;
+    <input type="radio" name="acquisitionMethod"/> gift
    </td>
   </tr>
   <tr>
    <td>&nbsp;</td>
    <td>
     <label>from:</label>
-    <input type="text" size="12">
+    <input type="text" size="12"/>
    </td>
+  </tr>
+  <tr>
+   <td><label>Notes</label></td>
+   <td><textarea rows="2" cols="27"></textarea></td>
   </tr>
  </table>
 
  <hr/>
 
- <p><label>Pic. 1</label><input type="file"/></p>
- <p><label>Pic. 2</label><input type="file"/></p>
- <p><label>Pic. 3</label><input type="file"/></p>
- <p>&nbsp;&nbsp;&nbsp;<a href="3">more...</a></p>
+ <p><label>Pic 1</label> <input type="file"/></p>
+ <p><label>Pic 2</label> <input type="file"/></p>
+ <p><label>Pic 3</label> <input type="file"/></p>
+ <p style="margin-top:2em"><a href="#">More pics...</a></p>
 
- <br/>
- <br/>
-
- <p><input type="button" value="Upload" onclick="document.location.href='addToCollection3.html'"/></p>
+ <p style="margin-top:3em">
+  <input type="button" value="Upload" onclick="document.location.href='addToCollection3.html'"/>
+  <input type="button" value="Cancel" onclick="document.location.href='addToCollection.html'"/>
+ </p>
 
 </div>
 
