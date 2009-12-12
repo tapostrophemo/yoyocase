@@ -8,10 +8,20 @@ body {
   padding: 0;
 }
 
+ul {
+  margin: 0;
+  padding: 0 0 0 1em;
+}
+
+p {
+  margin: 0;
+}
+
 /* our stuff */
 
 body {
   background: white url(/images/stringball.jpg) bottom center no-repeat;
+  font: normal 11px sans-serif;
   margin-bottom: 223px;
 }
 
@@ -20,9 +30,89 @@ body {
   padding-top: 83px;
 }
 
-#readme {
-  font: normal 10px monospace;
-  margin: 0 auto;
-  white-space: pre;
-  width: 62.5em;
+#header {
+  position: absolute;
+  top: 0;
+  left: 50px;
 }
+
+.rounded {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+#nav {
+  position: absolute;
+  top: 0;
+  padding: 15px 0em;
+  white-space: nowrap;
+  width: 99%;
+}
+#nav ul {
+  background-color: #fff;
+  float: right;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#nav li {
+  display: inline-block;
+  padding: 9px 19px;
+}
+#nav a {
+  font-size: 14px;
+}
+
+#content {
+  margin: 0 auto;
+  margin-top: 2em;
+  width: 625px;
+}
+
+#gallery {
+  float: left;
+  width: 452px;
+}
+
+.empty {
+  text-align: center;
+}
+
+#sidebar {
+  float: right;
+  width: 160px;
+}
+
+.readme {
+  font: normal 10px monospace;
+  white-space: pre;
+}
+
+a {
+  color: #b24d17;
+  font-weight: bold;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a img {
+  border: 0;
+}
+
+label {
+  font-weight: bold;
+}
+
+hr {
+  color: #e9e9e9;
+  margin: 2em 3em;
+}
+
+.msg {
+  border: 2px solid #b24d17;
+  padding: 3px;
+  margin: 0 3em 2em;
+  text-align: center;
+}
+
