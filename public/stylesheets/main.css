@@ -86,8 +86,12 @@ body {
   width: 452px;
 }
 
-.dataEntry td {
+td {
   vertical-align: top;
+}
+
+.addOne {
+  text-align: center;
 }
 
 #sidebar {
