@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>yoyocase.net</title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/main.css"/>
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+</head>
+<body>
+<div id="container">
+
+<div id="header">
+ <h1>yoyocase.net</h1>
+</div>
+
+<div id="nav">
+ <ul class="rounded">
+  <li><%= link_to "login", login_url %></li>
+ </ul>
+</div>
+
+<div id="content">
+
+<%= yield %>
+
+</div><!-- /#content -->
+
+</div><!-- /#container -->
+</body>
+</html>
