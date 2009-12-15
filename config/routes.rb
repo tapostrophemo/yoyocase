@@ -1,4 +1,13 @@
 ActionController::Routing::Routes.draw do |map|
+
+  # "static" pages
+  map.root :controller => 'pages', :action => 'home'
+
+  # the rest of our stuff
+  map.login '/login', :controller => 'user_sessions', :action => 'new'
+
+  map.resource :user_sessions
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
