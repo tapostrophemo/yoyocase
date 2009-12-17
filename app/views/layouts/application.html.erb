@@ -9,18 +9,28 @@
 <div id="container">
 
 <div id="header">
- <h1>yoyocase.net</h1>
+ <h1><%= link_to "yoyocase.net", root_url %></h1>
 </div>
 
 <div id="nav">
  <ul class="rounded">
+ <% if current_user -%>
+  <li>preferences</li>
+  <li><%= link_to "logout", logout_url %></li>
+ <% else -%>
+  <li><%= link_to "register", register_url %></li>
   <li><%= link_to "login", login_url %></li>
+ <% end %>
  </ul>
 </div>
 
 <div id="content">
 
-<%= yield %>
+ <% if flash[:msg] -%>
+  <div class="msg"><%= flash[:msg] %></div>
+ <% end -%>
+
+ <%= yield %>
 
 </div><!-- /#content -->
 
