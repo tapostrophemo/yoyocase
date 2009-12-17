@@ -35,6 +35,7 @@ body {
   position: absolute;
   top: 9px;
   left: 50px;
+  z-index: 1;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
 }
@@ -42,6 +43,9 @@ body {
   font-size: 24px;
   margin: 0;
   padding: 12px 31px;
+}
+#header a {
+  color: black;
 }
 
 .rounded {
@@ -125,10 +129,16 @@ hr {
   margin: 2em 3em;
 }
 
-.msg {
+.msg, .errorExplanation {
   border: 2px solid #b24d17;
   padding: 3px;
   margin: 0 3em 2em;
   text-align: center;
+}
+
+.errorExplanation {
+  background-color: black;
+  color: white;
+  text-align: left;
 }
 

@@ -8,4 +8,12 @@ describe User do
   it "should be valid" do
     @user.should be_valid
   end
+
+  describe "validations" do
+    it "should require email" do
+      @user.email = ""
+      @user.should have(3).error_on(:email) # why three? what is Authlogic really doing?
+    end
+  end
+
 end
