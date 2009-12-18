@@ -1,0 +1,28 @@
+Feature: Manage Yo-yo Collection
+  In order to manage my yoyo collection
+  Registered users will need to be able to add, edit, and sometimes delete yoyos
+
+  Background:
+    Given a user exists with username: "testUser1", password: "Password1"
+
+  Scenario: Yoyo collection starts out empty
+    Given I am logged in with username: "testUser1", password: "Password1"
+    And I have no yoyos
+    When I follow "collection"
+    Then I should see "You don't have any yoyos in your collection."
+    And I should see "Add one?"
+
+  Scenario: Add first yoyo to collection
+    Given I am logged in with username: "testUser1", password: "Password1"
+    And I follow "collection"
+    And I follow "Add one?"
+    When I fill in "Manufacturer" with "Duncan"
+    And I fill in "Country" with "China"
+    And I fill in "Model year" with "2005"
+    And I fill in "Model name" with "FHZ"
+    And I press "Upload"
+    Then I should see "Yoyo added to collection successfully"
+    And I should have 1 yoyo in my collection
+    And I should see "2005 Duncan FHZ"
+    And I should see "Add another?"
+

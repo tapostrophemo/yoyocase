@@ -1,0 +1,14 @@
+<h2>Your collection</h2>
+
+<% if current_user.yoyos.empty? %>
+ <p>You don't have any yoyos in your collection.</p>
+ <p><%= link_to "Add one?", new_yoyo_url %></p>
+<% else %>
+ <p>Yoyos currently in your collection:</p>
+ <ul>
+ <% current_user.yoyos.each do |yoyo| %>
+  <li><%= "#{yoyo.model_year} #{yoyo.manufacturer} #{yoyo.model_name}" %></li>
+ <% end %>
+ </ul>
+ <p><%= link_to "Add another?", new_yoyo_url %></p>
+<% end %>

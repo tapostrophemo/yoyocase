@@ -12,6 +12,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :user_sessions
   map.resource :users
 
+  map.resources :yoyos
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
