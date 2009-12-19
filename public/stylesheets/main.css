@@ -22,7 +22,7 @@ p {
 body {
   background: white url(/images/stringball.jpg) bottom center no-repeat;
   font: normal 11px sans-serif;
-  margin-bottom: 223px;
+  margin-bottom: 123px;
 }
 
 #container {
@@ -140,5 +140,11 @@ hr {
   background-color: black;
   color: white;
   text-align: left;
+}
+
+#footer {
+  font-size: 9px;
+  text-align: center;
+  margin-top: 10em;
 }
 

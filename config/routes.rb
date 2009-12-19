@@ -2,6 +2,8 @@ ActionController::Routing::Routes.draw do |map|
 
   # "static" pages
   map.root :controller => 'pages', :action => 'home'
+  map.privacy '/privacy', :controller => 'pages', :action => 'privacy'
+  map.credits '/credits', :controller => 'pages', :action => 'credits'
 
   # the rest of our stuff
   map.login '/login', :controller => 'user_sessions', :action => 'new'
