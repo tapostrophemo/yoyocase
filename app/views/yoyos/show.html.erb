@@ -1,18 +1,19 @@
-<h2><%= @yoyo.manufacturer %> <%= @yoyo.model_name %> (<%= @yoyo.model_year %>)</h2>
-
-<%= link_to "back to collection", yoyos_url %>
+<h2><%= h @yoyo.manufacturer %> <%= h @yoyo.model_name %> (<%= h @yoyo.model_year %>)</h2>
 
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
  <tr>
   <td><label>Manufacturer</label></td>
-  <td><%= @yoyo.manufacturer %></td>
+  <td><%= h @yoyo.manufacturer %></td>
  </tr>
  <tr>
   <td><label>Model year</label></td>
-  <td><%= @yoyo.model_year %></td>
+  <td><%= h @yoyo.model_year %></td>
  </tr>
  <tr>
   <td><label>Model name</label></td>
-  <td><%= @yoyo.model_name %></td>
+  <td><%= h @yoyo.model_name %></td>
  </tr>
 </table>
+
+<%= link_to "edit", edit_yoyo_path(@yoyo) %>
+<%= link_to "back to collection", yoyos_url %>

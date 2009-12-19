@@ -20,7 +20,7 @@ Feature: Manage Yo-yo Collection
     And I fill in "Country" with "China"
     And I fill in "Model year" with "2005"
     And I fill in "Model name" with "FHZ"
-    And I press "Upload"
+    And I press "Save"
     Then I should see "Yoyo added to collection successfully"
     And I should have 1 yoyo in my collection
     And I should see "2005 Duncan FHZ"
@@ -38,4 +38,18 @@ Feature: Manage Yo-yo Collection
 	And I should see "Model name"
     And I should see "FHZ"
     And I should see "back to collection"
+
+  Scenario: Edit yoyo details
+    Given I am logged in with username: "testUser1", password: "Password1"
+    And I have a yoyo in my collection year: 2003, manufacturer: "Nacnud", name: "one foot throw"
+    And I follow "collection"
+    And I follow "2003 Nacnud one foot throw"
+    And I follow "edit"
+    And I fill in "Manufacturer" with "Duncan"
+    And I fill in "Model year" with "2004"
+    And I fill in "Model name" with "Freehand Zero"
+    And I press "Save"
+    Then I should see "Yoyo saved successfully"
+    And I should see "Duncan Freehand Zero (2004)"
+    And I should have 1 yoyo in my collection
 

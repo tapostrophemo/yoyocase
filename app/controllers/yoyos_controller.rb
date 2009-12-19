@@ -17,4 +17,18 @@ class YoyosController < ApplicationController
     @yoyo = Yoyo.find(params[:id])
   end
 
+  def edit
+    @yoyo = Yoyo.find(params[:id])
+  end
+
+  def update
+    @yoyo = Yoyo.find(params[:id])
+    if @yoyo.update_attributes(params[:yoyo])
+      flash[:msg] = "Yoyo saved successfully"
+      redirect_to yoyo_url(@yoyo)
+    else
+      render :action => "edit"
+    end
+  end
+
 end

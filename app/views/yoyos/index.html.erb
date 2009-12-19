@@ -7,7 +7,7 @@
  <p>Yoyos currently in your collection:</p>
  <ul>
  <% current_user.yoyos.each do |yoyo| %>
-  <li><%= link_to "#{yoyo.model_year} #{yoyo.manufacturer} #{yoyo.model_name}", yoyo_url(yoyo) %></li>
+  <li><%= link_to h("#{yoyo.model_year} #{yoyo.manufacturer} #{yoyo.model_name}"), yoyo_url(yoyo) %></li>
  <% end %>
  </ul>
  <p><%= link_to "Add another?", new_yoyo_url %></p>
