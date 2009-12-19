@@ -26,3 +26,16 @@ Feature: Manage Yo-yo Collection
     And I should see "2005 Duncan FHZ"
     And I should see "Add another?"
 
+  Scenario: View yoyo details
+    Given I am logged in with username: "testUser1", password: "Password1"
+    And I have a yoyo in my collection year: 2004, manufacturer: "Duncan", name: "FHZ"
+    And I follow "collection"
+    When I follow "2004 Duncan FHZ"
+    Then I should see "Manufacturer"
+    And I should see "Duncan"
+	And I should see "Model year"
+    And I should see "2004"
+	And I should see "Model name"
+    And I should see "FHZ"
+    And I should see "back to collection"
+

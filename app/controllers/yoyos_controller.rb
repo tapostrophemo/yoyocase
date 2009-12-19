@@ -13,4 +13,8 @@ class YoyosController < ApplicationController
     end
   end
 
+  def show
+    @yoyo = Yoyo.find(params[:id])
+  end
+
 end
