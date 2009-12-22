@@ -25,6 +25,10 @@ body {
   margin-bottom: 193px;
 }
 
+p, ul, ol {
+  margin-bottom: 1em;
+}
+
 #container {
   background: transparent url(/images/top.jpg) top center repeat-x;
   padding-top: 83px;
