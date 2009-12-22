@@ -25,6 +25,8 @@ Feature: Manage Yo-yo Collection
     And I should have 1 yoyo in my collection
     And I should see "2005 Duncan FHZ"
     And I should see "Add another?"
+    And I should see "Collection facts:"
+    And I should see "1 yoyo(s) total"
 
   Scenario: View yoyo details
     Given I am logged in with username: "testUser1", password: "Password1"
