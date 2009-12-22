@@ -14,11 +14,9 @@
 <br/>
 <% i = 0 %>
 
-found <%= @photos.size %> photos on flickr tagged 'yoyocase':<br/><br/>
-
 <table border="0" cellspacing="0" cellpadding="5" width="100%">
  <tr>
-  <% @photos.shuffle.each do |photo| %>
+  <% user_flickr_photos.shuffle.each do |photo| %>
    <td align="center" width="33%">
     <img class="tnail" src="/images/cornerOverlay.gif" width="111" height="111"
          style="background: #aeaeae url(<%= photo.url(:medium) %>) 45% 45% no-repeat"/>

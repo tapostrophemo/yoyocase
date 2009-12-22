@@ -1,3 +1,9 @@
 <h2>Edit <%= h @yoyo.manufacturer %> <%= h @yoyo.model_name %> (<%= h @yoyo.model_year %>)</h2>
 
-<%= render :partial => "form" %>
+<div id="gallery">
+ <%= render :partial => "form" %>
+
+ <%= link_to "cancel", yoyo_path(@yoyo) %>
+</div>
+
+<div class="clearing"></div>

@@ -18,9 +18,28 @@
    <td><%= f.label :model_name %></td>
    <td><%= f.text_field :model_name, :size => nil %></td>
   </tr>
+  <tr><td colspan="2"><hr/></td></tr>
   <tr>
-   <td colspan="2"><%= f.submit "Save" %></td>
+   <td colspan="2">
+    <label>Import pictures from flickr?</label>
+    <br/>
+    <table border="0" cellpadding="3" cellspacing="0">
+     <tr>
+     <% i = 0; user_flickr_photos.each do |photo| %>
+      <td align="center">
+       <input type="checkbox"/> <%= photo.title %><br/>
+       <img src="<%= photo.url(:thumbnail) %>"/>
+      </td>
+      <% i = i + 1; if i.modulo(3) == 0 %>
+     </tr><tr>
+      <% end %>
+     <% end %>
+    </table>
+   </td>
   </tr>
  </table>
+
+
+ <div class="submit"><%= f.submit "Save" %></div>
 
 <% end %>

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => 'b43e2888c32d082959d88f9052dec5e5'
   
-  helper_method :current_user, :current_user_session
+  helper_method :current_user, :current_user_session, :user_flickr_photos
   filter_parameter_logging :password
 
   private
@@ -19,6 +19,14 @@ class ApplicationController < ActionController::Base
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
     @current_user_session = UserSession.find
+  end
+
+  def user_flickr_photos
+    require 'flickr_fu'
+    flickr = Flickr.new("#{RAILS_ROOT}/config/flickr.yml")
+    flickr.photos.search(:user_id => '45462693@N04')#:tags => 'yoyocase')
+
+#    []
   end
 
 end
