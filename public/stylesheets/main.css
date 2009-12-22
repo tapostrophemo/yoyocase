@@ -103,6 +103,10 @@ td {
   width: 160px;
 }
 
+.clearing {
+  clear: both;
+}
+
 .readme {
   font: normal 10px monospace;
   white-space: pre;
