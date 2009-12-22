@@ -12,7 +12,7 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register', :controller => 'users', :action => 'new'
 
   map.resource :user_sessions
-  map.resource :users
+  map.resources :users
 
   map.resources :yoyos
 

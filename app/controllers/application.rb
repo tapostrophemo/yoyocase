@@ -22,11 +22,11 @@ class ApplicationController < ActionController::Base
   end
 
   def user_flickr_photos
-    require 'flickr_fu'
-    flickr = Flickr.new("#{RAILS_ROOT}/config/flickr.yml")
-    flickr.photos.search(:user_id => '45462693@N04')#:tags => 'yoyocase')
+#    require 'flickr_fu'
+#    flickr = Flickr.new("#{RAILS_ROOT}/config/flickr.yml")
+#    flickr.photos.search(:user_id => '45462693@N04')#:tags => 'yoyocase')
 
-#    []
+    []
   end
 
 end

@@ -1,8 +1,15 @@
 <h2>Your account</h2>
 
-<p>What do you want to do next?</p>
-<ul>
- <li>Manage your <%= link_to "collection", yoyos_url %>?</li>
- <li><a href="#">Edit your account preferences?</a></li>
-</ul>
-<p>Whatever you decide to do, be sure to <a href="#">logout</a> before you leave.</p>
+<div id="gallery">
+ <p>What do you want to do next?</p>
+ <ul>
+  <li>Manage your <%= link_to "collection", yoyos_url %>?</li>
+  <li>Edit your <%= link_to "account preferences", edit_user_path(current_user) %>?</li>
+ </ul>
+ <p>Whatever you decide to do, be sure to <%= link_to "logout", logout_url %> before you leave.</p>
+</div>
+
+<div id="sidebar">
+</div>
+
+<div class="clearing"></div>

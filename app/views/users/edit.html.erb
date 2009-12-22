@@ -1,3 +1,28 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
-TODO: add user preferences form
+<h2>Edit preferences</h2>
+
+<div id="gallery">
+ <% form_for @user do |f| %>
+  <%= f.error_messages %>
+
+  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+   <tr>
+    <td><%= f.label :username %></td>
+    <td><%= h @user.username %></td>
+   </tr>
+   <tr>
+    <td><%= f.label :email %></td>
+    <td><%= f.text_field :email, :size => nil %></td>
+   </tr>
+   <tr>
+    <td colspan="2"><%= f.submit "Update" %></td>
+   </tr>
+  </table>
+ <% end %>
+
+ <%= link_to "cancel", account_url %>
+</div>
+
+<div id="sidebar">
+</div>
+
+<div class="clearing"></div>

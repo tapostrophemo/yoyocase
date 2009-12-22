@@ -15,7 +15,8 @@
 <div id="nav">
  <ul class="rounded">
  <% if current_user -%>
-  <li>preferences</li>
+  <li><%= link_to "collection", yoyos_path %></li>
+  <li><%= link_to "preferences", edit_user_path(current_user) %></li>
   <li><%= link_to "logout", logout_url %></li>
  <% else -%>
   <li><%= link_to "register", register_url %></li>
