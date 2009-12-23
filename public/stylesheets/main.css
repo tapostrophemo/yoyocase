@@ -94,6 +94,10 @@ p, ul, ol {
   width: 452px;
 }
 
+#gallery.full td {
+  text-align: center;
+}
+
 td {
   vertical-align: top;
 }
