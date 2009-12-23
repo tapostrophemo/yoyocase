@@ -7,13 +7,16 @@ module NavigationHelpers
   #
   def path_to(page_name)
     case page_name
-    
+
     when /the home\s?page/
       '/'
 
     when /my account page/
       '/account'
-    
+
+    when /Edit yoyo (\d+)/
+      edit_yoyo_path($1)
+
     # Add more mappings here.
     # Here is a more fancy example:
     #

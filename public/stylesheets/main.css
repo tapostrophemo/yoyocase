@@ -142,11 +142,17 @@ hr {
   margin: 2em 3em;
 }
 
-.msg, .errorExplanation {
+.msg, .errorExplanation, .err {
   border: 2px solid #b24d17;
   padding: 3px;
   margin: 0 3em 2em;
   text-align: center;
+}
+
+.err {
+  background-color: black;
+  color: white;
+  font-weight: bold;
 }
 
 .errorExplanation {

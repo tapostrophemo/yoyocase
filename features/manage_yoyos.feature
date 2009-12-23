@@ -50,7 +50,7 @@ Feature: Manage Yo-yo Collection
     And I fill in "Manufacturer" with "Duncan"
     And I fill in "Model year" with "2004"
     And I fill in "Model name" with "Freehand Zero"
-    And I press "Save"
+    When I press "Save"
     Then I should see "Yoyo saved successfully"
     And I should see "Duncan Freehand Zero (2004)"
     And I should have 1 yoyo in my collection

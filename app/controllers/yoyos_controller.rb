@@ -19,10 +19,19 @@ class YoyosController < ApplicationController
 
   def edit
     @yoyo = Yoyo.find(params[:id])
+    unless current_user == @yoyo.user
+      flash[:err] = "You cannot edit another user's yoyos"
+      redirect_to yoyo_url(@yoyo)
+    end
   end
 
   def update
     @yoyo = Yoyo.find(params[:id])
+#    unless current_user == @yoyo.user
+#      flash[:err] = "You cannot update another user's yoyos"
+#      redirect_to yoyo_url(@yoyo)
+#    end
+
     if @yoyo.update_attributes(params[:yoyo])
       flash[:msg] = "Yoyo saved successfully"
       redirect_to yoyo_url(@yoyo)
