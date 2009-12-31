@@ -1,6 +1,6 @@
 README.developers -- notes for developers working on yoyocase.net's codebase
 
-(last updated, Dec. 23, 2009, by Dan P.)
+(last updated, Dec. 27, 2009, by Dan P.)
 
 1. Overview
 
@@ -23,7 +23,18 @@ README.developers -- notes for developers working on yoyocase.net's codebase
    - ssh client of your choice - needed if you'll be working at all with any of the "public" sites
      (test.yoyocase.net and www.yoyocase.net)
 
-3. Workflow
+3. Additional local setup:
+
+   - If testing/developing any functionality related to yoyocase<->flickr integration, you will need
+     your own account and app key from flickr; place your "key" and "secret" in RAILS_ROOT/config/flickr.yml:
+
+       key: _your_key_
+       secret: _your_secret_
+
+     Note, however, that for the production deployment, the "Blessed One" (see 'Workflow' below) will
+     need to ensure that the correct config file is deployed.
+
+4. Workflow
 
    This project follows the "Blessed" pattern, wherein one developer's fork of the project will be
    the "trunk". (See also http://www.slideshare.net/err/git-machine , starting at slide #82)
@@ -46,7 +57,7 @@ README.developers -- notes for developers working on yoyocase.net's codebase
       d. after verifying that everything works, merge the branch back into your master, commit, and
          push everything up to the "Blessed" repo
 
-4. Releases
+5. Releases
 
    TBD; for now, Dan P. will do all releases (since the app will be hosted via one of his hosting
    accounts)

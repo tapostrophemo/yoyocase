@@ -24,6 +24,6 @@ config.gem 'webrat',      :lib => false,        :version => '>=0.5.3' unless Fil
 config.gem 'rspec',       :lib => false,        :version => '>=1.2.9' unless File.directory?(File.join(Rails.root, 'vendor/plugins/rspec'))
 config.gem 'rspec-rails', :lib => false,        :version => '>=1.2.9' unless File.directory?(File.join(Rails.root, 'vendor/plugins/rspec-rails'))
 config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com" unless File.directory?(File.join(Rails.root, "vendor/plugins/thoughtbot-factory_girl"))
-config.gem "flickr-fu", :lib => false, :version => '>=0.1.4' unless File.directory?(File.join(Rails.root, 'vendor/plugins/flickr-fu'))
+config.gem "commonthread-flickr_fu", :lib => false, :version => '>=0.3.0' unless File.directory?(File.join(Rails.root, 'vendor/plugins/flickr-fu'))
 config.gem "mime-types", :lib => false, :version => '>=1.16' unless File.directory?(File.join(Rails.root, 'vendor/plugins/flickr-fu'))
 

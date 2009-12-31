@@ -12,6 +12,7 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register', :controller => 'users', :action => 'new'
 
   map.resource :user_sessions
+  map.flickr_callback '/users/update_flickr_info_2', :controller => 'users', :action => 'update_flickr_info_2'
   map.resources :users
 
   map.resources :yoyos
