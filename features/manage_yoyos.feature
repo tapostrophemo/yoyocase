@@ -52,6 +52,6 @@ Feature: Manage Yo-yo Collection
     And I fill in "Model name" with "Freehand Zero"
     When I press "Save"
     Then I should see "Yoyo saved successfully"
-    And I should see "Duncan Freehand Zero (2004)"
+    And I should see "2004 Duncan Freehand Zero"
     And I should have 1 yoyo in my collection
 
