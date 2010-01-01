@@ -11,24 +11,3 @@
  <li>keep track of gifts, purchases and trades (date, value, people, etc.)</li>
  <li>keep in touch with other yoyo enthusiasts</li>
 </ul>
-<br/>
-<% i = 0 %>
-
-<table border="0" cellspacing="0" cellpadding="5" width="100%">
- <tr>
-  <% user_flickr_photos.shuffle.each do |photo| %>
-   <td align="center" width="33%">
-    <img class="tnail" src="/images/cornerOverlay.gif" width="111" height="111"
-         style="background: #aeaeae url(<%= photo.url(:medium) %>) 45% 45% no-repeat"/>
-    <br/>
-    <%= photo.title %>
-   </td>
-   <%
-    i = i + 1
-    if i.modulo(3) == 0
-   %>
- </tr><tr>
-   <% end %>
-  <% end %>
- </tr>
-</table>

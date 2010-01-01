@@ -27,6 +27,7 @@ class YoyosController < ApplicationController
 
   def update
     @yoyo = Yoyo.find(params[:id])
+# TODO: figure out how to test this
 #    unless current_user == @yoyo.user
 #      flash[:err] = "You cannot update another user's yoyos"
 #      redirect_to yoyo_url(@yoyo)

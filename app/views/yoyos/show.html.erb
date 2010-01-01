@@ -3,8 +3,11 @@
 <div id="gallery">
  <%= render :partial => "view" %>
 
- <%= link_to "edit", edit_yoyo_path(@yoyo) %>
- <%= link_to "back to collection", yoyos_url %>
+ <br/>
+ <form method="GET" action="<%= edit_yoyo_path(@yoyo) %>">
+  <input type="submit" value="Edit"/>
+  <input type="button" value="Back to collection" onclick="document.location.href='<%= yoyos_url %>'"/>
+ </form>
 </div>
 
 <div id="sidebar">

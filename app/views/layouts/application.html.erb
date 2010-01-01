@@ -16,6 +16,7 @@
  <ul class="rounded">
  <% if current_user %>
   <li><%= link_to "collection", yoyos_path %></li>
+  <li><%= link_to "account", account_path %></li>
   <li><%= link_to "preferences", edit_user_path(current_user) %></li>
   <li><%= link_to "logout", logout_url %></li>
  <% else %>

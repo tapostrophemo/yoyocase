@@ -21,30 +21,46 @@
   <tr><td colspan="2"><hr/></td></tr>
   <tr>
    <td colspan="2">
-    <label>Pic 1</label><a href="#">Import from flickr</a><br/>
-    <label>Pic 2</label><a href="#">Import from flickr</a><br/>
-    <label>Pic 3</label><a href="#">Import from flickr</a><br/>
-    <a href="#">More pics...</a>
-<!--
-    <label>Import pictures from flickr?</label>
+<% if current_user.flickr_userid %>
+
+    <label>Link photos tagged "yoyocase" from your flickr account?</label>
     <br/>
-    <table border="0" cellpadding="3" cellspacing="0">
+    <br/>
+    <table width="100%" border="0" cellpadding="3" cellspacing="0">
      <tr>
      <% i = 0; user_flickr_photos.each do |photo| %>
       <td align="center">
-       <input type="checkbox"/> <%= photo.title %><br/>
-       <img src="<%= photo.url(:thumbnail) %>"/>
+       <input type="checkbox" onclick="toggleYoyoPhoto(this)"/> <%= photo.title %><br/>
+       <img src="<%= photo.url(:thumbnail) %>" alt="<%= photo.url(:medium) %>"/>
       </td>
       <% i = i + 1; if i.modulo(3) == 0 %>
      </tr><tr>
       <% end %>
      <% end %>
     </table>
--->
+
+<script type="text/javascript">
+function toggleYoyoPhoto(checkbox) {
+  if (checkbox.checked) {
+    var image = checkbox.parentNode.children[2];
+    alert('TODO: save "' + image.alt + '" as YoyoPhoto');
+  }
+}
+</script>
+
+<% else %>
+    <p>Photo uploads are not yet implemented at <tt>yoyocase.net</tt>. However, if you have a flickr
+     account, you can link photos from there to here.</p>
+    <p>First, click "Save" on this screen. Then go to your account "preferences" screen and click
+     "Verify flickr account" and follow the prompts.</p>
+<% end %>
    </td>
   </tr>
  </table>
 
- <div class="submit"><%= f.submit "Save" %></div>
+ <div class="submit">
+  <%= f.submit "Save" %>
+  <input type="button" value="Cancel" onclick="document.location.href='<%= cancel_url %>'"/>
+ </div>
 
 <% end %>

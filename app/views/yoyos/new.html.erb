@@ -1,9 +1,7 @@
 <h2>Add to your collection</h2>
 
 <div id="gallery">
- <%= render :partial => "form" %>
-
- <%= link_to "cancel", yoyos_url %>
+ <%= render :partial => "form", :locals => {:cancel_url => yoyos_url} %>
 </div>
 
 <div id="sidebar">
