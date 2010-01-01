@@ -12,3 +12,15 @@ And /^I have a yoyo in my collection year: (\d+), manufacturer: "([^\"]*)", name
     :manufacturer => make,
     :model_name => model})
 end
+
+And /^I want to add a yoyo/ do
+  Then 'I follow "collection"'
+  And 'I follow "Add one?"'
+end
+
+class ApplicationController < ActionController::Base
+  private
+  def user_flickr_photos
+    []
+  end
+end
