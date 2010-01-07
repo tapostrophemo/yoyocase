@@ -7,8 +7,8 @@ if photos.length > 0
  <tr>
  <% i = 0; photos.each do |photo| %>
   <td align="center">
-   <input type="checkbox" onclick="toggleYoyoPhoto(this)"/> <%= photo.title %><br/>
-   <img src="<%= photo.url(:thumbnail) %>" alt="<%= photo.url(:medium) %>"/>
+   <input id="photo_<%=i%>" type="checkbox" name="photos" value="<%=photo.url(:medium)%>"/> <%= h photo.title %><br/>
+   <img src="<%= photo.url(:thumbnail) %>"/>
   </td>
   <% i = i + 1; if i.modulo(3) == 0 %>
  </tr><tr>
@@ -16,15 +16,6 @@ if photos.length > 0
  <% end %>
  </tr>
 </table>
-
-<script type="text/javascript">
-function toggleYoyoPhoto(checkbox) {
-  if (checkbox.checked) {
-    var image = checkbox.parentNode.children[2];
-    alert('TODO: save "' + image.alt + '" as YoyoPhoto');
-  }
-}
-</script>
 
 <% else %>
 

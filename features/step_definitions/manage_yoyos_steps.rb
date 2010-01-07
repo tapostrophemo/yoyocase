@@ -18,10 +18,20 @@ And /^I want to add a yoyo$/ do
   And 'I follow "Add one?"'
 end
 
+When /^I want to update yoyo year: (\d+), manufacturer: "([^\"]*)", name: "([^\"]*)"$/ do |year, make, model|
+  Then 'I follow "collection"'
+  And "I follow \"#{year} #{make} #{model}\""
+  And 'I press "Edit"'
+end
+
+Given /^yoyo (\d+) has no photos$/ do |id|
+  Photo.delete(:all)
+end
+
 And /^I have (\d+) photos? in my photostream$/ do |num_photos|
   class FakePhoto
     def initialize(num); @num = num; end
-    def title; "photo_#{@num}"; end
+    def title; "photo #{@num}"; end
     def url(which); "http://somewhere.com/photo_#{@num}_#{which}.jpg"; end
   end
 
@@ -38,11 +48,13 @@ end
 
 Then /^I should see (\d+) thumbnails?$/ do |num|
   (1..num.to_i).each do |i|
-    Then "I should see \"photo_#{i}\""
+    Then "I should see \"photo #{i}\""
 
     # thanks, http://pivotallabs.com/users/chad/blog/articles/802-gogaruco-09-webrat-rails-acceptance-testing-evolved-bryan-helmkamp
-    response.should have_selector("img",
-      :src => "http://somewhere.com/photo_#{i}_thumbnail.jpg",
-      :alt => "http://somewhere.com/photo_#{i}_medium.jpg")
+    response.should have_selector("img", :src => "http://somewhere.com/photo_#{i}_thumbnail.jpg")
   end
+end
+
+Then /^I should see image "([^\"]*)"$/ do |url|
+  response.should have_selector("img", :src => url)
 end

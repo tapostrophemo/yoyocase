@@ -13,6 +13,24 @@ Feature: fetch and save yoyo photos from flickr
     Then I should see "Link photos tagged yoyocase from your flickr photostream?"
     And I should see 1 thumbnail
 
+  Scenario: Save url of photo
+    Given I am logged in with username: "testUser1", password: "Password1"
+    And I have a yoyo in my collection year: 2004, manufacturer: "Duncan", name: "FHZ"
+    And yoyo 0 has no photos
+    And I have 1 photo in my photostream
+    And I want to update yoyo year: 2004, manufacturer: "Duncan", name: "FHZ"
+    When I check "photo_0"
+    And I press "Save"
+    Then I should see image "http://somewhere.com/photo_1_medium.jpg"
+
+#  Scenario: Should not display already saved flickr photos
+#    Given I am logged in with username: "testUser1", password: "Password1"
+#    And I have a yoyo in my collection year: 2004, manufacturer: "Duncan", name: "FHZ"
+#    And yoyo 0 has photo "http://somewhere.com/photo_1_medium.jpg"
+#    And I have 1 photo in my photostream
+#    When I want to update yoyo year: 2004, manufacturer: "Duncan", name: "FHZ"
+#    Then I should see 0 thumbnails
+
   Scenario: I can see multiple thumbnails from specially tagged photos from my flickr photostream
     Given I am logged in with username: "testUser1", password: "Password1"
     And I have 3 photos in my photostream

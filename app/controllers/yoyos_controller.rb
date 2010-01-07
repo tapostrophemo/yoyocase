@@ -33,7 +33,17 @@ class YoyosController < ApplicationController
 #      redirect_to yoyo_url(@yoyo)
 #    end
 
-    if @yoyo.update_attributes(params[:yoyo])
+    yoyo_updated = @yoyo.update_attributes(params[:yoyo])
+
+    photos_saved = true
+    if params[:photos]
+      params[:photos].each do |photo|
+        photos_saved = @yoyo.photos << Photo.new({:url => photo})
+        break unless photos_saved
+      end
+    end
+
+    if (yoyo_updated && photos_saved)
       flash[:msg] = "Yoyo saved successfully"
       redirect_to yoyo_url(@yoyo)
     else

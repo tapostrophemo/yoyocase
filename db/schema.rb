@@ -9,7 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091224055217) do
+ActiveRecord::Schema.define(:version => 20100107014812) do
+
+  create_table "photos", :force => true do |t|
+    t.string   "url"
+    t.integer  "yoyo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username",                          :null => false

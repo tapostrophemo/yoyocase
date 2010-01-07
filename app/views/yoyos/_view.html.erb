@@ -12,3 +12,9 @@
   <td><%= h @yoyo.model_name %></td>
  </tr>
 </table>
+
+<hr/>
+
+<% @yoyo.photos.each do |photo| %>
+<img src="<%=photo.url%>"/><br/>
+<% end %>
