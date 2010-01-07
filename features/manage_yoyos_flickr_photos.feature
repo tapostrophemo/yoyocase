@@ -23,19 +23,19 @@ Feature: fetch and save yoyo photos from flickr
     And I press "Save"
     Then I should see image "http://somewhere.com/photo_1_medium.jpg"
 
-#  Scenario: Should not display already saved flickr photos
-#    Given I am logged in with username: "testUser1", password: "Password1"
-#    And I have a yoyo in my collection year: 2004, manufacturer: "Duncan", name: "FHZ"
-#    And yoyo 0 has photo "http://somewhere.com/photo_1_medium.jpg"
-#    And I have 1 photo in my photostream
-#    When I want to update yoyo year: 2004, manufacturer: "Duncan", name: "FHZ"
-#    Then I should see 0 thumbnails
-
   Scenario: I can see multiple thumbnails from specially tagged photos from my flickr photostream
     Given I am logged in with username: "testUser1", password: "Password1"
     And I have 3 photos in my photostream
     When I want to add a yoyo
     Then I should see 3 thumbnails
+
+  Scenario: Should not display already saved flickr photos
+    Given I am logged in with username: "testUser1", password: "Password1"
+    And I have a yoyo in my collection year: 2004, manufacturer: "Duncan", name: "FHZ" with photo "http://somewhere.com/photo_3_medium.jpg"
+    And I have 3 photos in my photostream
+    When I want to update yoyo year: 2004, manufacturer: "Duncan", name: "FHZ"
+    Then I should see 2 thumbnails
+    And I should not see "photo 3"
 
 # TODO: Scenario: I have multiple pages of tagged photos (flickr API has max limit per request)
 

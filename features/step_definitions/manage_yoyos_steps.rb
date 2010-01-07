@@ -13,6 +13,14 @@ And /^I have a yoyo in my collection year: (\d+), manufacturer: "([^\"]*)", name
     :model_name => model})
 end
 
+And /^I have a yoyo in my collection year: (\d+), manufacturer: "([^\"]*)", name: "([^\"]*)" with photo "([^\"]+)"$/ do |year, make, model, url|
+  yoyo = UserSession.find.record.yoyos.create({
+    :model_year => year,
+    :manufacturer => make,
+    :model_name => model})
+  yoyo.photos.create({:url => url})
+end
+
 And /^I want to add a yoyo$/ do
   Then 'I follow "collection"'
   And 'I follow "Add one?"'

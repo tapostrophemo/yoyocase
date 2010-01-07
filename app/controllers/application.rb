@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-
   helper :all
 
   # See ActionController::RequestForgeryProtection for details
@@ -26,5 +25,4 @@ class ApplicationController < ActionController::Base
     flickr = Flickr.new("#{RAILS_ROOT}/config/flickr.yml")
     flickr.photos.search(:user_id => current_user.flickr_userid, :tags => 'yoyocase')
   end
-
 end

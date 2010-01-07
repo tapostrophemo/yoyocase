@@ -1,5 +1,12 @@
 <%
-photos = user_flickr_photos
+my_photos = []
+current_user.yoyos.each do |yoyo|
+  yoyo.photos.each do |photo|
+    my_photos << photo.url
+  end
+end
+
+photos = user_flickr_photos.reject { |flickr_photo| my_photos.include? flickr_photo.url(:medium) }
 if photos.length > 0
 %>
 
