@@ -54,9 +54,13 @@ class YoyosController < ApplicationController
   def remove_photo
     photo = Photo.find(params[:id])
     yoyo = photo.yoyo
-    photo.delete
-
-    redirect_to edit_yoyo_path(yoyo.id)
+    if current_user == yoyo.user
+      photo.delete
+      redirect_to edit_yoyo_path(yoyo.id)
+    else
+      flash[:err] = "You cannot remove photos from another user's yoyos"
+      redirect_to account_url
+    end
   end
 
 end

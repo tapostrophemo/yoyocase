@@ -32,6 +32,11 @@ When /^I want to update yoyo year: (\d+), manufacturer: "([^\"]*)", name: "([^\"
   And 'I press "Edit"'
 end
 
+Given /^yoyo for user (\d+) has photo "([^\"]*)"$/ do |user_id, photo|
+  user = User.find(user_id.to_i)
+  user.yoyos[0].photos << Photo.new({:url => photo})
+end
+
 Given /^yoyo (\d+) has no photos$/ do |id|
   Photo.delete(:all)
 end

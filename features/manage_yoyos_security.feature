@@ -18,3 +18,9 @@ Feature: Security during user operations on yoyo collections
 #    When I post to Save yoyo 1
 #    Then I should see "You cannot update another user's yoyos"
 
+  Scenario: Cannot remove photo of non-owned yoyo
+    Given I am logged in with username: "testUser1", password: "Password1"
+    And yoyo for user 2 has photo "http://somewhere.com/photo_1_medium.jpg"
+    When I go to "Remove photo 1"
+    Then I should see "You cannot remove photos from another user's yoyos"
+

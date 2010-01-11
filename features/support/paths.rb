@@ -20,6 +20,9 @@ module NavigationHelpers
     when /Edit yoyo (\d+)/
       edit_yoyo_path($1)
 
+    when /Remove photo (\d+)/
+      url_for :controller => 'yoyos', :action => 'remove_photo', :id => $1
+
 #    when /flickr callback path/
 # TODO: the frob seems to change each time; this was an old one, effective on 12/2x/2009?...
 #      '/users/update_flickr_info_2?frob=72157623082248800-8b816863d77667ba-933518'
