@@ -5,7 +5,10 @@ class YoyosController < ApplicationController
   end
 
   def create
-    if current_user.yoyos.create(params[:yoyo])
+    @yoyo = Yoyo.new(params[:yoyo])
+    yoyo_saved = @yoyo.save
+    if yoyo_saved && current_user.yoyos << @yoyo
+#    if current_user.yoyos.create(params[:yoyo])
       flash[:msg] = "Yoyo added to collection successfully"
       redirect_to yoyos_url
     else

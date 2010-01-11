@@ -12,10 +12,15 @@ Feature: Manage Yo-yo Collection
     Then I should see "You don't have any yoyos in your collection."
     And I should see "Add one?"
 
+  Scenario: Name required to add a yoyo
+    Given I am logged in with username: "testUser1", password: "Password1"
+    And I want to add a yoyo
+    When I press "Save"
+    Then I should see "Model name can't be blank"
+
   Scenario: Add first yoyo to collection
     Given I am logged in with username: "testUser1", password: "Password1"
-    And I follow "collection"
-    And I follow "Add one?"
+    And I want to add a yoyo
     When I fill in "Manufacturer" with "Duncan"
     And I fill in "Country" with "China"
     And I fill in "Model year" with "2005"
