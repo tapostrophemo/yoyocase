@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       flash[:msg] = "Welcome, #{@user.username}!"
-      redirect_to root_url
+      redirect_to account_url
     else
       render :action => "new"
     end

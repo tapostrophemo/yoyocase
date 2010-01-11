@@ -27,11 +27,11 @@ class YoyosController < ApplicationController
 
   def update
     @yoyo = Yoyo.find(params[:id])
-# TODO: figure out how to test this
-#    unless current_user == @yoyo.user
-#      flash[:err] = "You cannot update another user's yoyos"
-#      redirect_to yoyo_url(@yoyo)
-#    end
+# TODO: figure out how to test this bit of security
+    unless current_user == @yoyo.user
+      flash[:err] = "You cannot update another user's yoyos"
+      redirect_to yoyo_url(@yoyo)
+    end
 
     yoyo_updated = @yoyo.update_attributes(params[:yoyo])
 
@@ -62,5 +62,4 @@ class YoyosController < ApplicationController
       redirect_to account_url
     end
   end
-
 end
