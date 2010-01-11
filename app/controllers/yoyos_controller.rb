@@ -51,4 +51,12 @@ class YoyosController < ApplicationController
     end
   end
 
+  def remove_photo
+    photo = Photo.find(params[:id])
+    yoyo = photo.yoyo
+    photo.delete
+
+    redirect_to edit_yoyo_path(yoyo.id)
+  end
+
 end

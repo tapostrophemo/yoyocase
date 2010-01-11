@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
 
   map.resources :yoyos
+  map.remove_photo '/yoyos/remove_photo/:id', :controller => 'yoyos', :action => 'remove_photo'
 
   # The priority is based upon order of creation: first created -> highest priority.
 

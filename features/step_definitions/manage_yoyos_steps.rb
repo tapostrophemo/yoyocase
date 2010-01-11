@@ -66,3 +66,7 @@ end
 Then /^I should see image "([^\"]*)"$/ do |url|
   response.should have_selector("img", :src => url)
 end
+
+Then /^I should not see image "([^\"]*)"$/ do |url|
+  response.should_not have_selector("img", :src => url)
+end

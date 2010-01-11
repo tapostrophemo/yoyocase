@@ -21,6 +21,16 @@
   <tr><td colspan="2"><hr/></td></tr>
   <tr>
    <td colspan="2">
+   <% i = 1; @yoyo.photos.each do |photo| %>
+    <label>Pic <%= i %></label> <a href="<%= url_for :controller => 'yoyos', :action => 'remove_photo', :id => photo.id %>">remove</a><br/>
+    <img src="<%= photo.url %>"/><br/>
+   <% i = i + 1; if i <= @yoyo.photos.length %><br/><% end %>
+   <% end %>
+   </td>
+  </tr>
+  <tr><td colspan="2"><hr/></td></tr>
+  <tr>
+   <td colspan="2">
    <% if current_user.flickr_userid %>
     <label>Link photos tagged <tt>yoyocase</tt> from your flickr photostream?</label>
     <br/>

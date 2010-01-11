@@ -37,6 +37,14 @@ Feature: fetch and save yoyo photos from flickr
     Then I should see 2 thumbnails
     And I should not see "photo 3"
 
+  Scenario: Should allow me to remove photos
+    Given I am logged in with username: "testUser1", password: "Password1"
+    And I have a yoyo in my collection year: 2004, manufacturer: "Duncan", name: "FHZ" with photo "http://somewhere.com/photo_1_medium.jpg"
+    When I want to update yoyo year: 2004, manufacturer: "Duncan", name: "FHZ"
+    Then I should see image "http://somewhere.com/photo_1_medium.jpg"
+    When I follow "remove"
+    Then I should not see image "http://somewhere.com/photo_1_medium.jpg"
+
 # TODO: Scenario: I have multiple pages of tagged photos (flickr API has max limit per request)
 
   Scenario: I have verified my flickr account but have not tagged any photos with "yoyocase"
