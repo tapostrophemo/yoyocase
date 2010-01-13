@@ -13,7 +13,19 @@ Feature: fetch and save yoyo photos from flickr
     Then I should see "Link photos tagged yoyocase from your flickr photostream?"
     And I should see 1 thumbnail
 
-  Scenario: Save url of photo
+  Scenario: Save urls of photos while adding new yoyo
+    Given I am logged in with username: "testUser1", password: "Password1"
+    And I have 2 photos in my photostream
+    When I want to add a yoyo
+    And I fill in "Model name" with "FHZ"
+    And I check "photo_0"
+    And I check "photo_1"
+    And I press "Save"
+    Then I should see "Yoyo added to collection successfully"
+    And I should see image "http://somewhere.com/photo_1_medium.jpg"
+    And I should see image "http://somewhere.com/photo_2_medium.jpg"
+
+  Scenario: Save url of photo while editing existing yoyo
     Given I am logged in with username: "testUser1", password: "Password1"
     And I have a yoyo in my collection year: 2004, manufacturer: "Duncan", name: "FHZ"
     And yoyo 0 has no photos

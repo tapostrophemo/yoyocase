@@ -18,7 +18,7 @@
    <td><%= f.label :model_name %></td>
    <td><%= f.text_field :model_name, :size => nil %></td>
   </tr>
-  <tr><td colspan="2"><hr/></td></tr>
+  <% if @yoyo.photos.length > 0 %><tr><td colspan="2"><hr/></td></tr><% end %>
   <tr>
    <td colspan="2">
    <% i = 1; @yoyo.photos.each do |photo| %>

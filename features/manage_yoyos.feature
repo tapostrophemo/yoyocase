@@ -29,7 +29,8 @@ Feature: Manage Yo-yo Collection
     Then I should see "Yoyo added to collection successfully"
     And I should have 1 yoyo in my collection
     And I should see "2005 Duncan FHZ"
-    And I should see "Add another?"
+    When I follow "collection"
+    Then I should see "Add another?"
     And I should see "Collection facts:"
     And I should see "1 yoyo(s) total"
 

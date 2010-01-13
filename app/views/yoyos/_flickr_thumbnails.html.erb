@@ -14,7 +14,7 @@ if photos.length > 0
  <tr>
  <% i = 0; photos.each do |photo| %>
   <td align="center">
-   <input id="photo_<%=i%>" type="checkbox" name="photos" value="<%=photo.url(:medium)%>"/> <%= h photo.title %><br/>
+   <input id="photo_<%=i%>" type="checkbox" name="photos[]" value="<%=photo.url(:medium)%>"/> <%= h photo.title %><br/>
    <img src="<%= photo.url(:thumbnail) %>"/>
   </td>
   <% i = i + 1; if i.modulo(3) == 0 %>
