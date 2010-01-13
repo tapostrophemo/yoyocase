@@ -13,4 +13,15 @@ describe Yoyo do
   it "should create a new instance given valid attributes" do
     Yoyo.create!(@valid_attributes)
   end
+
+  it "should have no first_photo by default" do
+    Yoyo.create!(@valid_attributes).first_photo.should == nil
+  end
+
+  it "should retrieve first photo" do
+    yoyo = Yoyo.create!(@valid_attributes)
+    yoyo.photos << Photo.new({:url => "http://somewhere.com/image.jpg"})
+
+    yoyo.first_photo.should == "http://somewhere.com/image.jpg"
+  end
 end

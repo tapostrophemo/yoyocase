@@ -98,6 +98,20 @@ p, ul, ol {
   text-align: center;
 }
 
+#collectionList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#collectionList li {
+  float: left;
+  height: 175px;
+  margin: 0;
+  padding: 1px;
+  text-align: center;
+  width: 111px;
+}
+
 td {
   vertical-align: top;
 }
