@@ -29,3 +29,4 @@ config.gem "cucumber", :lib => false, :version => ">=0.4.3"
 config.gem "pickle", :lib => false, :version => ">=0.1.21"
 config.gem "launchy", :lib => false, :version => ">=0.3.3"
 config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
+config.gem "commonthread-flickr_fu", :lib => false, :version => '>=0.3.0' unless File.directory?(File.join(Rails.root, 'vendor/plugins/flickr-fu'))

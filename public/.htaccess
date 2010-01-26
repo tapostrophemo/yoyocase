@@ -1,0 +1,14 @@
+Options +ExecCGI +FollowSymLinks
+
+SetEnv RAILS_ENV production
+
+AddHandler fastcgi-script .fcgi
+
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^$ index.html [QSA]
+RewriteRule ^([^.]+)$ $1.html [QSA]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]
+

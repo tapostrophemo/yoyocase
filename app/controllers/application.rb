@@ -23,6 +23,6 @@ class ApplicationController < ActionController::Base
   def user_flickr_photos
     require 'flickr_fu'
     flickr = Flickr.new("#{RAILS_ROOT}/config/flickr.yml")
-    flickr.photos.search(:user_id => current_user.flickr_userid, :tags => 'yoyocase')
+    flickr.photos.search(:user_id => current_user.flickr_userid)
   end
 end
