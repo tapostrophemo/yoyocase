@@ -189,3 +189,11 @@ hr {
   margin-top: 10em;
 }
 
+.report th {
+  text-align: left;
+}
+.report td {
+  border-top: 1px solid #e9e9e9;
+  padding: 2px 0;
+}
+

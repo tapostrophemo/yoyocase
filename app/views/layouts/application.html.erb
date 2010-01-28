@@ -21,6 +21,9 @@
  <% if current_user %>
   <li><%= link_to "collection", yoyos_path %></li>
   <li><%= link_to "preferences", edit_user_path(current_user) %></li>
+  <% if current_user.is_admin %>
+   <li><%= link_to "site admin", admin_menu_path %></li>
+  <% end %>
   <li><%= link_to "logout", logout_url %></li>
  <% else %>
   <li><%= link_to "register", register_url %></li>

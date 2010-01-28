@@ -1,0 +1,8 @@
+<h2>Site Administration</h2>
+
+<% if !current_user.nil? && current_user.is_admin %>
+<ul>
+ <li><%= link_to "user accounts", accounts_admin_path %></li>
+</ul>
+<% end %>
+

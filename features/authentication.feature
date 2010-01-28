@@ -17,6 +17,7 @@ Feature: User Authentication
     And I should see "logout"
     But I should not see "register"
     And I should not see "login"
+    And I should not see "site admin"
 
   Scenario: Logging out
     Given I am logged in with username: "testUser1", password: "Password1"

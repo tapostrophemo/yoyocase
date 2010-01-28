@@ -18,6 +18,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :yoyos
   map.remove_photo '/yoyos/remove_photo/:id', :controller => 'yoyos', :action => 'remove_photo'
 
+  map.admin_menu '/admin', :controller => 'admin', :action => 'index'
+  map.accounts_admin '/admin/accounts', :controller => 'admin', :action => 'show_accounts'
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
