@@ -1,3 +1,5 @@
+require 'application.rb' # TODO: determine why is this needed on webhost?
+
 class AdminController < ApplicationController
   def index
   end
