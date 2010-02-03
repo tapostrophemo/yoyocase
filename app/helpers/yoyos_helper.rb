@@ -1,2 +1,0 @@
-module YoyosHelper
-end
