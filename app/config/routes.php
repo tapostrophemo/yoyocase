@@ -12,4 +12,6 @@ $route['logout'] = 'site/logout';
 
 $route['account'] = 'users';
 $route['preferences'] = 'users/preferences';
+$route['update_flickr_info_1'] = 'users/update_flickr_info_1';
+$route['update_flickr_info_2'] = 'users/update_flickr_info_2';
 

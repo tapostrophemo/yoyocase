@@ -60,5 +60,20 @@ class User extends Model
       'current_login_at' => $now,
       'current_login_ip' => $this->input->ip_address()));
   }
+
+  function find_by_username($username) {
+    $query = $this->db->select('id, username, email, flickr_userid')->where('username', $username)->get('users');
+    if ($query->num_rows == 1) {
+      $result = $query->result();
+      return $result[0];
+    }
+    else {
+      return null;
+    }
+  }
+
+  function update($username, $attrs) {
+    $this->db->where('username', $username)->set($attrs)->update('users');
+  }
 }
 
