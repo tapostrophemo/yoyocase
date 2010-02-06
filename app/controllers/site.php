@@ -22,6 +22,7 @@ class Site extends MY_Controller
       }
 
       $this->session->set_userdata('username', $this->input->post('username'));
+      $this->session->set_userdata('userid', $newUserId);
       $this->session->set_userdata('logged_in', true);
       $this->redirect_with_message('Welcome to <tt>yoyocase.net</tt>!', '/preferences');
     }
@@ -32,8 +33,9 @@ class Site extends MY_Controller
       $this->load->view('pageTemplate', array('content' => $this->load->view('site/login', null, true)));
     }
     else {
-      $this->User->mark_login($this->input->post('username'));
+      $userid = $this->User->mark_login($this->input->post('username'));
       $this->session->set_userdata('username', $this->input->post('username'));
+      $this->session->set_userdata('userid', $userid);
       $this->session->set_userdata('logged_in', true);
       $this->redirect_with_message('Welcome back!', '/account');
     }

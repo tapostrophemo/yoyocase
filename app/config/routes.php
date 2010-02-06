@@ -15,3 +15,7 @@ $route['preferences'] = 'users/preferences';
 $route['update_flickr_info_1'] = 'users/update_flickr_info_1';
 $route['update_flickr_info_2'] = 'users/update_flickr_info_2';
 
+$route['yoyo'] = 'yoyos/add';
+$route['yoyo/(:num)'] = 'yoyos/view/$1';
+$route['yoyo/(:num)/edit'] = 'yoyos/edit/$1';
+

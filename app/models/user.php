@@ -59,6 +59,9 @@ class User extends Model
     $this->db->where('username', $username)->update('users', array(
       'current_login_at' => $now,
       'current_login_ip' => $this->input->ip_address()));
+
+    $user = $this->find_by_username($username);
+    return $user->id;
   }
 
   function find_by_username($username) {

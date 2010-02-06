@@ -19,7 +19,7 @@
 <div id="nav">
  <ul class="rounded">
  <?php if (isset($this->session) && $this->session->userdata('logged_in')): ?>
-  <li><a href="/collection">collection</a></li>
+  <li><a href="/yoyos">collection</a></li>
   <li><a href="/preferences">preferences</a></li>
   <li><a href="/logout">logout</a></li>
  <? else: ?>
