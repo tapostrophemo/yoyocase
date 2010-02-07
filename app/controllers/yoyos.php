@@ -49,8 +49,6 @@ class Yoyos extends MY_Controller
     $this->load->view('pageTemplate', array('content' => $this->load->view('yoyos/view', $data, true)));
   }
 
-  // TODO: disallow editing yoyos that don't belong to current user
-
   function edit($yoyoid) {
     if (!$this->form_validation->run('yoyo')) {
       $yoyo = $this->_findYoyo($yoyoid);
