@@ -1,26 +1,36 @@
 <?=validation_errors()?>
 
-<h2>Add to your collection</h2>
+<h2>Edit "<?=$yoyo->model_year?> <?=$yoyo->manufacturer?> <?=$yoyo->model_name?>"</h2>
 
 <div id="gallery">
-<!-- TODO: factor the form out w/common stuff for both new/edit (?) -->
-<?=form_open('yoyo')?>
+<?=form_open("yoyo/{$yoyo->id}/edit")?>
  <table border="0" cellspacing="0" cellpadding="0" width="100%">
   <tr>
    <td><label for="manufacturer">Manufacturer</label></td>
-   <td><input type="text" name="manufacturer"/></td>
+   <td><input type="text" name="manufacturer" value="<?=set_value('manufacturer', $yoyo->manufacturer)?>"/></td>
   </tr>
   <tr>
    <td><label for="country">Country</label></td>
-   <td><input type="text" name="country"/></td>
+   <td><input type="text" name="country" value="<?=set_value('country', $yoyo->country)?>"/></td>
   </tr>
   <tr>
    <td><label for="model_year">Model year</label></td>
-   <td><input type="text" name="model_year" size="4" maxlength="4"/></td>
+   <td><input type="text" name="model_year" size="4" maxlength="4" value="<?=set_value('model_year', $yoyo->model_year)?>"/></td>
   </tr>
   <tr>
    <td><label for="model_name">Model name</label></td>
-   <td><input type="text" name="model_name"/></td>
+   <td><input type="text" name="model_name" value="<?=set_value('model_name', $yoyo->model_name)?>"/></td>
+  </tr>
+
+  <?php if (count($photos) > 0): echo '<tr><td colspan="2"><hr/></td></tr>'; endif; ?>
+  <tr>
+   <td colspan="2">
+   <?php $i = 1; foreach ($photos as $photo): ?>
+    <label>Pic <?=$i?></label> <a href="<?="/photo/{$photo->id}/delete"?>">remove</a><br/>
+    <img src="<?=$photo->url?>"/>
+    <?php $i++; if ($i <= count($photos)): echo '<br/>'; endif; ?>
+   <?php endforeach; ?>
+   </td>
   </tr>
 
   <tr><td colspan="2"><hr/></td></tr>

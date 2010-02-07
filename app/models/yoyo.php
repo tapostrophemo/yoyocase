@@ -25,10 +25,16 @@ class Yoyo extends Model
 
   function find_by_id($id) {
     $query = $this->db
-      ->select('id, manufacturer, country, model_year, model_name, created_at, updated_at')
+      ->select('id, user_id, manufacturer, country, model_year, model_name, created_at, updated_at')
       ->where('id', $id)
       ->get('yoyos');
     return $query->row();
+  }
+
+  function update($yoyoid, $data) {
+    $this->load->helper('date');
+    $data['updated_at'] = mdate('%Y-%m-%d %H:%i:%s', time());
+    return $this->db->where('id', $yoyoid)->update('yoyos', $data);
   }
 }
 

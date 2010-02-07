@@ -14,5 +14,14 @@ class Photo extends Model
     $query = $this->db->select('id, url')->where('yoyo_id', $yoyoid)->get('photos');
     return $query->result();
   }
+
+  function find_by_id($id) {
+    $query = $this->db->select('yoyo_id, url')->where('id', $id)->get('photos');
+    return $query->row();
+  }
+
+  function delete($id) {
+    $this->db->where('id', $id)->delete('photos');
+  }
 }
 
