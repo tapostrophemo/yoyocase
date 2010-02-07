@@ -30,7 +30,7 @@
     <label>Link photos from your flickr photostream?</label>
     <br/>
     <br/>
-    <?php $this->load->view('yoyos/flickrThumbnails', array('thumbnails' => $thumbnails)); ?>
+    <?php $this->load->view('yoyos/flickrThumbnails', array('thumbnails' => flickr_thumbnails())); ?>
    <?php else: ?>
     <p>Photo uploads are not yet implemented at <tt>yoyocase.net</tt>. However, if you have a flickr
      account, you can link photos from there to here.</p>

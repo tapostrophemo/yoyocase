@@ -4,6 +4,13 @@ class Yoyos extends MY_Controller
 {
   function __construct() {
     parent::__construct();
+
+    if (!$this->session->userdata('logged_in')) {
+      $this->redirect_with_error('You must be logged in to add/edit yoyos', 'login');
+    }
+
+    $this->load->helper('thumbnail');
+
     $this->load->model('Yoyo');
     $this->load->model('Photo');
     log_message('debug', 'Yoyos class initialized');
@@ -18,7 +25,6 @@ class Yoyos extends MY_Controller
     if (!$this->form_validation->run('yoyo')) {
       $data = array(
         'yoyos' => $this->Yoyo->find_all_by_userid($this->session->userdata('userid')),
-        'thumbnails' => $this->_getFlickrThumbnails($this->session->userdata('userid'), $this->session->userdata('flickr_userid')),
         'cancel_url' => '/yoyos');
       $this->load->view('pageTemplate', array('content' => $this->load->view('yoyos/new', $data, true)));
     }
@@ -60,7 +66,6 @@ class Yoyos extends MY_Controller
         'yoyo' => $yoyo,
         'photos' => $this->Photo->find_all_by_yoyoid($yoyoid),
         'yoyos' => $this->Yoyo->find_all_by_userid($this->session->userdata('userid')),
-        'thumbnails' => $this->_getFlickrThumbnails($this->session->userdata('userid'), $this->session->userdata('flickr_userid')),
         'cancel_url' => '/yoyos');
       $this->load->view('pageTemplate', array('content' => $this->load->view('yoyos/edit', $data, true)));
     }
@@ -91,21 +96,6 @@ class Yoyos extends MY_Controller
     else {
       $this->redirect_with_error("You cannot remove photos from another user's yoyos");
     }
-  }
-
-  function _getFlickrThumbnails($userid, $flickr_userid) { // TODO: make this a helper function(?)
-    $thumbnails = array();
-    if ($flickr_userid) {
-      $this->load->library('Flickr_API');
-      $response = $this->flickr_api->photos_search(array('user_id' => $flickr_userid));
-      foreach ($response['photos']['photo'] as $p) {
-        // TODO: filter out images we've already attached
-        $thumbnails[] = array(
-          'thumbnail' => $this->flickr_api->get_photo_url($p['id'], $p['farm'], $p['server'], $p['secret'], 'thumbnail'),
-          'url' => $this->flickr_api->get_photo_url($p['id'], $p['farm'], $p['server'], $p['secret']));
-      }
-    }
-    return $thumbnails;
   }
 
   function _findYoyo($yoyoid) {

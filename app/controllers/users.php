@@ -15,7 +15,7 @@ class Users extends MY_Controller
   function preferences() {
     $user = $this->User->find_by_username($this->session->userdata('username'));
     if (!$user) {
-      $this->redirectWithError('You must be signed in to set your preferences.', '/login');
+      $this->redirect_with_error('You must be signed in to set your preferences.', '/login');
     }
 
     $data = array('user' => $user);
