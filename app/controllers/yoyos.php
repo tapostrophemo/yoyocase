@@ -54,6 +54,10 @@ class Yoyos extends MY_Controller
   function edit($yoyoid) {
     if (!$this->form_validation->run('yoyo')) {
       $yoyo = $this->_findYoyo($yoyoid);
+      if ($yoyo->user_id != $this->session->userdata('userid')) {
+        $this->redirect_with_error("You cannot update another user's yoyos", 'account');
+      }
+
       $data = array(
         'yoyo' => $yoyo,
         'photos' => $this->Photo->find_all_by_yoyoid($yoyoid),
