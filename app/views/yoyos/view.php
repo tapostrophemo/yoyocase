@@ -22,13 +22,11 @@
 
 <hr/>
 
-<!-- TODO: photos
-<% i = 1; @yoyo.photos.each do |photo| %>
-<b>Pic <%= i %></b><br/>
-<img src="<%=photo.url%>"/><br/>
-<% i = i + 1; if i <= @yoyo.photos.length %><br/><% end %>
-<% end %>
--->
+<?php $i = 1; foreach ($photos as $photo): ?>
+<b>Pic <?=$i?></b><br/>
+<img src="<?=$photo->url?>"/>
+<?php $i++; if ($i <= count($photos)): echo '<br/>'; endif; ?>
+<?php endforeach; ?>
 
  <br/>
  <?=form_open("yoyo/{$yoyo->id}/edit")?>

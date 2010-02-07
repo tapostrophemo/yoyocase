@@ -21,7 +21,7 @@ class User extends Model
     $data = array(
       'username' => $username,
       'email' => $email,
-      'crypted_password' => crypt($password, $salt),
+      'crypted_password' => sha1("$password$salt"),
       'password_salt' => $salt,
       'persistence_token' => 'TODO:',
       'perishable_token' => 'TODO:',
@@ -41,7 +41,7 @@ class User extends Model
     }
 
     $salt = $query->row()->password_salt;
-    $this->db->select('id')->where('username', $username)->where('crypted_password', crypt($password, $salt));
+    $this->db->select('id')->where('username', $username)->where('crypted_password', sha1("$password$salt"));
     $query = $this->db->get('users');
     return $query->num_rows == 1;
   }
@@ -60,8 +60,7 @@ class User extends Model
       'current_login_at' => $now,
       'current_login_ip' => $this->input->ip_address()));
 
-    $user = $this->find_by_username($username);
-    return $user->id;
+    return $this->find_by_username($username);
   }
 
   function find_by_username($username) {

@@ -14,7 +14,15 @@
  <ul id="collectionList">
  <?php foreach ($yoyos as $yoyo): ?>
   <li>
-   <!-- TODO: photos -->
+   <a href="/yoyo/<?=$yoyo->id?>">
+   <?php if (empty($yoyo->first_photo)): ?>
+    <img src="/res/icon_unknown.png" alt=""/>
+   <?php else: ?>
+    <img src="/res/cornerOverlay.gif" alt=""
+         style="background: #aeaeae url(<?=$yoyo->first_photo?>) 45% 45% no-repeat"/>
+   <?php endif; ?>
+   </a>
+   <br/>
    <a href="/yoyo/<?=$yoyo->id?>">
     <?=$yoyo->model_year?> <?=$yoyo->manufacturer?> <?=$yoyo->model_name?>
    </a>
