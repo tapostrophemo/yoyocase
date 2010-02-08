@@ -2,8 +2,8 @@
 
 error_reporting(E_ALL);
 
-$system_folder = '../lib/ci-1.7.2';
-$application_folder = '../app';
+$system_folder = '../lib/ci-1.7.2'; // TODO: configure for PROD deploy
+$application_folder = '../app'; // TODO: configure for PROD deploy
 
 if (strpos($system_folder, '/') === FALSE) {
 	if (function_exists('realpath') AND @realpath(dirname(__FILE__)) !== FALSE) {
