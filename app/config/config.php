@@ -4,7 +4,7 @@ $config['base_url']	= "http://dev.yoyocase.net/"; // TODO: configure for PROD de
 
 $config['index_page'] = "";
 
-$config['uri_protocol']	= "AUTO";
+$config['uri_protocol']	= "AUTO"; // TODO: configure for PROD deploy
 
 $config['url_suffix'] = "";
 
