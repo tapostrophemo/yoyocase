@@ -21,6 +21,7 @@
  <?php if (isset($this->session) && $this->session->userdata('logged_in')): ?>
   <li><a href="/yoyos">collection</a></li>
   <li><a href="/preferences">preferences</a></li>
+  <?php if ($this->session->userdata('is_admin')): echo '<li><a href="/admin">site admin</a></li>'; endif; ?>
   <li><a href="/logout">logout</a></li>
  <? else: ?>
   <li><a href="/register">register</a></li>

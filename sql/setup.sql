@@ -14,6 +14,7 @@ CREATE TABLE `users` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   `flickr_userid` varchar(255) default NULL,
+  `is_admin` boolean default FALSE,
   PRIMARY KEY (`id`)
 );
 

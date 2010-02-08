@@ -37,6 +37,7 @@ class Site extends MY_Controller
       $this->session->set_userdata('username', $this->input->post('username'));
       $this->session->set_userdata('userid', $user->id);
       $this->session->set_userdata('flickr_userid', $user->flickr_userid);
+      $this->session->set_userdata('is_admin', $user->is_admin);
       $this->session->set_userdata('logged_in', true);
       $this->redirect_with_message('Welcome back!', '/account');
     }

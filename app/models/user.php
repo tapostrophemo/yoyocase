@@ -64,7 +64,7 @@ class User extends Model
   }
 
   function find_by_username($username) {
-    $query = $this->db->select('id, username, email, flickr_userid')->where('username', $username)->get('users');
+    $query = $this->db->select('id, username, email, flickr_userid, is_admin')->where('username', $username)->get('users');
     if ($query->num_rows == 1) {
       $result = $query->result();
       return $result[0];
@@ -76,6 +76,11 @@ class User extends Model
 
   function update($username, $attrs) {
     $this->db->where('username', $username)->set($attrs)->update('users');
+  }
+
+  function find_all() {
+    $query = $this->db->select('username, created_at, last_login_at')->get('users');
+    return $query->result();
   }
 }
 
