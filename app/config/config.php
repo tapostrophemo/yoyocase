@@ -112,7 +112,7 @@ $config['sess_time_to_update'] 	= 300;
 |
 */
 $config['cookie_prefix']	= "";
-$config['cookie_domain']	= ".yoyocase.net";
+$config['cookie_domain']	= ""; // TODO: configure for PROD deploy (?)
 $config['cookie_path']		= "/";
 
 $config['global_xss_filtering'] = FALSE;
