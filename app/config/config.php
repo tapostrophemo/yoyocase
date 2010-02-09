@@ -18,7 +18,7 @@ $config['subclass_prefix'] = 'MY_';
 
 $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
 
-$config['enable_query_strings'] = FALSE;
+$config['enable_query_strings'] = FALSE; // TODO: configure for PROD deploy
 $config['controller_trigger'] 	= 'c';
 $config['function_trigger'] 	= 'm';
 $config['directory_trigger'] 	= 'd'; // experimental not currently in use
