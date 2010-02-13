@@ -18,13 +18,13 @@ class Site extends MY_Controller
         $this->input->post('password'),
         $this->input->post('email'));
       if (null == $newUserId) {
-        $this->redirect_with_error('That username is already taken.', '/register');
+        $this->redirect_with_error('Username has already been taken', '/register');
       }
 
       $this->session->set_userdata('username', $this->input->post('username'));
       $this->session->set_userdata('userid', $newUserId);
       $this->session->set_userdata('logged_in', true);
-      $this->redirect_with_message('Welcome to <tt>yoyocase.net</tt>!', '/preferences');
+      $this->redirect_with_message('Welcome, ' . $this->input->post('username') . '!', '/preferences');
     }
   }
 
