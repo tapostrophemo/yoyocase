@@ -50,6 +50,14 @@
 
 </div><!-- /#container -->
 
+<script type="text/javascript">
+window.onload = function () {
+  if (document.forms[0] && document.forms[0].elements[0]) {
+    document.forms[0].elements[0].focus();
+  }
+};
+</script>
+
 </body>
 </html>
 
