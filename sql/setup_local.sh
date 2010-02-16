@@ -10,7 +10,7 @@ if [ $PWD != $SCRIPTS_DIR ]; then
   exit 1
 fi
 
-for f in teardown setup testdata; do
+for f in teardown setup delta testdata; do
   $SQL_COMMAND < $f.sql
 done
 

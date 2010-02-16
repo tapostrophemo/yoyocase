@@ -19,6 +19,22 @@ class MY_WebTestCase extends WebTestCase
     }
     `mysql -uyoyocase_user -pbob yoyocase -e "$sql"`; // TODO: make this "safer"? at least make username/pw configurable
   }
+
+  function insertRecord($tablename, $colsAndVals = array()) {
+    if (count($colsAndVals) > 0) {
+      $sql = "INSERT INTO $tablename(";
+      foreach ($colsAndVals as $column => $value) { $columns[] = $column; }
+      $sql .= join($columns, ', ') . ")\n VALUES(";
+      foreach ($colsAndVals as $column => $value) { $values[] = $value; }
+      $sql .= join($values, ', ') . ")\n";
+      `mysql -uyoyocase_user -pbob yoyocase -e "$sql"`;
+
+      $sql = "SELECT Max(id) FROM $tablename";
+      $id = `mysql -uyoyocase_user -pbob yoyocase -Be "$sql" | tail -1`;
+      return (int) $id;
+    }
+    return -1;
+  }
 }
 
 $test = &new TestSuite('yoyocase.net tests');

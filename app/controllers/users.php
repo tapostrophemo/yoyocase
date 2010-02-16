@@ -41,5 +41,19 @@ class Users extends MY_Controller
     $this->session->set_userdata('flickr_userid', $nsid);
     $this->redirect_with_message('Flicker user id updated.', '/account');
   }
+
+  function gallery($username) {
+    $yoyos = array();
+    $user = $this->User->find_by_username($username);
+    if ($user) {
+      $this->load->model('Yoyo');
+      $yoyos = $this->Yoyo->find_all_by_userid($user->id);
+      $content = $this->load->view('users/gallery', array('username' => $username, 'yoyos' => $yoyos), true);
+    }
+    else {
+      $content = '<p class="err">User "' . htmlspecialchars($username) . '" not found</p>';
+    }
+    $this->load->view('pageTemplate', array('content' => $content));
+  }
 }
 
