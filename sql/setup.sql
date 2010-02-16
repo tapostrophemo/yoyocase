@@ -17,6 +17,8 @@ CREATE TABLE `users` (
   `is_admin` boolean default FALSE,
   PRIMARY KEY (`id`)
 );
+ALTER TABLE users ADD CONSTRAINT UNIQUE KEY (username);
+ALTER TABLE users ADD CONSTRAINT UNIQUE KEY (email);
 
 CREATE TABLE `yoyos` (
   `id` int(11) NOT NULL auto_increment,
