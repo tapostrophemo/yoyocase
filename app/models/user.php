@@ -74,7 +74,18 @@ class User extends Model
     }
   }
 
-  function update($username, $attrs) {
+  function update($username, $email, $password = null) {
+    $this->load->helper('date');
+    $now = mdate('%Y-%m-%d %H:%i:%s', time());
+
+    $attrs = array('email' => $email, 'updated_at' => $now);
+
+    if ($password != null) {
+      $this->load->plugin('salt');
+      $salt = salt();
+      $attrs['password_salt'] = $salt;
+      $attrs['crypted_password'] = sha1("$password$salt");
+    }
     $this->db->where('username', $username)->set($attrs)->update('users');
   }
 

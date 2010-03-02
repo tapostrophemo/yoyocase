@@ -15,6 +15,14 @@
     <td><input type="text" name="email" value="<?=$user->email?>"/></td>
    </tr>
    <tr>
+    <td><label for="password">Password</label></td>
+    <td><input type="password" name="password" value=""/></td>
+   </tr>
+   <tr>
+    <td><label for="passconf">Confirm Password</label></td>
+    <td><input type="password" name="passconf" value=""/></td>
+   </tr>
+   <tr>
     <td colspan="2"><input type="submit" value="Update"/></td>
    </tr>
   </table>

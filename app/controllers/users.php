@@ -23,7 +23,9 @@ class Users extends MY_Controller
       $this->load->view('pageTemplate', array('content' => $this->load->view('users/preferences', $data, true)));
     }
     else {
-      $this->User->update($this->session->userdata('username'), array('email' => $this->input->post('email')));
+      $this->User->update($this->session->userdata('username'),
+        $this->input->post('email'),
+        $this->input->post('password'));
       $this->redirect_with_message('Preferences updated.', '/account');
     }
   }

@@ -14,7 +14,9 @@ $config = array(
   ),
 
   'user_preferences' => array(
-    array('field' => 'email', 'label' => 'email', 'rules' => 'trim|required|max_length[255]|valid_email|xss_clean')
+    array('field' => 'email', 'label' => 'email', 'rules' => 'trim|required|max_length[255]|valid_email|xss_clean'),
+    array('field' => 'password', 'label' => 'password', 'rules' => 'trim'),
+    array('field' => 'passconf', 'label' => 'confirm password', 'rules' => 'trim|matches[password]')
   ),
 
   'yoyo' => array(
