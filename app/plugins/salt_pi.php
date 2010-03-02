@@ -9,6 +9,6 @@ function salt() {
       microtime() .
       spl_object_hash(new stdClass()) .
       mt_rand() .
-      posix_getpid()));
+      getmypid()));
 }
 
