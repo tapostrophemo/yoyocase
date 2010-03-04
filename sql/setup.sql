@@ -29,6 +29,7 @@ CREATE TABLE `yoyos` (
   `user_id` int(11) default NULL,
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
+  `description` text,
   PRIMARY KEY (`id`)
 );
 
