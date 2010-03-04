@@ -21,6 +21,10 @@
    <td><label for="model_name">Model name</label></td>
    <td><input type="text" name="model_name" value="<?=set_value('model_name', $yoyo->model_name)?>"/></td>
   </tr>
+  <tr>
+   <td><label for="description">Description</label></td>
+   <td><textarea name="description" rows="2" cols="25"><?=set_value('description', $yoyo->description)?></textarea></td>
+  </tr>
 
   <?php if (count($photos) > 0): echo '<tr><td colspan="2"><hr/></td></tr>'; endif; ?>
   <tr>

@@ -18,6 +18,10 @@
   <td><label>Model name</label></td>
   <td><?=$yoyo->model_name?></td>
  </tr>
+ <tr>
+  <td><label>Description</label></td>
+  <td><?=$yoyo->description?></td>
+ </tr>
 </table>
 
 <hr/>

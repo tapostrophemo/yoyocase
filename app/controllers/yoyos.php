@@ -33,7 +33,8 @@ class Yoyos extends MY_Controller
         'manufacturer' => $this->input->post('manufacturer'),
         'country' => $this->input->post('country'),
         'model_year' => $this->input->post('model_year'),
-        'model_name' => $this->input->post('model_name'));
+        'model_name' => $this->input->post('model_name'),
+        'description' => $this->input->post('description'));
       $yoyoid = $this->Yoyo->add_for_user($this->session->userdata('userid'), $data);
       if ($yoyoid) {
         $this->_savePhotos($yoyoid);
@@ -74,7 +75,8 @@ class Yoyos extends MY_Controller
         'manufacturer' => $this->input->post('manufacturer'),
         'country' => $this->input->post('country'),
         'model_year' => $this->input->post('model_year'),
-        'model_name' => $this->input->post('model_name'));
+        'model_name' => $this->input->post('model_name'),
+        'description' => $this->input->post('description'));
       $rval = $this->Yoyo->update($yoyoid, $data);
       if ($rval) {
         $this->_savePhotos($yoyoid);

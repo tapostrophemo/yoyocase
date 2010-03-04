@@ -52,8 +52,10 @@
 
 <script type="text/javascript">
 window.onload = function () {
-  if (document.forms[0] && document.forms[0].elements[0]) {
-    document.forms[0].elements[0].focus();
+  if (document.forms && document.forms[0] && document.forms[0].elements[0]) {
+    if (document.forms[0].elements[0].type == "text" || document.forms[0].elements[0].type == "password") {
+      document.forms[0].elements[0].focus();
+    }
   }
 };
 </script>

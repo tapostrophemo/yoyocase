@@ -35,6 +35,19 @@ class MY_WebTestCase extends WebTestCase
     }
     return -1;
   }
+
+  function createUser($username, $email, $password) {
+    $this->deleteRecord('users', array('username' => "'$username'"));
+    $pass = sha1($password);
+    $this->insertRecord('users', array('username' => "'$username'", 'email' => "'$email'", 'crypted_password' => "'$pass'"));
+  }
+
+  function logInAs($username , $password) {
+    $this->get(BASE_URL.'/login');
+    $this->setField('username', $username);
+    $this->setField('password', $password);
+    $this->clickSubmit('Login');
+  }
 }
 
 $test = &new TestSuite('yoyocase.net tests');

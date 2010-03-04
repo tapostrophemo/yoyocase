@@ -23,7 +23,8 @@ $config = array(
     array('field' => 'manufacturer', 'label' => 'manufacturer', 'rules' => 'trim|max_length[255]|xss_clean'),
     array('field' => 'country', 'label' => 'country', 'rules' => 'trim|max_length[255]|xss_clean'),
     array('field' => 'model_year', 'label' => 'model year', 'rules' => 'trim|integer|max_length[4]'),
-    array('field' => 'model_name', 'label' => 'model name', 'rules' => 'trim|required|max_length[255]|xss_clean')
+    array('field' => 'model_name', 'label' => 'model name', 'rules' => 'trim|required|max_length[255]|xss_clean'),
+    array('field' => 'description', 'label' => 'description', 'rules' => 'trim|xss_clean')
   )
 );
 
