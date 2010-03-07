@@ -11,10 +11,24 @@ class UsersTestCase extends MY_WebTestCase
     $this->assertText('User "testUser1" not found');
   }
 
+  function testMainUserPageHasGalleryLink() {
+    // Given
+    $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    // When
+    $this->logInAs('testUser1', 'Password1');
+    // Then
+    $this->assertText('View your gallery');
+    $this->assertLink('your gallery');
+
+    // When
+    $this->clickLink('collection');
+    // Then
+    $this->assertLink('View gallery');
+  }
+
   function testGalleryForRegisteredUserWithNoPhotos() {
     // Given
-    $this->deleteRecord('users', array('username' => "'testUser1'"));
-    $this->insertRecord('users', array('username' => "'testUser1'", 'email' => "'testUser1@somewhere.com'", 'crypted_password' => "'Password1'"));
+    $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
     // When
     $this->get(BASE_URL.'/yoyos/testUser1');
     // Then
