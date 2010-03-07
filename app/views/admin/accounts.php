@@ -5,12 +5,14 @@
   <th>Username</th>
   <th>Registered on</th>
   <th>Last login</th>
+  <th>Email</th>
  </tr>
 <?php foreach ($accounts as $account): ?>
  <tr>
   <td><?=$account->username?></td>
   <td><?=$account->created_at?></td>
   <td><?=$account->last_login_at?></td>
+  <td><?=$account->email?></td>
  </tr>
 <?php endforeach; ?>
 </table>

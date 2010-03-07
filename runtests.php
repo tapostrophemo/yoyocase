@@ -36,10 +36,20 @@ class MY_WebTestCase extends WebTestCase
     return -1;
   }
 
+  function updateRecord($tablename, $field, $value, $criteriaColumn, $criteriaValue) {
+    $sql = "UPDATE $tablename SET $field = $value WHERE $criteriaColumn = $criteriaValue";
+    `mysql -uyoyocase_user -pbob yoyocase -e "$sql"`;
+  }
+
   function createUser($username, $email, $password) {
     $this->deleteRecord('users', array('username' => "'$username'"));
     $pass = sha1($password);
-    $this->insertRecord('users', array('username' => "'$username'", 'email' => "'$email'", 'crypted_password' => "'$pass'"));
+    return $this->insertRecord('users', array('username' => "'$username'", 'email' => "'$email'", 'crypted_password' => "'$pass'"));
+  }
+
+  function createAdminUser($username, $email, $password) {
+    $userId = $this->createUser($username, $email, $password);
+    $this->updateRecord('users', 'is_admin', 1, 'id', $userId);
   }
 
   function logInAs($username , $password) {

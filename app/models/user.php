@@ -90,7 +90,7 @@ class User extends Model
   }
 
   function find_all() {
-    $query = $this->db->select('username, created_at, last_login_at')->get('users');
+    $query = $this->db->select('username, created_at, last_login_at, email')->get('users');
     return $query->result();
   }
 }
