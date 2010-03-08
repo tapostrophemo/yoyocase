@@ -5,6 +5,7 @@ $route['scaffolding_trigger'] = "";
 
 $route['privacy'] = 'pages/privacy';
 $route['credits'] = 'pages/credits';
+$route['tour'] = 'pages/tour';
 
 $route['register'] = 'site/register';
 $route['login'] = 'site/login';
