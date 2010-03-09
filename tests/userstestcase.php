@@ -86,9 +86,14 @@ class UsersTestCase extends MY_WebTestCase
     // When
     $this->setField('password', 'asdf');
     $this->setField('passconf', 'asdf');
+    $this->setField('email', 'testUser1@elsewhere.com');
     $this->clickSubmit('Update');
     // Then
     $this->assertText('Preferences updated.');
+    // When
+    $this->clickLink('preferences');
+    // Then
+    $this->assertField('email', 'testUser1@elsewhere.com');
 
     // When
     $this->clickLink('logout');

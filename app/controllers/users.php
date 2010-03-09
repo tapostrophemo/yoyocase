@@ -37,9 +37,9 @@ class Users extends MY_Controller
 
   function update_flickr_info_2() {
     $this->load->library('Flickr_API');
-    $auth = $this->flickr_api->auth_getToken($_REQUEST['frob']);
+    $auth = $this->flickr_api->auth_getToken($_REQUEST['frob']); // TODO: fake this out so it can be tested
     $nsid = $auth['auth']['user']['nsid'];
-    $this->User->update($this->session->userdata('username'), array('flickr_userid' => $nsid));
+    $this->User->update($this->session->userdata('username'), null, null, $nsid);
     $this->session->set_userdata('flickr_userid', $nsid);
     $this->redirect_with_message('Flicker user id updated.', '/account');
   }

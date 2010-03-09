@@ -74,11 +74,19 @@ class User extends Model
     }
   }
 
-  function update($username, $email, $password = null) {
+  function update($username, $email = null, $password = null, $flickr_userid = null) {
     $this->load->helper('date');
     $now = mdate('%Y-%m-%d %H:%i:%s', time());
 
-    $attrs = array('email' => $email, 'updated_at' => $now);
+    $attrs = array('updated_at' => $now);
+
+    if ($email != null) {
+      $attrs['email'] = $email;
+    }
+
+    if ($flickr_userid != null) {
+      $attrs['flickr_userid'] = $flickr_userid;
+    }
 
     if ($password != null) {
       $this->load->plugin('salt');
