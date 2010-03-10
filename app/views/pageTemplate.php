@@ -45,7 +45,9 @@
  Copyright &copy; 2009, 2010, Dan Parks. All Rights Reserved.<br/>
  User submissions copyright the submitter. Other content derived from Creative Commons-licensed material.<br/>
  <br/>
- <a href="/credits">Credits</a> | <a href="/privacy">Privacy</a>
+ <a href="/credits">Credits</a> |
+ <a href="/privacy">Privacy</a> |
+ <a href="http://twitter.com/yoyocase">Follow us on Twitter</a>
 </div>
 
 </div><!-- /#container -->
