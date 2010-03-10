@@ -30,7 +30,10 @@
 <div id="sidebar">
  <p><b><tt>yoyocase.net</tt> facts:</b></p>
  <ul>
-  <li><?=$this->User->num_accounts()?> accounts total</li>
+  <li><?=$num_users?> user accounts</li>
+  <li><?=$num_yoyos?> yoyos</li>
+  <li><?=$num_photos?> photos</li>
+  <!--li>TODO: more "fun site facts": largest collection, newest member, newest photo, etc.</li-->
  </ul>
 
  <br/>

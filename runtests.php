@@ -41,6 +41,10 @@ class MY_WebTestCase extends WebTestCase
     `mysql -uyoyocase_user -pbob yoyocase -e "$sql"`;
   }
 
+  function countRecords($tablename) {
+    return (int) `mysql -uyoyocase_user -pbob yoyocase -Be "SELECT Count(*) FROM $tablename" | tail -1`;
+  }
+
   function createUser($username, $email, $password) {
     $this->deleteRecord('users', array('username' => "'$username'"));
     $pass = sha1($password);

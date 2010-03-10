@@ -2,10 +2,6 @@
 
 class User extends Model
 {
-  function num_accounts() {
-    return $this->db->count_all('users');
-  }
-
   function register($username, $password, $email) {
     $this->db->select('id')->where('username', $username);
     $query = $this->db->get('users');

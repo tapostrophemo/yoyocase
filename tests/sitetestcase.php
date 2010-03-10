@@ -14,6 +14,19 @@ class SiteTestCase extends MY_WebTestCase
     $this->assertNoLink('logout');
   }
 
+  function testSiteFunFacts() {
+    // Given
+    $numAccounts = $this->countRecords('users');
+    $numYoyos = $this->countRecords('yoyos');
+    $numPhotos = $this->countRecords('photos');
+    // When
+    $this->get(BASE_URL.'/register');
+    // Then
+    $this->assertText("$numAccounts user accounts");
+    $this->assertText("$numYoyos yoyos");
+    $this->assertText("$numPhotos photos");
+  }
+
   function testRegisterNewUser() {
     // Given
     $this->deleteRecord('users', array('username' => "'testUser1'", 'email' => "'testUser1@somewhere.com'"));
@@ -44,7 +57,5 @@ class SiteTestCase extends MY_WebTestCase
     // Then
     $this->assertText('Username has already been taken');
   }
-
-  // TODO: test "fun site facts"
 }
 

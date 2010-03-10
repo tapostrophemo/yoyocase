@@ -10,7 +10,9 @@ class Site extends MY_Controller
 
   function register() {
     if (!$this->form_validation->run('site_register')) {
-      $this->load->view('pageTemplate', array('content' => $this->load->view('site/register', null, true)));
+      $this->load->model('Misc');
+      $data = $this->Misc->fun_facts();
+      $this->load->view('pageTemplate', array('content' => $this->load->view('site/register', $data, true)));
     }
     else {
       $newUserId = $this->User->register(
