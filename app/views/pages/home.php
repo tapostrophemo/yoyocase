@@ -16,9 +16,10 @@
 
 <p>some of the features planned for yoyocase.net include:</p>
 <ul>
+ <li>link pictures from other popular image hosting sites (photobucket, imageshack, imgur, etc.)</li>
  <li>include advanced details (cost, estimated value, condition, etc.)</li>
  <li>keep track of gifts, purchases and trades (date, people/stores involved, etc.)</li>
- <li>keep in touch with other yoyo enthusiasts</li>
+ <li>view other users' galleries and keep in touch with other yoyo enthusiasts</li>
 </ul>
 
 <br/>
