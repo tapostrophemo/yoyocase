@@ -44,6 +44,11 @@ class Users extends MY_Controller
     $this->redirect_with_message('Flicker user id updated.', '/account');
   }
 
+  function listAll() {
+    $data = array('users' => $this->User->find_all());
+    $this->load->view('pageTemplate', array('content' => $this->load->view('users/list', $data, true)));
+  }
+
   function gallery($username) {
     $yoyos = array();
     $user = $this->User->find_by_username($username);

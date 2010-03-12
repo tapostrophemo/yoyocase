@@ -7,6 +7,7 @@ class SiteTestCase extends MY_WebTestCase
     $this->assertTrue($this->get(BASE_URL));
     // Then
     $this->assertLink('register');
+    $this->assertLink('galleries');
     $this->assertLink('login');
     $this->assertNoLink('collection');
     $this->assertNoLink('preferences');
@@ -56,6 +57,15 @@ class SiteTestCase extends MY_WebTestCase
     $this->clickSubmit('Register');
     // Then
     $this->assertText('Username has already been taken');
+  }
+
+  function testViewUserListForGalleries() {
+    // Given
+    $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    // When
+    $this->get(BASE_URL.'/galleries');
+    // Then
+    $this->assertLink('testUser1');
   }
 }
 

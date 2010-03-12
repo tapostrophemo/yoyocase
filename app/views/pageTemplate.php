@@ -25,6 +25,7 @@
   <li><a href="/logout">logout</a></li>
  <? else: ?>
   <li><a href="/register">register</a></li>
+  <li><a href="/galleries">galleries</a></li>
   <li><a href="/login">login</a></li>
  <? endif; ?>
  </ul>

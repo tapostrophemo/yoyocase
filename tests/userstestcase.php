@@ -11,14 +11,14 @@ class UsersTestCase extends MY_WebTestCase
     $this->assertText('User "testUser1" not found');
   }
 
-  function testMainUserPageHasGalleryLink() {
+  function testMainUserPage() {
     // Given
     $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
     // When
     $this->logInAs('testUser1', 'Password1');
     // Then
-    $this->assertText('View your gallery');
     $this->assertLink('your gallery');
+    $this->assertLink('all galleries');
 
     // When
     $this->clickLink('collection');

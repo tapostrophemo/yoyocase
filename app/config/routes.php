@@ -21,5 +21,6 @@ $route['yoyo/(:num)'] = 'yoyos/view/$1';
 $route['yoyo/(:num)/edit'] = 'yoyos/edit/$1';
 $route['photo/(:num)/delete'] = 'yoyos/removePhoto/$1';
 
+$route['galleries'] = 'users/listAll';
 $route['yoyos/(:any)'] = 'users/gallery/$1';
 
