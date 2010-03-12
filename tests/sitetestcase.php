@@ -23,6 +23,15 @@ class SiteTestCase extends MY_WebTestCase
     // When
     $this->get(BASE_URL.'/register');
     // Then
+    $this->_assertFunFacts($numAccounts, $numYoyos, $numPhotos);
+
+    // When
+    $this->get(BASE_URL.'/galleries');
+    // Then
+    $this->_assertFunFacts($numAccounts, $numYoyos, $numPhotos);
+  }
+
+  function _assertFunFacts($numAccounts, $numYoyos, $numPhotos) {
     $this->assertText("$numAccounts user accounts");
     $this->assertText("$numYoyos yoyos");
     $this->assertText("$numPhotos photos");

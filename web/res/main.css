@@ -179,6 +179,11 @@ hr {
   margin-top: 3em;
 }
 
+#userList li {
+  float: left;
+  width: 33%;
+}
+
 .clearing {
   clear: both;
 }
