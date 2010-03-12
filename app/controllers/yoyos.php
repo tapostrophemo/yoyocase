@@ -29,12 +29,7 @@ class Yoyos extends MY_Controller
       $this->load->view('pageTemplate', array('content' => $this->load->view('yoyos/new', $data, true)));
     }
     else {
-      $data = array(
-        'manufacturer' => $this->input->post('manufacturer'),
-        'country' => $this->input->post('country'),
-        'model_year' => $this->input->post('model_year'),
-        'model_name' => $this->input->post('model_name'),
-        'description' => $this->input->post('description'));
+      $data = $this->_get_form_data();
       $yoyoid = $this->Yoyo->add_for_user($this->session->userdata('userid'), $data);
       if ($yoyoid) {
         $this->_savePhotos($yoyoid);
@@ -44,6 +39,15 @@ class Yoyos extends MY_Controller
         echo 'TODO: handle problem where yoyo not saved on create (go back and try again?)';
       }
     }
+  }
+
+  function _get_form_data() {
+    return array(
+      'manufacturer' => $this->input->post('manufacturer'),
+      'country' => $this->input->post('country'),
+      'model_year' => $this->input->post('model_year') == "" ? null : $this->input->post('model_year'),
+      'model_name' => $this->input->post('model_name'),
+      'description' => $this->input->post('description'));
   }
 
   function view($yoyoid) {
@@ -71,12 +75,7 @@ class Yoyos extends MY_Controller
       $this->load->view('pageTemplate', array('content' => $this->load->view('yoyos/edit', $data, true)));
     }
     else {
-      $data = array(
-        'manufacturer' => $this->input->post('manufacturer'),
-        'country' => $this->input->post('country'),
-        'model_year' => $this->input->post('model_year'),
-        'model_name' => $this->input->post('model_name'),
-        'description' => $this->input->post('description'));
+      $data = $this->_get_form_data();
       $rval = $this->Yoyo->update($yoyoid, $data);
       if ($rval) {
         $this->_savePhotos($yoyoid);

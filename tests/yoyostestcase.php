@@ -23,6 +23,20 @@ class YoyosTestCase extends MY_WebTestCase
     $this->assertText('The model name field is required.');
   }
 
+  function testShouldNotDefaultYearToZero() {
+    // Given
+    $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $this->logInAs('testUser1', 'Password1');
+    $this->clickLink('collection');
+    $this->clickLink('Add one?');
+    $this->setField('manufacturer', 'Duncan');
+    $this->setField('model_name', 'FHZ');
+    // When
+    $this->clickSubmit('Save');
+    // Then
+    $this->assertNoText('0 Duncan FHZ');
+  }
+
   function testAddFirstYoyoToCollection() {
     $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
     $this->logInAs('testUser1', 'Password1');

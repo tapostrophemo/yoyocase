@@ -26,6 +26,12 @@
    <td><label for="description">Description</label></td>
    <td><textarea name="description" rows="2" cols="25"></textarea></td>
   </tr>
+  <tr>
+   <td colspan="2">
+    <input type="submit" value="Save"/>
+    <input type="button" value="Cancel" onclick="document.location.href='<?=$cancel_url?>'"/>
+   </td>
+  </tr>
 
   <tr><td colspan="2"><hr/></td></tr>
   <tr>
