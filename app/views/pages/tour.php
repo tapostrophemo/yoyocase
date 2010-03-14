@@ -23,7 +23,8 @@ img {
 <p>3. get an overview of your collection:</p>
 <img src="/res/tour_collection.jpg" alt="collection view"/>
 
-<p>4. view a "gallery" of your yoyos; for example, <a href="/yoyos/t_mo" target="_blank">here's mine</a>!</p>
+<p>4. view a "gallery" of your yoyos:</p>
+<img src="/res/tour_gallery.jpg" alt="individual user's gallery"/>
 
 <br/>
 <br/>
