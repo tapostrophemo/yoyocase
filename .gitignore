@@ -9,4 +9,5 @@ db/*.sqlite3
 .DS_Store
 config/flickr.yml
 app/config/flickr_api.php
+app/config/photobucket_api.php
 

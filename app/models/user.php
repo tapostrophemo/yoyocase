@@ -60,7 +60,9 @@ class User extends Model
   }
 
   function find_by_username($username) {
-    $query = $this->db->select('id, username, email, flickr_userid, is_admin')->where('username', $username)->get('users');
+    $query = $this->db
+      ->select('id, username, email, flickr_userid, photobucket_username, is_admin')
+      ->where('username', $username)->get('users');
     if ($query->num_rows == 1) {
       $result = $query->result();
       return $result[0];
@@ -70,7 +72,7 @@ class User extends Model
     }
   }
 
-  function update($username, $email = null, $password = null, $flickr_userid = null) {
+  function update($username, $email = null, $password = null, $flickr_userid = null, $photobucket_username = null) {
     $this->load->helper('date');
     $now = mdate('%Y-%m-%d %H:%i:%s', time());
 
@@ -84,12 +86,17 @@ class User extends Model
       $attrs['flickr_userid'] = $flickr_userid;
     }
 
+    if ($photobucket_username != null) {
+      $attrs['photobucket_username'] = $photobucket_username;
+    }
+
     if ($password != null) {
       $this->load->plugin('salt');
       $salt = salt();
       $attrs['password_salt'] = $salt;
       $attrs['crypted_password'] = sha1("$password$salt");
     }
+
     $this->db->where('username', $username)->set($attrs)->update('users');
   }
 

@@ -40,3 +40,19 @@ if (!function_exists('flickr_thumbnails')) {
   }
 }
 
+if (!function_exists('photobucket_thumbnails')) {
+  function photobucket_thumbnails() {
+    $CI =& get_instance();
+    $username = $CI->session->userdata('photobucket_username');
+    $CI->load->library('Photobucket_API');
+    $response = $CI->photobucket_api->photos_search(array('username' => $username));
+
+    // TODO: check response code, check for already-used photos, etc.
+    $thumbnails = array();
+    foreach ($response['content']['media'] as $media) {
+      $thumbnails[] = array('thumbnail' => $media['thumb'], 'url' => $media['url']);
+    }
+    return $thumbnails;
+  }
+}
+

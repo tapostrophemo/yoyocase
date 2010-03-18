@@ -5,10 +5,10 @@
 <div id="gallery">
 
  <?=form_open("/preferences") ?>
-  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <table border="0" cellpadding="0" cellspacing="0">
    <tr>
-    <td><label for="username">Username</label></td>
-    <td><?=$user->username?></td>
+    <td style="line-height:2.25em"><label for="username">Username</label></td>
+    <td style="line-height:2.25em"><?=$user->username?></td>
    </tr>
    <tr>
     <td><label for="email">Email</label></td>
@@ -23,7 +23,10 @@
     <td><input type="password" name="passconf" value=""/></td>
    </tr>
    <tr>
-    <td colspan="2"><input type="submit" value="Update"/></td>
+    <td colspan="2" style="line-height:4.5em">
+     <input type="submit" value="Update"/>
+     <input type="button" value="Cancel" onclick="document.location.href='/account'"/>
+    </td>
    </tr>
   </table>
  </form>
@@ -31,18 +34,25 @@
  <hr/>
 
  <?=form_open("/update_flickr_info_1")?>
-  <input type="submit" value="Verify flickr account"/>
-  <br/>
-  <small>Note: clicking this button will redirect your browser to flickr's site to verify your
-   flickr account and to give yoyocase.net permission to read from your flickr account.<br/><br/>
-   Note 2: If the following is filled in, you have successfully verified your flickr account,
-   and unless your flickr account has changed, you don't need to re-verify it:<br/>
-   user_id: <?=$user->flickr_userid?>
-  </small>
+  <p><small>Clicking this button will redirect your browser to flickr's site to verify your
+   flickr account and to give <tt>yoyocase.net</tt> permission to read from that account.</small></p>
+  <input type="submit" value="Verify flickr account"/><br/><br/>
+  <p><small>Note: If the following is filled in, you have successfully verified your flickr account,
+   and unless that account has changed, you don't need to re-verify it:</small></p>
+  <label>flickr user id:</label> <?=$user->flickr_userid?>
  </form>
 
- <br/><br/>
- <input type="button" value="Cancel" onclick="document.location.href='/account'"/>
+ <hr/>
+
+ <?=form_open('/update_photobucket_info_1')?>
+  <p><small>Clicking this button will redirect your browser to Photobucket's site to verify your
+   Photobucket account and give <tt>yoyocase.net</tt> permission to read from that account.</small></p>
+  <input type="submit" value="Verify Photobucket account"/><br/><br/>
+  <p><small>Note: If the following is filled in, you have successfully verified your Photobucket account,
+   and unless that account has changed, you don't need to re-verify it:</small></p>
+  <label>Photobucket username:</label> <?=$user->photobucket_username?>
+ </form>
+
 </div>
 
 <div id="sidebar">

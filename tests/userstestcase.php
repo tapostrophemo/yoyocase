@@ -66,13 +66,8 @@ class UsersTestCase extends MY_WebTestCase
 
   function testAccountSettings() {
     // Given
-    $this->deleteRecord('users', array('username' => "'testUser1'"));
-    $pass = sha1('Password1');
-    $this->insertRecord('users', array('username' => "'testUser1'", 'email' => "'testUser1@somewhere.com'", 'crypted_password' => "'$pass'"));
-    $this->get(BASE_URL.'/login');
-    $this->setField('username', 'testUser1');
-    $this->setField('password', 'Password1');
-    $this->clickSubmit('Login');
+    $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $this->logInAs('testUser1', 'Password1');
     // When
     $this->clickLink('preferences');
     // Then
@@ -97,10 +92,7 @@ class UsersTestCase extends MY_WebTestCase
 
     // When
     $this->clickLink('logout');
-    $this->clickLink('login');
-    $this->setField('username', 'testUser1');
-    $this->setField('password', 'asdf');
-    $this->clickSubmit('Login');
+    $this->logInAs('testUser1', 'asdf');
     // Then
     $this->assertText('Welcome back!');
 
@@ -111,6 +103,20 @@ class UsersTestCase extends MY_WebTestCase
     $this->clickSubmit('Update');
     // Then
     $this->assertText('The confirm password field does not match the password field.');
+  }
+
+  function testPhotoIntegrationSettings() {
+//updateRecord($tablename, $field, $value, $criteriaColumn, $criteriaValue)
+    // Given
+    $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $this->updateRecord('users', 'flickr_userid', "'1234@4321'", 'username', "'testUser1'");
+    $this->updateRecord('users', 'photobucket_username', "'ralph'", 'username', "'testUser1'");
+    $this->logInAs('testUser1', 'Password1');
+    // When
+    $this->clickLink('preferences');
+    // Then
+    $this->assertText('flickr user id: 1234@4321');
+    $this->assertText('Photobucket username: ralph');
   }
 }
 

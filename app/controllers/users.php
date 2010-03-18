@@ -36,12 +36,32 @@ class Users extends MY_Controller
   }
 
   function update_flickr_info_2() {
+    // TODO: detect errors/access denials
     $this->load->library('Flickr_API');
     $auth = $this->flickr_api->auth_getToken($_REQUEST['frob']); // TODO: fake this out so it can be tested
     $nsid = $auth['auth']['user']['nsid'];
     $this->User->update($this->session->userdata('username'), null, null, $nsid);
     $this->session->set_userdata('flickr_userid', $nsid);
     $this->redirect_with_message('Flicker user id updated.', '/account');
+  }
+
+  // TODO: photobucket API interaction needs tested too...
+
+  function update_photobucket_info_1() {
+    $this->load->library('Photobucket_API');
+    $this->photobucket_api->authenticate();
+  }
+
+  function update_photobucket_info_2() {
+    $this->load->library('Photobucket_API');
+    if (($pbUsername = $this->photobucket_api->verify_login())) {
+      $this->User->update($this->session->userdata('username'), null, null, null, $pbUsername);
+      $this->session->set_userdata('photobucket_username', $pbUsername);
+      $this->redirect_with_message('Photobucket username updated.', '/account');
+    }
+    else {
+      $this->redirect_with_error('Problem authenticating to Photobucket', '/account');
+    }
   }
 
   function listAll() {
