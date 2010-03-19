@@ -146,6 +146,11 @@ a img {
   border: 0;
 }
 
+img {
+  max-width: 450px;
+  width: expression(this.width > 450 ? 450 : true);
+}
+
 label {
   font-weight: bold;
   padding-right: 1em;
