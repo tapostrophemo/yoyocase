@@ -1,14 +1,11 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-if (!function_exists('flickr_thumbnails')) {
-  function _urls_only($ary) {
-    return $ary['url'];
-  }
+// TODO: check response codes for each interface
 
+if (!function_exists('flickr_thumbnails')) {
   function flickr_thumbnails() {
     $CI =& get_instance();
 
-    $userid = $CI->session->userdata('userid');
     $flickr_userid = $CI->session->userdata('flickr_userid');
     $thumbnails = array();
 
@@ -16,14 +13,8 @@ if (!function_exists('flickr_thumbnails')) {
       return $thumbnails;
     }
 
-    $sql = "
-      SELECT p.url
-      FROM photos p
-        JOIN yoyos y ON y.id = p.yoyo_id
-        JOIN users u ON u.id = y.user_id
-      WHERE u.id = ?";
-    $query = $CI->db->query($sql, $userid);
-    $used = array_map('_urls_only', $query->result_array());
+    $CI->load->model('Yoyo');
+    $used = $CI->Yoyo->find_photos_for_collector($CI->session->userdata('userid'));
 
     $CI->load->library('Flickr_API');
     $response = $CI->flickr_api->photos_search(array('user_id' => $flickr_userid));
@@ -47,11 +38,16 @@ if (!function_exists('photobucket_thumbnails')) {
     $CI->load->library('Photobucket_API');
     $response = $CI->photobucket_api->photos_search(array('username' => $username));
 
-    // TODO: check response code, check for already-used photos, etc.
+    $CI->load->model('Yoyo');
+    $used = $CI->Yoyo->find_photos_for_collector($CI->session->userdata('userid'));
+
     $thumbnails = array();
     foreach ($response['content']['media'] as $media) {
-      $thumbnails[] = array('thumbnail' => $media['thumb'], 'url' => $media['url']);
+      if (!in_array($media['url'], $used)) {
+        $thumbnails[] = array('thumbnail' => $media['thumb'], 'url' => $media['url']);
+      }
     }
+
     return $thumbnails;
   }
 }

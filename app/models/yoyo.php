@@ -1,5 +1,9 @@
 <?php
 
+function _urls_only($ary) {
+  return $ary['url'];
+}
+
 class Yoyo extends Model
 {
   function find_all_by_userid($userid) {
@@ -29,6 +33,17 @@ class Yoyo extends Model
       ->where('id', $id)
       ->get('yoyos');
     return $query->row();
+  }
+
+  function find_photos_for_collector($userid) {
+    $sql = "
+      SELECT p.url
+      FROM photos p
+        JOIN yoyos y ON y.id = p.yoyo_id
+        JOIN users u ON u.id = y.user_id
+      WHERE u.id = ?";
+    $query = $this->db->query($sql, $userid);
+    return array_map('_urls_only', $query->result_array());
   }
 
   function update($yoyoid, $data) {
