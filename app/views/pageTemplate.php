@@ -48,7 +48,7 @@
  <br/>
  <a href="/credits">Credits</a> |
  <a href="/privacy">Privacy</a> |
- <a href="http://twitter.com/yoyocase">Follow us on Twitter</a>
+ <a href="http://twitter.com/yoyocase" target="_blank">Follow us on Twitter</a>
 </div>
 
 </div><!-- /#container -->

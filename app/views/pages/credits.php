@@ -1,12 +1,12 @@
 <h2>Credits</h2>
 
-<p>Many thanks to the users of the site for being interested. I built it primarily for myself, but
- they give me ideas on how to make the site better.</p>
+<p>Many thanks to all <tt>yoyocase.net</tt>  users. I built the site primarily for myself, but they
+ give me ideas on how to make the site better.</p>
 
 <p>Thanks also to the <a href="http://www.clevelandyoyoclub.com" target="_blank">Cleveland Yo-Yo Club</a>.
  I've learned a few tricks from and traded a few yoyos with its members.</p>
 
-<p><cite><a href="http://www.eastofcleveland.com" target="_blank">Dan Parks</a>, builder and maintainer of this site.</cite></p>
+<p><cite><a href="http://www.eastofcleveland.com" target="_blank">Dan Parks</a>, builder and maintainer of <tt>yoyocase.net</tt>.</cite></p>
 
 <hr/>
 
