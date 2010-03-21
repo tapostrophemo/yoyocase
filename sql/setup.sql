@@ -31,7 +31,8 @@ CREATE TABLE `yoyos` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   `description` text,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `user_id_idx` (`user_id`)
 );
 
 CREATE TABLE `photos` (
@@ -40,6 +41,7 @@ CREATE TABLE `photos` (
   `yoyo_id` int(11) default NULL,
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `yoyo_id_idx` (`yoyo_id`)
 );
 
