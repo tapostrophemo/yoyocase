@@ -70,11 +70,14 @@ class SiteTestCase extends MY_WebTestCase
 
   function testViewUserListForGalleries() {
     // Given
-    $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $yoyoid = $this->insertRecord('yoyos', array('user_id' => $userid, 'model_name' => "'Freehand Zero'"));
+    $this->insertRecord('photos', array('yoyo_id' => $yoyoid, 'url' => "'http://somewhere.com/photo.jpg'"));
     // When
     $this->get(BASE_URL.'/galleries');
     // Then
     $this->assertLink('testUser1');
+    $this->assertText("testUser1 (1 yo's, 1 pics)");
   }
 }
 

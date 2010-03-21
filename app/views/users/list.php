@@ -3,7 +3,10 @@
 <div id="gallery">
  <ul id="userList">
  <?php foreach ($users as $user): ?>
-  <li><a href="/yoyos/<?=$user->username?>"><?=$user->username?></a></li>
+  <li>
+   <a href="/yoyos/<?=$user->username?>"><?=$user->username?></a>
+   <small>(<?=$user->num_yoyos?> yo's, <?=$user->num_photos?> pics)</small>
+  </li>
  <?php endforeach; ?>
  </ul>
 </div>
