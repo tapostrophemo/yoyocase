@@ -107,7 +107,8 @@ class User extends Model
       FROM users u
         LEFT JOIN yoyos y ON y.user_id = u.id
         LEFT JOIN photos p ON p.yoyo_id = y.id
-      GROUP BY u.username, u.created_at, u.last_login_at, u.email";
+      GROUP BY u.username, u.created_at, u.last_login_at, u.email
+      ORDER BY u.id";
     $query = $this->db->query($sql);
     return $query->result();
   }
