@@ -15,6 +15,7 @@ CREATE TABLE `users` (
   `updated_at` datetime default NULL,
   `flickr_userid` varchar(255) default NULL,
   `is_admin` boolean default FALSE,
+  `photobucket_username` varchar(255) default NULL,
   PRIMARY KEY (`id`)
 );
 ALTER TABLE users ADD CONSTRAINT UNIQUE KEY (username);
