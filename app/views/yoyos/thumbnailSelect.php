@@ -32,8 +32,10 @@ $i = 0;
   </tr>
  </table>
 <?php else: ?>
+ <?php if ($this->session->userdata('flickr_userid')): ?>
  <hr/>
  <p>Your flickr account is authorized, but you need to add some photos to your photostream.</p>
+ <?php endif; ?>
 <?php endif; ?>
 
 
@@ -54,7 +56,9 @@ $i = 0;
   </tr>
  </table>
 <?php else: ?>
+ <?php if ($this->session->userdata('photobucket_username')): ?>
  <hr/>
  <p>Your Photobucket account is authorized, but you need to add some photos to your albums.</p>
+ <?php endif; ?>
 <?php endif; ?>
 

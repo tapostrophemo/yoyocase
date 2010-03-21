@@ -32,13 +32,13 @@ class AdminTestCase extends MY_WebTestCase
     $yoyoid = $this->insertRecord('yoyos', array('user_id' => $userid, 'model_name' => "'Freehand Zero'"));
     $this->clickLink('(refresh)');
     // Then
-    $this->assertText("testUser1 (1 yo's, 0 pics)");
+    $this->assertText("testUser1 (1y / 0p)");
 
     // When
     $this->insertRecord('photos', array('yoyo_id' => $yoyoid, 'url' => "'http://somewhere.com/photo.jpg'"));
     $this->clickLink('(refresh)');
     // Then
-    $this->assertText("testUser1 (1 yo's, 1 pics)");
+    $this->assertText("testUser1 (1y / 1p)");
   }
 }
 

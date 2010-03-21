@@ -39,7 +39,7 @@
 
     <hr/>
 
-    <p>Photo uploads are not yet implemented at <tt>yoyocase.net</tt>. However, if you have a flickr
+    <p>Photo uploads are not implemented at <tt>yoyocase.net</tt>. However, if you have a flickr
      or Photobucket account, you can link photos from there to here.</p>
     <p>First, click "Save" on this screen. Then go to your account "preferences" screen and click
      either "Verify flickr account" or "Verify Photobucket account" and follow the prompts.</p>

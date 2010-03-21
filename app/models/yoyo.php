@@ -7,6 +7,7 @@ function _urls_only($ary) {
 class Yoyo extends Model
 {
   function find_all_by_userid($userid) {
+    // TODO: EXPLAIN's showing 2 full-table scans on this...but what else to index?
     $sql = "
       SELECT y.id, y.manufacturer, y.country, y.model_year, y.model_name, p.url AS first_photo
       FROM yoyos y LEFT JOIN (

@@ -33,15 +33,19 @@ if (!function_exists('flickr_thumbnails')) {
 
 if (!function_exists('photobucket_thumbnails')) {
   function photobucket_thumbnails() {
+    $thumbnails = array();
     $CI =& get_instance();
     $username = $CI->session->userdata('photobucket_username');
+    if (!$username) {
+      return $thumbnails;
+    }
+
     $CI->load->library('Photobucket_API');
     $response = $CI->photobucket_api->photos_search(array('username' => $username));
 
     $CI->load->model('Yoyo');
     $used = $CI->Yoyo->find_photos_for_collector($CI->session->userdata('userid'));
 
-    $thumbnails = array();
     foreach ($response['content']['media'] as $media) {
       if (!in_array($media['url'], $used)) {
         $thumbnails[] = array('thumbnail' => $media['thumb'], 'url' => $media['url']);
