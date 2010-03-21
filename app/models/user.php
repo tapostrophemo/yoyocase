@@ -101,7 +101,14 @@ class User extends Model
   }
 
   function find_all() {
-    $query = $this->db->select('username, created_at, last_login_at, email')->get('users');
+    $sql = "
+      SELECT u.username, u.created_at, u.last_login_at, u.email,
+        Count(DISTINCT y.id) AS num_yoyos, Count(DISTINCT p.id) AS num_photos
+      FROM users u
+        LEFT JOIN yoyos y ON y.user_id = u.id
+        LEFT JOIN photos p ON p.yoyo_id = y.id
+      GROUP BY u.username, u.created_at, u.last_login_at, u.email";
+    $query = $this->db->query($sql);
     return $query->result();
   }
 }

@@ -9,11 +9,15 @@
  </tr>
 <?php foreach ($accounts as $account): ?>
  <tr>
-  <td><?=$account->username?></td>
+  <td><?=$account->username?> <small>(<?=$account->num_yoyos?> yo's, <?=$account->num_photos?> pics)</small></td>
   <td><?=$account->created_at?></td>
   <td><?=$account->last_login_at?></td>
   <td><?=$account->email?></td>
  </tr>
 <?php endforeach; ?>
 </table>
+
+<br/>
+
+<p><a href="/admin/accounts">(refresh)</a></p>
 

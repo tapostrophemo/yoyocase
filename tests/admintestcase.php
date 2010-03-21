@@ -17,7 +17,7 @@ class AdminTestCase extends MY_WebTestCase
   function testAdminCanViewOtherAccounts() {
     // Given
     $this->createAdminUser('testAdmin1', 'testAdmin1@somewhere.com', 'AdminPassword1');
-    $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
     $this->logInAs('testAdmin1', 'AdminPassword1');
     // When
     $this->clickLink('site admin');
@@ -27,6 +27,18 @@ class AdminTestCase extends MY_WebTestCase
     // TODO: verify registered_on/last_login timestamps
     $this->assertText('testAdmin1@somewhere.com');
     $this->assertText('testUser1@somewhere.com');
+
+    // When
+    $yoyoid = $this->insertRecord('yoyos', array('user_id' => $userid, 'model_name' => "'Freehand Zero'"));
+    $this->clickLink('(refresh)');
+    // Then
+    $this->assertText("testUser1 (1 yo's, 0 pics)");
+
+    // When
+    $this->insertRecord('photos', array('yoyo_id' => $yoyoid, 'url' => "'http://somewhere.com/photo.jpg'"));
+    $this->clickLink('(refresh)');
+    // Then
+    $this->assertText("testUser1 (1 yo's, 1 pics)");
   }
 }
 
