@@ -9,7 +9,7 @@ define('BASE_URL', 'http://dev.yoyocase.net');
 class MY_WebTestCase extends WebTestCase
 {
   function deleteRecord($tablename, $criteria = array()) {
-    $sql = "DELETE FROM $tablename\n";
+    $sql = "SET NAMES 'utf8'; DELETE FROM $tablename\n";
     if (count($criteria) > 0) {
       $sql .= ' WHERE';
       foreach ($criteria as $column => $value) {

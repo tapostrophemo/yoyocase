@@ -68,6 +68,24 @@ class SiteTestCase extends MY_WebTestCase
     $this->assertText('Username has already been taken');
   }
 
+  function testRegisterUserWithInternationalChars() {
+    // Given
+    $this->deleteRecord('users', array('username' => "'Nolsøe'"));
+    $this->get(BASE_URL.'/register');
+    // When
+    $this->setField('username', 'Nolsøe');
+    $this->setField('password', 'Password1');
+    $this->setField('email', 'testUserN@somewhere.com');
+    $this->clickSubmit('Register');
+    // Then
+    $this->assertText('Welcome, Nolsøe!');
+
+    // When
+    $this->get(BASE_URL.'/yoyos/Nolsøe');
+    // Then
+    $this->assertText('User "Nolsøe" has no yoyos in their collection');
+  }
+
   function testViewUserListForGalleries() {
     // Given
     $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
