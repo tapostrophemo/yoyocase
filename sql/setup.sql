@@ -1,6 +1,6 @@
 CREATE TABLE `users` (
   `id` int(11) NOT NULL auto_increment,
-  `username` varchar(255) NOT NULL,
+  `username` varchar(255) CHARACTER SET utf8 NOT NULL,
   `email` varchar(255) NOT NULL,
   `crypted_password` varchar(255) NOT NULL,
   `password_salt` varchar(255) NOT NULL,
