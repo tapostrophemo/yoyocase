@@ -73,6 +73,7 @@ class Users extends MY_Controller
   }
 
   function gallery($username) {
+    $username = urldecode($username);
     $yoyos = array();
     $user = $this->User->find_by_username($username);
     if ($user) {
