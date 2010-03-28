@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(E_ALL);
+error_reporting(E_ALL | E_STRICT);
 
 $system_folder = '../lib/ci-1.7.2'; // TODO: configure for PROD deploy
 $application_folder = '../app'; // TODO: configure for PROD deploy

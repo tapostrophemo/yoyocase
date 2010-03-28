@@ -3,5 +3,5 @@
  <li><?=count($yoyos)?> yoyo(s) total</li>
 </ul>
 
-<a href="/yoyos/<?=$this->session->userdata('username')?>">View gallery</a>
+<a href="/yoyos/<?=urlencode($this->session->userdata('username'))?>">View gallery</a>
 
