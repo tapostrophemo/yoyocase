@@ -11,19 +11,25 @@ img {
  outs to the <a href="http://www.clevelandyoyoclub.com" target="_blank">Cleveland Yo-Yo Club!</a>)
  I wanted to make it easy to:</p>
 
+<a name="1"></a>
 <p>1. Post details of your yoyos; link photos from flickr/Photobucket accounts so you don't have to upload them:</p>
 <img src="/res/tour_addYoyo.jpg" alt="add yoyo"/>
 
 <br/>
 
+<a name="2"></a>
 <p>2. Edit and save yoyo details:</p>
 <img src="/res/tour_edit.jpg" alt="edit yoyo"/>
 
 <br/>
 
+<a name="3"></a>
 <p>3. Get an overview of your collection:</p>
 <img src="/res/tour_collection.jpg" alt="collection view"/>
 
+<br/>
+
+<a name="4"></a>
 <p>4. View a "gallery" of your yoyos:</p>
 <img src="/res/tour_gallery.jpg" alt="individual user's gallery"/>
 
