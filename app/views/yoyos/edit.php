@@ -22,8 +22,8 @@
    <td><input type="text" name="model_name" value="<?=set_value('model_name', $yoyo->model_name)?>"/></td>
   </tr>
   <tr>
-   <td><label for="description">Description</label></td>
-   <td><textarea name="description" rows="2" cols="25"><?=set_value('description', $yoyo->description)?></textarea></td>
+   <td><label for="notes">Notes</label></td>
+   <td><textarea name="notes" rows="2" cols="25"><?=set_value('notes', $yoyo->notes)?></textarea></td>
   </tr>
   <tr>
    <td colspan="2">

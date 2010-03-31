@@ -9,7 +9,7 @@
 <p>The site is new and growing, but already you can:</p>
 <ul>
  <li>link pictures of your collection from flickr or Photobucket accounts</li>
- <li>post yoyo details (manufacturer, model name, description, etc.)</li>
+ <li>post yoyo details (manufacturer, model name, notes, etc.)</li>
 </ul>
 
 <br/>

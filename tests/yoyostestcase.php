@@ -48,8 +48,8 @@ class YoyosTestCase extends MY_WebTestCase
     $this->setField('country', 'China');
     $this->setField('model_year', '2005');
     $this->setField('model_name', 'FHZ');
-    $this->assertField('description', '');
-    $this->setField('description', 'I dyed this one myself');
+    $this->assertField('notes', '');
+    $this->setField('notes', 'I dyed this one myself');
     $this->clickSubmit('Save');
 
     $this->assertText('Yoyo added to collection successfully');
@@ -67,7 +67,7 @@ class YoyosTestCase extends MY_WebTestCase
     $this->assertText('Model year 2005');
     $this->assertText('Model name FHZ');
     $this->assertText('Country China');
-    $this->assertText('Description I dyed this one myself');
+    $this->assertText('Notes I dyed this one myself');
 
     // scenario: edit yoyo details
     $this->clickSubmit('Edit');
@@ -77,15 +77,15 @@ class YoyosTestCase extends MY_WebTestCase
     $this->setField('model_year', '5002');
     $this->assertField('model_name', 'FHZ');
     $this->setField('model_name', 'ZHF');
-    $this->assertField('description', 'I dyed this one myself');
-    $this->setField('description', 'green and pink');
+    $this->assertField('notes', 'I dyed this one myself');
+    $this->setField('notes', 'green and pink');
     $this->clickSubmit('Save');
 
     $this->assertText('Yoyo saved successfully');
     $this->assertText('Manufacturer Nacnud');
     $this->assertText('Model year 5002');
     $this->assertText('Model name ZHF');
-    $this->assertText('Description green and pink');
+    $this->assertText('Notes green and pink');
   }
 }
 

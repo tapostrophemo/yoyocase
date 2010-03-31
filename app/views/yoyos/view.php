@@ -19,8 +19,8 @@
   <td><?=$yoyo->model_name?></td>
  </tr>
  <tr>
-  <td><label>Description</label></td>
-  <td><?=$yoyo->description?></td>
+  <td><label>Notes</label></td>
+  <td><?=$yoyo->notes?></td>
  </tr>
 </table>
 

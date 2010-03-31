@@ -47,7 +47,7 @@ class Yoyos extends MY_Controller
       'country' => $this->input->post('country'),
       'model_year' => $this->input->post('model_year') == "" ? null : $this->input->post('model_year'),
       'model_name' => $this->input->post('model_name'),
-      'description' => $this->input->post('description'));
+      'notes' => $this->input->post('notes'));
   }
 
   function view($yoyoid) {
