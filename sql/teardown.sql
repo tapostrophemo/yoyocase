@@ -1,5 +1,6 @@
 drop table if exists
   photos,
   yoyos,
-  users;
+  users,
+  schema_migrations;
 

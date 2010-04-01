@@ -1,3 +1,8 @@
+CREATE TABLE `schema_migrations` (
+  `version` varchar(255) NOT NULL,
+  UNIQUE KEY `unique_schema_migrations` (`version`)
+);
+
 CREATE TABLE `users` (
   `id` int(11) NOT NULL auto_increment,
   `username` varchar(255) CHARACTER SET utf8 NOT NULL,
@@ -16,10 +21,10 @@ CREATE TABLE `users` (
   `flickr_userid` varchar(255) default NULL,
   `is_admin` boolean default FALSE,
   `photobucket_username` varchar(255) default NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `username` (`username`)
 );
-ALTER TABLE users ADD CONSTRAINT UNIQUE KEY (username);
-ALTER TABLE users ADD CONSTRAINT UNIQUE KEY (email);
 
 CREATE TABLE `yoyos` (
   `id` int(11) NOT NULL auto_increment,
@@ -30,7 +35,7 @@ CREATE TABLE `yoyos` (
   `user_id` int(11) default NULL,
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
-  `description` text,
+  `notes` text,
   PRIMARY KEY (`id`),
   KEY `user_id_idx` (`user_id`)
 );
