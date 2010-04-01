@@ -30,7 +30,7 @@ class Yoyo extends Model
 
   function find_by_id($id) {
     $query = $this->db
-      ->select('id, user_id, manufacturer, country, model_year, model_name, created_at, updated_at, condition, notes')
+      ->select('id, user_id, manufacturer, mod, country, model_year, model_name, created_at, updated_at, condition, serialnum, notes')
       ->where('id', $id)
       ->get('yoyos');
     return $query->row();

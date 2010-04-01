@@ -6,8 +6,16 @@
 <?=form_open('yoyo')?>
  <table border="0" cellspacing="0" cellpadding="0" width="100%">
   <tr>
+   <td><label for="model_name">*Model name</label></td>
+   <td><input type="text" name="model_name" value="<?=set_value('model_name')?>"/></td>
+  </tr>
+  <tr>
    <td><label for="manufacturer">Manufacturer</label></td>
    <td><input type="text" name="manufacturer" value="<?=set_value('manufacturer')?>"/></td>
+  </tr>
+  <tr>
+   <td><label for="mod">Modded by</label></td>
+   <td><input type="text" name="mod" value="<?=set_value('mod')?>"/></td>
   </tr>
   <tr>
    <td><label for="country">Country</label></td>
@@ -18,8 +26,8 @@
    <td><input type="text" name="model_year" size="4" maxlength="4" value="<?=set_value('model_year')?>"/></td>
   </tr>
   <tr>
-   <td><label for="model_name">Model name</label></td>
-   <td><input type="text" name="model_name" value="<?=set_value('model_name')?>"/></td>
+   <td><label for="serialnum">Serial number</label></td>
+   <td><input type="text" name="serialnum" value="<?=set_value('serialnum')?>"/></td>
   </tr>
   <tr>
    <td><label for="condition">Condition</label></td>

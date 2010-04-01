@@ -45,12 +45,14 @@ class YoyosTestCase extends MY_WebTestCase
 
     // scenario: create first yoyo
     $this->setField('manufacturer', 'Duncan');
+    $this->setField('mod', 'the Modfather');
     $this->setField('country', 'China');
     $this->setField('model_year', '2005');
     $this->setField('model_name', 'FHZ');
     $this->assertField('notes', '');
     $this->setField('notes', 'I dyed this one myself');
     $this->assertField('condition', '');
+    $this->assertField('serialnum', '');
     $this->clickSubmit('Save');
 
     $this->assertText('Yoyo added to collection successfully');
@@ -65,11 +67,13 @@ class YoyosTestCase extends MY_WebTestCase
     $this->clickLink('2005 Duncan FHZ');
 
     $this->assertText('Manufacturer Duncan');
+    $this->assertText('(modded by the Modfather)');
     $this->assertText('Model year 2005');
     $this->assertText('Model name FHZ');
     $this->assertText('Country China');
     $this->assertText('Notes I dyed this one myself');
     $this->assertText('Condition ');
+    $this->assertText('Serial number ');
 
     // scenario: edit yoyo details
     $this->clickSubmit('Edit');
@@ -83,6 +87,10 @@ class YoyosTestCase extends MY_WebTestCase
     $this->setField('notes', 'green and pink');
     $this->assertField('condition', '');
     $this->setField('condition', 'excellent');
+    $this->assertField('mod', 'the Modfather');
+    $this->setField('mod', '');
+    $this->assertField('serialnum', '');
+    $this->setField('serialnum', 'abc123');
     $this->clickSubmit('Save');
 
     $this->assertText('Yoyo saved successfully');
@@ -91,6 +99,8 @@ class YoyosTestCase extends MY_WebTestCase
     $this->assertText('Model name ZHF');
     $this->assertText('Notes green and pink');
     $this->assertText('Condition excellent');
+    $this->assertText('Serial number abc123');
+    $this->assertNoText('(modded by');
   }
 }
 

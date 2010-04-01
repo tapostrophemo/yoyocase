@@ -4,8 +4,15 @@
 
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
  <tr>
+  <td><label>Model name</label></td>
+  <td><?=$yoyo->model_name?></td>
+ </tr>
+ <tr>
   <td><label>Manufacturer</label></td>
-  <td><?=$yoyo->manufacturer?></td>
+  <td>
+   <?=$yoyo->manufacturer?>
+   <?php if (!empty($yoyo->mod)): ?><br/><small>(modded by <?=$yoyo->mod?>)</small><?php endif; ?>
+  </td>
  </tr>
  <tr>
   <td><label>Country</label></td>
@@ -16,8 +23,8 @@
   <td><?=$yoyo->model_year?></td>
  </tr>
  <tr>
-  <td><label>Model name</label></td>
-  <td><?=$yoyo->model_name?></td>
+  <td><label>Serial number</label></td>
+  <td><?=$yoyo->serialnum?></td>
  </tr>
  <tr>
   <td><label>Condition</label></td>

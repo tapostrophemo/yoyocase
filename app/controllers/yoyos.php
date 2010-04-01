@@ -44,9 +44,11 @@ class Yoyos extends MY_Controller
   function _get_form_data() {
     return array(
       'manufacturer' => $this->input->post('manufacturer'),
+      'mod' => $this->input->post('mod'),
       'country' => $this->input->post('country'),
       'model_year' => $this->input->post('model_year') == "" ? null : $this->input->post('model_year'),
       'model_name' => $this->input->post('model_name'),
+      'serialnum' => $this->input->post('serialnum'),
       'condition' => $this->input->post('condition'),
       'notes' => $this->input->post('notes'));
   }

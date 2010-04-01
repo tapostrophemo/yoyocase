@@ -21,9 +21,11 @@ $config = array(
 
   'yoyo' => array(
     array('field' => 'manufacturer', 'label' => 'manufacturer', 'rules' => 'trim|max_length[255]|xss_clean'),
+    array('field' => 'mod', 'label' => 'modder', 'rules' => 'trim|max_length[255]|xss_clean'),
     array('field' => 'country', 'label' => 'country', 'rules' => 'trim|max_length[255]|xss_clean'),
     array('field' => 'model_year', 'label' => 'model year', 'rules' => 'trim|integer|max_length[4]'),
     array('field' => 'model_name', 'label' => 'model name', 'rules' => 'trim|required|max_length[255]|xss_clean'),
+    array('field' => 'serialnum', 'label' => 'serial number', 'rules' => 'trim|max_length[64]|xss_clean'),
     array('field' => 'condition', 'label' => 'condition', 'rules' => 'trim|callback__is_valid_condition'),
     array('field' => 'notes', 'label' => 'notes', 'rules' => 'trim|xss_clean')
   )
