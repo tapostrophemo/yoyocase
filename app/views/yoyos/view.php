@@ -1,6 +1,7 @@
 <h2><?=$yoyo->model_year?> <?=$yoyo->manufacturer?> <?=$yoyo->model_name?></h2>
 
 <div id="gallery">
+
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
  <tr>
   <td><label>Manufacturer</label></td>
@@ -28,6 +29,13 @@
  </tr>
 </table>
 
+<br/>
+
+<?=form_open("yoyo/{$yoyo->id}/edit", array('method' => 'GET'))?>
+ <input type="submit" value="Edit"/>
+ <input type="button" value="Back to collection" onclick="document.location.href='<?=$cancel_url?>'"/>
+</form>
+
 <hr/>
 
 <?php $i = 1; foreach ($photos as $photo): ?>
@@ -36,11 +44,13 @@
 <?php $i++; if ($i <= count($photos)): echo '<br/>'; endif; ?>
 <?php endforeach; ?>
 
- <br/>
- <?=form_open("yoyo/{$yoyo->id}/edit")?>
-  <input type="submit" value="Edit"/>
-  <input type="button" value="Back to collection" onclick="document.location.href='<?=$cancel_url?>'"/>
- </form>
+<br/>
+
+<?=form_open("yoyo/{$yoyo->id}/edit", array('method' => 'GET'))?>
+ <input type="submit" value="Edit"/>
+ <input type="button" value="Back to collection" onclick="document.location.href='<?=$cancel_url?>'"/>
+</form>
+
 </div>
 
 <div id="sidebar">
