@@ -22,6 +22,17 @@
    <td><input type="text" name="model_name" value="<?=set_value('model_name')?>"/></td>
   </tr>
   <tr>
+   <td><label for="condition">Condition</label></td>
+   <td><select name="condition">
+        <option value=""></option>
+        <option value="mint" <?=set_select('condition', 'mint')?>>Mint</option>
+        <option value="excellent" <?=set_select('condition', 'excellent')?>>Excellent</option>
+        <option value="good" <?=set_select('condition', 'good')?>>Good</option>
+        <option value="fair" <?=set_select('condition', 'fair')?>>Fair</option>
+        <option value="poor" <?=set_select('condition', 'poor')?>>Poor</option>
+       </select></td>
+  </tr>
+  <tr>
    <td><label for="notes">Notes</label></td>
    <td><textarea name="notes" rows="2" cols="25"><?=set_value('notes')?></textarea></td>
   </tr>

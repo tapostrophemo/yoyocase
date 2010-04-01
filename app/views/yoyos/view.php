@@ -19,6 +19,10 @@
   <td><?=$yoyo->model_name?></td>
  </tr>
  <tr>
+  <td><label>Condition</label></td>
+  <td><?=$yoyo->condition?></td>
+ </tr>
+ <tr>
   <td><label>Notes</label></td>
   <td><?=$yoyo->notes?></td>
  </tr>

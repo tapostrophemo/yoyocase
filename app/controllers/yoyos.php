@@ -47,6 +47,7 @@ class Yoyos extends MY_Controller
       'country' => $this->input->post('country'),
       'model_year' => $this->input->post('model_year') == "" ? null : $this->input->post('model_year'),
       'model_name' => $this->input->post('model_name'),
+      'condition' => $this->input->post('condition'),
       'notes' => $this->input->post('notes'));
   }
 
@@ -113,6 +114,15 @@ class Yoyos extends MY_Controller
         $this->Photo->add_for_yoyo($yoyoid, array('url' => $url));
       }
     }
+  }
+
+  function _is_valid_condition($str) {
+    if (empty($str) || in_array($str, array('mint', 'excellent', 'good', 'fair', 'poor'))) {
+      return true;
+    }
+
+    $this->form_validation->set_message('_is_valid_condition', 'Please choose from available conditions.');
+    return false;
   }
 }
 

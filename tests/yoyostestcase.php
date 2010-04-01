@@ -50,6 +50,7 @@ class YoyosTestCase extends MY_WebTestCase
     $this->setField('model_name', 'FHZ');
     $this->assertField('notes', '');
     $this->setField('notes', 'I dyed this one myself');
+    $this->assertField('condition', '');
     $this->clickSubmit('Save');
 
     $this->assertText('Yoyo added to collection successfully');
@@ -68,6 +69,7 @@ class YoyosTestCase extends MY_WebTestCase
     $this->assertText('Model name FHZ');
     $this->assertText('Country China');
     $this->assertText('Notes I dyed this one myself');
+    $this->assertText('Condition ');
 
     // scenario: edit yoyo details
     $this->clickSubmit('Edit');
@@ -79,6 +81,8 @@ class YoyosTestCase extends MY_WebTestCase
     $this->setField('model_name', 'ZHF');
     $this->assertField('notes', 'I dyed this one myself');
     $this->setField('notes', 'green and pink');
+    $this->assertField('condition', '');
+    $this->setField('condition', 'excellent');
     $this->clickSubmit('Save');
 
     $this->assertText('Yoyo saved successfully');
@@ -86,6 +90,7 @@ class YoyosTestCase extends MY_WebTestCase
     $this->assertText('Model year 5002');
     $this->assertText('Model name ZHF');
     $this->assertText('Notes green and pink');
+    $this->assertText('Condition excellent');
   }
 }
 
