@@ -69,22 +69,25 @@ class Users extends MY_Controller
     $data = array(
       'users' => $this->User->find_all(),
       'facts' => $this->Misc->fun_facts());
-    $this->load->view('pageTemplate', array('content' => $this->load->view('users/list', $data, true)));
+    $this->load->view('pageTemplate', array('title' => 'view yoyo collections', 'content' => $this->load->view('users/list', $data, true)));
   }
 
   function gallery($username) {
     $username = urldecode($username);
     $yoyos = array();
     $user = $this->User->find_by_username($username);
+    $title = 'view yoyo collections';
+    $username = htmlspecialchars($username);
     if ($user) {
+      $title = "$username's yoyo collection";
       $this->load->model('Yoyo');
       $yoyos = $this->Yoyo->find_all_by_userid($user->id);
       $content = $this->load->view('users/gallery', array('username' => $username, 'yoyos' => $yoyos), true);
     }
     else {
-      $content = '<p class="err">User "' . htmlspecialchars($username) . '" not found</p>';
+      $content = $this->load->view('users/notFound', array('username' => $username), true);
     }
-    $this->load->view('pageTemplate', array('content' => $content));
+    $this->load->view('pageTemplate', array('title' => $title, 'content' => $content));
   }
 }
 

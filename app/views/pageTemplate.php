@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>yoyocase.net</title>
+<title><?php if (isset($title)) echo "$title - "; ?>yoyocase.net</title>
 <link rel="stylesheet" type="text/css" href="/res/main.css"/>
 <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
 </head>

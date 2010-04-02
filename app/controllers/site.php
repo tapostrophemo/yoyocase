@@ -12,7 +12,7 @@ class Site extends MY_Controller
     if (!$this->form_validation->run('site_register')) {
       $this->load->model('Misc');
       $facts = array('facts' => $this->Misc->fun_facts());
-      $this->load->view('pageTemplate', array('content' => $this->load->view('site/register', $facts, true)));
+      $this->load->view('pageTemplate', array('title' => 'register and manage your yoyo collection', 'content' => $this->load->view('site/register', $facts, true)));
     }
     else {
       $newUserId = $this->User->register(
@@ -32,7 +32,7 @@ class Site extends MY_Controller
 
   function login() {
     if (!$this->form_validation->run('site_login')) {
-      $this->load->view('pageTemplate', array('content' => $this->load->view('site/login', null, true)));
+      $this->load->view('pageTemplate', array('title' => 'login and manage your yoyo collection', 'content' => $this->load->view('site/login', null, true)));
     }
     else {
       $user = $this->User->mark_login($this->input->post('username'));

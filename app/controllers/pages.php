@@ -11,7 +11,7 @@ class Pages extends Controller
   function tour() { $this->_view('tour'); }
 
   function _view($page) {
-    $this->load->view('pageTemplate', array('content' => $this->load->view("pages/$page", null, true)));
+    $this->load->view('pageTemplate', array('title' => 'online yoyo collection software', 'content' => $this->load->view("pages/$page", null, true)));
   }
 }
 
