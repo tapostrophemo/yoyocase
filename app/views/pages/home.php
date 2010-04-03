@@ -1,5 +1,7 @@
 <h2>Welcome to yoyocase.net</h2>
 
+<div id="gallery">
+
 <p>What is yoyocase.net? It is a website that will let you manage your yoyo collection online.
  Managing your collection online means you'll be able to easily share your collection with
  friends, traders, and other yoyo enthusiasts.</p>
@@ -30,4 +32,24 @@
 
 <p><small>Note: this site is focused only on yo-yos and yo-yo related items. Postings with illegal
  or inappropriate material can and may be removed by the site operators.</small></p>
+
+</div>
+
+<div id="sidebar">
+
+<div id="smallLogin">
+ <?=form_open('login')?>
+  <label for="username">Username</label><br/>
+  <input type="text" name="username"/><br/>
+  <label for="password">Password</label><br/>
+  <input type="password" name="password"/><br/>
+  <input type="submit" value="Login"/>
+ </form>
+ <br/>
+ <p><a href="/passwordreset">Forgot your password?</a></p>
+</div>
+
+</div>
+
+<div class="clearing"></div>
 

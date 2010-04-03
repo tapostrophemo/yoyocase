@@ -30,11 +30,12 @@ img {
 <br/>
 
 <a name="4"></a>
-<p>4. View a "gallery" of your yoyos:</p>
+<p>4. View a gallery of your yoyos:</p>
 <img src="/res/tour_gallery.jpg" alt="individual user's gallery"/>
 
 <br/>
 <br/>
 
-<p>Want all your yoyo details and photos managed in one place? <a href="/register">go register</a>!</p>
+<p>Want all your yoyo details and photos managed in one place? <a href="/register">Register</a>
+ for an account.</p>
 

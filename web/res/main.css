@@ -207,3 +207,7 @@ hr {
   padding: 2px 0;
 }
 
+#smallLogin label, #smallLogin input, #smallLogin a {
+  font-size: 80%;
+}
+

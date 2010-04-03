@@ -4,9 +4,10 @@
 
 <div id="gallery">
 
-<?=form_open('register')?>
+<div style="width:50%; margin:0 auto">
 
- <table border="0" cellpadding="0" cellspacing="0" width="50%" align="center">
+<?=form_open('register')?>
+ <table border="0" cellpadding="0" cellspacing="0">
   <tr>
    <td><label for="username">Username</label>&nbsp;</td>
    <td><input type="text" name="username" value="<?=set_value('username')?>"/></td>
@@ -25,6 +26,12 @@
  </table>
 </form>
 
+<br/>
+<br/>
+
+<p>Already registered? <a href="/login">Login</a>.</p>
+
+</div>
 </div>
 
 <div id="sidebar">
