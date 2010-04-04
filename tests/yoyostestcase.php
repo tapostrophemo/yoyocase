@@ -23,7 +23,7 @@ class YoyosTestCase extends MY_WebTestCase
     $this->assertText('The model name field is required.');
   }
 
-  function testShouldNotDefaultYearToZero() {
+  function testShouldNotDefaultNumericFieldsToZero() {
     // Given
     $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
     $this->logInAs('testUser1', 'Password1');
@@ -31,10 +31,18 @@ class YoyosTestCase extends MY_WebTestCase
     $this->clickLink('Add one?');
     $this->setField('manufacturer', 'Duncan');
     $this->setField('model_name', 'FHZ');
+    $this->setField('acq_date', '2010-01-03');
+    $this->setField('acq_type', 'trade');
     // When
     $this->clickSubmit('Save');
     // Then
     $this->assertNoText('0 Duncan FHZ');
+
+    // When
+    $this->clickLink('Duncan FHZ');
+    // Then
+    $this->assertNoText('Value $0.00');
+    $this->assertNoText('Acquired by trade on 2010-01-03 for $0.00');
   }
 
   function testAddFirstYoyoToCollection() {

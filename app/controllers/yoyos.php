@@ -51,7 +51,7 @@ class Yoyos extends MY_Controller
       'model_name' => $this->input->post('model_name'),
       'serialnum' => $this->input->post('serialnum'),
       'condition' => $this->input->post('condition'),
-      'value' => $this->input->post('value'),
+      'value' => $this->input->post('value') == "" ? null : $this->input->post('value'),
       'notes' => $this->input->post('notes'));
   }
 
@@ -126,7 +126,7 @@ class Yoyos extends MY_Controller
         $this->input->post('acq_date'),
         $this->input->post('acq_type'),
         $this->input->post('acq_party'),
-        $this->input->post('acq_price'));
+        $this->input->post('acq_price') == "" ? null : $this->input->post('acq_price'));
     }
   }
 
