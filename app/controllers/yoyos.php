@@ -33,6 +33,7 @@ class Yoyos extends MY_Controller
       $yoyoid = $this->Yoyo->add_for_user($this->session->userdata('userid'), $data);
       if ($yoyoid) {
         $this->_savePhotos($yoyoid);
+        $this->_saveAcquisition($yoyoid);
         $this->redirect_with_message('Yoyo added to collection successfully', 'yoyos');
       }
       else {
@@ -50,6 +51,7 @@ class Yoyos extends MY_Controller
       'model_name' => $this->input->post('model_name'),
       'serialnum' => $this->input->post('serialnum'),
       'condition' => $this->input->post('condition'),
+      'value' => $this->input->post('value'),
       'notes' => $this->input->post('notes'));
   }
 
@@ -118,12 +120,48 @@ class Yoyos extends MY_Controller
     }
   }
 
+  function _saveAcquisition($yoyoid) {
+    if ($this->_hasAcquisitionInfo()) {
+      $this->Yoyo->saveAcquisition($this->session->userdata('userid'), $yoyoid,
+        $this->input->post('acq_date'),
+        $this->input->post('acq_type'),
+        $this->input->post('acq_party'),
+        $this->input->post('acq_price'));
+    }
+  }
+
+  function _hasAcquisitionInfo() {
+    return
+      $this->input->post('acq_date') ||
+      $this->input->post('acq_type') ||
+      $this->input->post('acq_party') ||
+      $this->input->post('acq_price');
+  }
+
   function _is_valid_condition($str) {
     if (empty($str) || in_array($str, array('mint', 'excellent', 'good', 'fair', 'poor'))) {
       return true;
     }
 
     $this->form_validation->set_message('_is_valid_condition', 'Please choose from available conditions.');
+    return false;
+  }
+
+  function _yyyy_mm_dd_format($str) {
+    if (empty($str) || preg_match('/^\d\d\d\d-\d\d?-\d\d?$/', $str)) {
+      return true;
+    }
+
+    $this->form_validation->set_message('_yyyy_mm_dd_format', 'The %s field must be in YYYY-MM-DD format.');
+    return false;
+  }
+
+  function _is_valid_acquisition_type($str) {
+    if (empty($str) || in_array($str, array('purchase', 'trade', 'gift'))) {
+      return true;
+    }
+
+    $this->form_validation->set_message('_is_valid_acquisition_type', 'Please choose from available acquisition methods.');
     return false;
   }
 }

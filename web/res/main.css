@@ -211,3 +211,26 @@ hr {
   font-size: 80%;
 }
 
+.advField label, .advField input {
+  font-size: 75%;
+}
+
+.adv {
+  display: none;
+}
+
+#advToggle {
+  background: transparent url(/res/expandCollapse.png) 0 0 no-repeat;
+  font-size: 10px;
+  line-height: 11px;
+  overflow: hidden;
+  padding-left: 11px;
+}
+#advToggle.expanded {
+  background-position: -11px 0;
+}
+#advShow, #advHide {
+  background-color: white;
+  padding-left: 7px;
+}
+

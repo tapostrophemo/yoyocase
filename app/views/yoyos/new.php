@@ -1,8 +1,39 @@
+<script type="text/javascript" src="/res/jquery-1.4.2.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+
+  $("#advShow").click(function () {
+    jQuery.each($(".adv"), function (i, row) {
+      row.className = "advDisplay";
+    });
+    $(this).hide();
+    $("#advHide").show();
+    this.parentNode.className = "expanded";
+  });
+
+  $("#advHide").click(function () {
+    jQuery.each($(".advDisplay"), function (i, row) {
+      row.className = "adv";
+    });
+    $(this).hide();
+    $("#advShow").show();
+    this.parentNode.className = "";
+  });
+
+});
+</script>
+
 <?=validation_errors()?>
 
 <h2>Add to your collection</h2>
 
 <div id="gallery">
+
+<p id="advToggle">
+ <a href="#" id="advShow">show advanced fields</a>
+ <a href="#" id="advHide" style="display:none">hide advanced fields</a>
+</p>
+
 <?=form_open('yoyo')?>
  <table border="0" cellspacing="0" cellpadding="0" width="100%">
   <tr>
@@ -13,9 +44,12 @@
    <td><label for="manufacturer">Manufacturer</label></td>
    <td><input type="text" name="manufacturer" value="<?=set_value('manufacturer')?>"/></td>
   </tr>
-  <tr>
-   <td><label for="mod">Modded by</label></td>
-   <td><input type="text" name="mod" value="<?=set_value('mod')?>"/></td>
+  <tr class="adv">
+   <td></td>
+   <td class="advField">
+    <label for="mod">Modded by</label>
+    <input type="text" name="mod" value="<?=set_value('mod')?>"/>
+   </td>
   </tr>
   <tr>
    <td><label for="country">Country</label></td>
@@ -25,11 +59,11 @@
    <td><label for="model_year">Model year</label></td>
    <td><input type="text" name="model_year" size="4" maxlength="4" value="<?=set_value('model_year')?>"/></td>
   </tr>
-  <tr>
+  <tr class="adv">
    <td><label for="serialnum">Serial number</label></td>
    <td><input type="text" name="serialnum" value="<?=set_value('serialnum')?>"/></td>
   </tr>
-  <tr>
+  <tr class="adv">
    <td><label for="condition">Condition</label></td>
    <td><select name="condition">
         <option value=""></option>
@@ -39,6 +73,26 @@
         <option value="fair" <?=set_select('condition', 'fair')?>>Fair</option>
         <option value="poor" <?=set_select('condition', 'poor')?>>Poor</option>
        </select></td>
+  </tr>
+  <tr class="adv">
+   <td><label for="value">Value</label>&nbsp;<small>($)</small></td>
+   <td><input type="text" name="value" size="10" value="<?=set_value('value')?>"/>
+  </tr>
+  <tr class="adv">
+   <td><label for="acq_date">Acquired on</label>&nbsp;<small>(yyyy-mm-dd)</small></td>
+   <td class="advField">
+    <input type="text" name="acq_date" size="10" maxlength="10" value="<?=set_value('acq_date')?>"/>
+    <br/>
+    <label>by:</label> <input type="radio" name="acq_type" value="purchase"/><label>purchase</label>&nbsp;&nbsp;
+    <input type="radio" name="acq_type" value="trade"/><label>trade</label>
+    <input type="radio" name="acq_type" value="gift"/><label>gift</label>
+    <br/>
+    <label for="acq_party">from:</label>
+    <input type="text" name="acq_party" value="<?=set_value('acq_party')?>"/>
+    <br/>
+    <label for="acq_price">price:</label>
+    <input type="text" name="acq_price" size="10" value="<?=set_value('acq_price')?>"/>
+   </td>
   </tr>
   <tr>
    <td><label for="notes">Notes</label></td>

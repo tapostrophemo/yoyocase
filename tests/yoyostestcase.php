@@ -51,8 +51,13 @@ class YoyosTestCase extends MY_WebTestCase
     $this->setField('model_name', 'FHZ');
     $this->assertField('notes', '');
     $this->setField('notes', 'I dyed this one myself');
+    $this->assertField('value', '');
     $this->assertField('condition', '');
     $this->assertField('serialnum', '');
+    $this->assertField('acq_date', '');
+    $this->assertField('acq_type', false);
+    $this->assertField('acq_party', '');
+    $this->assertField('acq_price', '');
     $this->clickSubmit('Save');
 
     $this->assertText('Yoyo added to collection successfully');
@@ -101,6 +106,63 @@ class YoyosTestCase extends MY_WebTestCase
     $this->assertText('Condition excellent');
     $this->assertText('Serial number abc123');
     $this->assertNoText('(modded by');
+  }
+
+  function testAddYoyoWithAdvancedInfo() {
+    // Given
+    $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $this->logInAs('testUser1', 'Password1');
+    $this->clickLink('collection');
+    $this->clickLink('Add one?');
+    // When
+    $this->setField('model_name', 'FHZ');
+    $this->setField('serialnum', 'abc123');
+    $this->setField('condition', 'good');
+    $this->setField('value', '45.00');
+    $this->setField('acq_date', '2010-01-29');
+    $this->setField('acq_type', 'purchase');
+    $this->setField('acq_party', 'theyostore.com');
+    $this->setField('acq_price', '45.00');
+    $this->clickSubmit('Save');
+    $this->clickLink('FHZ');
+    // Then
+    $this->assertText('Model name FHZ');
+    $this->assertText('Serial number abc123');
+    $this->assertText('Condition good');
+    $this->assertText('Value $45.00');
+    $this->assertText('Acquired by purchase on 2010-01-29 for $45.00 from theyostore.com');
+  }
+
+  function testAdvancedInfoValidations() {
+    // Given
+    $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $this->logInAs('testUser1', 'Password1');
+    $this->clickLink('collection');
+    $this->clickLink('Add one?');
+    // When
+    $this->setField('mod', '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345');
+    $this->setField('serialnum', '01234567890123456789012345678901234567890123456789012345678901234');
+    $this->setField('value', 'asdf');
+    $this->setField('acq_date', '01/29/2001');
+    $this->setField('acq_party', '0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345');
+    $this->setField('acq_price', 'asdf');
+    $this->clickSubmit('Save', array('acq_type' => 'stealing')); // NB: in lieu of "$this->setField('acq_type', 'inherit');"
+    // Then
+    $this->assertText('The modder field can not exceed 255 characters in length');
+    $this->assertText('The serial number field can not exceed 64 characters in length');
+    $this->assertText('The value field must contain only numbers');
+    $this->assertText('The acquisition date field must be in YYYY-MM-DD format');
+    $this->assertText('Please choose from available acquisition methods');
+    $this->assertText('The acquired from field can not exceed 255 characters in length');
+    $this->assertText('The acquisition price field must contain only numbers');
+
+    // When
+    $this->setField('value', '1234567890123.34');
+    $this->setField('acq_price', '1234567890123.34');
+    $this->clickSubmit('Save');
+    // Then
+    $this->assertText('The value field can not exceed 15 characters in length');
+    $this->assertText('The acquisition price field can not exceed 15 characters in length');
   }
 }
 

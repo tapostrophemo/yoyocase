@@ -28,11 +28,24 @@ class Yoyo extends Model
     return $this->db->insert_id();
   }
 
+  function saveAcquisition($userid, $yoyoid, $date, $type, $party, $price) {
+    $this->db->insert('acquisitions', array(
+      'user_id' => $userid,
+      'yoyo_id' => $yoyoid,
+      'date' => $date,
+      'type' => $type,
+      'party' => $party,
+      'price' => $price));
+  }
+
   function find_by_id($id) {
-    $query = $this->db
-      ->select('id, user_id, manufacturer, mod, country, model_year, model_name, created_at, updated_at, condition, serialnum, notes')
-      ->where('id', $id)
-      ->get('yoyos');
+    $sql = "
+      SELECT y.id, y.user_id, y.manufacturer, y.mod, y.country, y.model_year, y.model_name,
+             y.created_at, y.updated_at, y.condition, y.serialnum, y.value, y.notes,
+             a.date AS acq_date, a.type AS acq_type, a.party AS acq_party, a.price AS acq_price
+      FROM yoyos y LEFT JOIN acquisitions a ON a.yoyo_id = y.id AND a.user_id = y.user_id
+      WHERE y.id = ?";
+    $query = $this->db->query($sql, $id);
     return $query->row();
   }
 

@@ -31,6 +31,14 @@
   <td><?=$yoyo->condition?></td>
  </tr>
  <tr>
+  <td><label>Value</label></td>
+  <td>$<?=$yoyo->value?></td>
+ </tr>
+ <tr>
+  <td><label>Acquired</label></td>
+  <td>by <?=$yoyo->acq_type?> on <?=$yoyo->acq_date?> for $<?=$yoyo->acq_price?> from <?=$yoyo->acq_party?></td>
+ </tr>
+ <tr>
   <td><label>Notes</label></td>
   <td><?=$yoyo->notes?></td>
  </tr>
