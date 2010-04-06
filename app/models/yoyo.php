@@ -39,11 +39,24 @@ class Yoyo extends Model
   }
 
   function updateAcquisition($userid, $yoyoid, $date, $type, $party, $price) {
-    $this->db->where(array('user_id' => $userid, 'yoyo_id' => $yoyoid))->update('acquisitions', array(
-      'date' => $date,
-      'type' => $type,
-      'party' => $party,
-      'price' => $price));
+    if ($this->_hasAcquisition($userid, $yoyoid)) {
+      $this->db->where(array('user_id' => $userid, 'yoyo_id' => $yoyoid))->update('acquisitions', array(
+        'date' => $date,
+        'type' => $type,
+        'party' => $party,
+        'price' => $price));
+    }
+    else {
+      $this->saveAcquisition($userid, $yoyoid, $date, $type, $party, $price);
+    }
+  }
+
+  function _hasAcquisition($userid, $yoyoid) {
+    $query = $this->db->select('Count(*) AS ct')
+      ->where(array('user_id' => $userid, 'yoyo_id' => $yoyoid))
+      ->get('acquisitions');
+    $row = $query->row();
+    return 1 == $row->ct;
   }
 
   function find_by_id($id) {

@@ -205,5 +205,23 @@ class YoyosTestCase extends MY_WebTestCase
     // Then
     $this->assertText('Acquired by trade on 2009-12-13 for n/a from joe');
   }
+
+  function testAdvancedInfoCanBeAddedToYoyo() {
+    // Given
+    $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $this->createYoyo($userid, 'FHZ');
+    $this->logInAs('testUser1', 'Password1');
+    $this->clickLink('collection');
+    $this->clickLink('FHZ');
+    // When
+    $this->clickSubmit('Edit');
+    $this->setField('acq_date', '2009-12-13');
+    $this->setField('acq_type', 'purchase');
+    $this->setField('acq_party', 'yoyonation.com');
+    $this->setField('acq_price', '15.99');
+    $this->clickSubmit('Save');
+    // Then
+    $this->assertText('Acquired by purchase on 2009-12-13 for $15.99 from yoyonation.com');
+  }
 }
 
