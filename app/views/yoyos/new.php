@@ -25,7 +25,7 @@ $(document).ready(function () {
 
 <?=validation_errors()?>
 
-<h2>Add to your collection</h2>
+<h2>Add yoyo to your collection</h2>
 
 <div id="gallery">
 
@@ -83,9 +83,9 @@ $(document).ready(function () {
    <td class="advField">
     <input type="text" name="acq_date" size="10" maxlength="10" value="<?=set_value('acq_date')?>"/>
     <br/>
-    <label>by:</label> <input type="radio" name="acq_type" value="purchase"/><label>purchase</label>&nbsp;&nbsp;
-    <input type="radio" name="acq_type" value="trade"/><label>trade</label>
-    <input type="radio" name="acq_type" value="gift"/><label>gift</label>
+    <label>by:</label> <input type="radio" name="acq_type" value="purchase" <?=set_radio('acq_type', 'purchase')?>/><label>purchase</label>&nbsp;&nbsp;
+    <input type="radio" name="acq_type" value="trade" <?=set_radio('acq_type', 'trade')?>/><label>trade</label>
+    <input type="radio" name="acq_type" value="gift" <?=set_radio('acq_type', 'gift')?>/><label>gift</label>
     <br/>
     <label for="acq_party">from:</label>
     <input type="text" name="acq_party" value="<?=set_value('acq_party')?>"/>

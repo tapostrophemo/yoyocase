@@ -38,6 +38,14 @@ class Yoyo extends Model
       'price' => $price));
   }
 
+  function updateAcquisition($userid, $yoyoid, $date, $type, $party, $price) {
+    $this->db->where(array('user_id' => $userid, 'yoyo_id' => $yoyoid))->update('acquisitions', array(
+      'date' => $date,
+      'type' => $type,
+      'party' => $party,
+      'price' => $price));
+  }
+
   function find_by_id($id) {
     $sql = "
       SELECT y.id, y.user_id, y.manufacturer, y.mod, y.country, y.model_year, y.model_name,

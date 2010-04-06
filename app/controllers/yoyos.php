@@ -84,6 +84,7 @@ class Yoyos extends MY_Controller
       $rval = $this->Yoyo->update($yoyoid, $data);
       if ($rval) {
         $this->_savePhotos($yoyoid);
+        $this->_updateAcquisition($yoyoid);
         $this->redirect_with_message('Yoyo saved successfully', "yoyo/$yoyoid");
       }
       else {
@@ -123,6 +124,16 @@ class Yoyos extends MY_Controller
   function _saveAcquisition($yoyoid) {
     if ($this->_hasAcquisitionInfo()) {
       $this->Yoyo->saveAcquisition($this->session->userdata('userid'), $yoyoid,
+        $this->input->post('acq_date'),
+        $this->input->post('acq_type'),
+        $this->input->post('acq_party'),
+        $this->input->post('acq_price') == "" ? null : $this->input->post('acq_price'));
+    }
+  }
+
+  function _updateAcquisition($yoyoid) {
+    if ($this->_hasAcquisitionInfo()) {
+      $this->Yoyo->updateAcquisition($this->session->userdata('userid'), $yoyoid,
         $this->input->post('acq_date'),
         $this->input->post('acq_type'),
         $this->input->post('acq_party'),

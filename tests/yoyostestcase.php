@@ -42,6 +42,7 @@ class YoyosTestCase extends MY_WebTestCase
     $this->clickLink('Duncan FHZ');
     // Then
     $this->assertNoText('Value $0.00');
+    $this->assertText('Value n/a');
     $this->assertNoText('Acquired by trade on 2010-01-03 for $0.00');
   }
 
@@ -171,6 +172,38 @@ class YoyosTestCase extends MY_WebTestCase
     // Then
     $this->assertText('The value field can not exceed 15 characters in length');
     $this->assertText('The acquisition price field can not exceed 15 characters in length');
+  }
+
+  function testEditYoyoWithAdvancedInfo() {
+    // Given
+    $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $yoyoid = $this->createYoyo($userid, 'FHZ');
+    $this->insertRecord('acquisitions', array(
+      'user_id' => $userid,
+      'yoyo_id' => $yoyoid,
+      'date' => "'2010-03-01'",
+      'type' => "'purchase'",
+      'party' => "'fred'",
+      'price' => 14.56));
+    $this->logInAs('testUser1', 'Password1');
+    $this->clickLink('collection');
+    // When
+    $this->clickLink('FHZ');
+    $this->clickSubmit('Edit');
+    // Then
+    $this->assertField('acq_date', '2010-03-01');
+    $this->assertField('acq_type', 'purchase');
+    $this->assertField('acq_party', 'fred');
+    $this->assertField('acq_price', '14.56');
+
+    // When
+    $this->setField('acq_date', '2009-12-13');
+    $this->setField('acq_type', 'trade');
+    $this->setField('acq_party', 'joe');
+    $this->setField('acq_price', '');
+    $this->clickSubmit('Save');
+    // Then
+    $this->assertText('Acquired by trade on 2009-12-13 for n/a from joe');
   }
 }
 
