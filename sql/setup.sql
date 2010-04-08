@@ -36,6 +36,10 @@ CREATE TABLE `yoyos` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   `notes` text,
+  `condition` varchar(15) default NULL,
+  `mod` varchar(255) default NULL,
+  `serialnum` varchar(64) default NULL,
+  `value` decimal(14,2) default NULL,
   PRIMARY KEY (`id`),
   KEY `user_id_idx` (`user_id`)
 );
@@ -48,5 +52,19 @@ CREATE TABLE `photos` (
   `updated_at` datetime default NULL,
   PRIMARY KEY (`id`),
   KEY `yoyo_id_idx` (`yoyo_id`)
+);
+
+CREATE TABLE `acquisitions` (
+  `id` int(11) NOT NULL auto_increment,
+  `user_id` int(11) NOT NULL,
+  `yoyo_id` int(11) NOT NULL,
+  `date` date default NULL,
+  `type` varchar(15) default NULL,
+  `party` varchar(255) CHARACTER SET utf8 default NULL,
+  `price` decimal(14,2) default NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `acq_user_yoyo` (`user_id`, `yoyo_id`),
+  KEY `acq_user_id_idx` (`user_id`),
+  KEY `acq_yoyo_id_idx` (`yoyo_id`)
 );
 
