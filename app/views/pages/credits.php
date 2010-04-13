@@ -18,5 +18,6 @@
  <li>http://www.flickr.com/photos/xulianconx/824067292/</li>
  <li>http://www.flickr.com/photos/frugalbinx/3258755274/</li>
  <li>http://www.flickr.com/photos/sarahakabmg/215614766/</li>
+ <li>http://www.ajaxload.info/</li>
 </ul>
 

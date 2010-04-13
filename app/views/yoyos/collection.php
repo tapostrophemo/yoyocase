@@ -32,7 +32,7 @@
   <li>
    <a href="/yoyo"><img src="/res/icon_unknown.png" alt="" onmouseover="this.src='/res/icon_unknown_highlight.png'" onmouseout="this.src='/res/icon_unknown.png'"/></a>
    <br/>
-   <a href="/yoyo">Add another?</a>
+   <a href="/yoyo">add another?</a>
   </li>
  </ul>
 <?php endif; ?>

@@ -23,7 +23,7 @@ class UsersTestCase extends MY_WebTestCase
     // When
     $this->clickLink('collection');
     // Then
-    $this->assertLink('View gallery');
+    $this->assertLink('view gallery');
   }
 
   function testGalleryForRegisteredUserWithNoPhotos() {

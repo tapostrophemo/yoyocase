@@ -20,8 +20,14 @@ class Admin extends MY_Controller
 
   function accounts() {
     $this->load->model('User');
-    $data = array('accounts' => $this->User->find_all());
+    $data = array('accounts' => $this->User->findAll());
     $this->load->view('pageTemplate', array('content' => $this->load->view('admin/accounts', $data, true)));
+  }
+
+  function userDetail($id) {
+    $this->load->model('User');
+    $user = $this->User->findById($id);
+    $this->load->view('admin/userDetail', array('user' => $user));
   }
 }
 

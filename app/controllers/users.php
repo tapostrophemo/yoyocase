@@ -67,7 +67,7 @@ class Users extends MY_Controller
   function listAll() {
     $this->load->model('Misc');
     $data = array(
-      'users' => $this->User->find_all(),
+      'users' => $this->User->findAll(),
       'facts' => $this->Misc->fun_facts());
     $this->load->view('pageTemplate', array('title' => 'view yoyo collections', 'content' => $this->load->view('users/list', $data, true)));
   }

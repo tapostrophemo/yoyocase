@@ -2,18 +2,6 @@
 
 class AdminTestCase extends MY_WebTestCase
 {
-/*  Scenario: an administrator can view other accounts
-    Given I am logged in with username: "testAdmin1", password: "Password1"
-    And a user exists with username: "testUser2", password: "Password2", email: "testUser2@example.com"
-    And user: 2 last logged in at: "2010-01-02 15:06:07"
-    When I follow "site admin"
-    And I follow "user accounts"
-    Then I should see the following accounts:
-      | Username   | Registered on | Last login          |
-      | testAdmin1 | today         | today               |
-      | testUser2  | today         | 2010-01-02 15:06:07 |
-*/
-
   function testAdminCanViewOtherAccounts() {
     // Given
     $this->createAdminUser('testAdmin1', 'testAdmin1@somewhere.com', 'AdminPassword1');
@@ -23,12 +11,21 @@ class AdminTestCase extends MY_WebTestCase
     $this->clickLink('site admin');
     $this->clickLink('user accounts');
     // Then
-    $this->assertText('Username Registered on Last login Email');
+    $this->assertText('Username Registered on Last login');
+    $this->assertNoText('Email');
+    $this->assertLink('testAdmin1');
+    $this->assertLink('testUser1');
     // TODO: verify registered_on/last_login timestamps
-    $this->assertText('testAdmin1@somewhere.com');
+    $this->assertNoText('testAdmin1@somewhere.com');
+    $this->assertNoText('testUser1@somewhere.com');
+
+    // When
+    $this->get("/admin/userDetail/$userid");
+    // Then
     $this->assertText('testUser1@somewhere.com');
 
     // When
+    $this->back();
     $yoyoid = $this->insertRecord('yoyos', array('user_id' => $userid, 'model_name' => "'Freehand Zero'"));
     $this->clickLink('(refresh)');
     // Then

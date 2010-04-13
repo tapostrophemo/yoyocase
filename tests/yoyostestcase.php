@@ -73,7 +73,7 @@ class YoyosTestCase extends MY_WebTestCase
     $this->assertText('2005 Duncan FHZ');
 
     $this->clickLink('collection');
-    $this->assertLink('Add another?');
+    $this->assertLink('add another?');
     $this->assertText('Collection facts:');
     $this->assertText('1 yoyo(s) total');
 

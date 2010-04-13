@@ -100,9 +100,24 @@ class User extends Model
     $this->db->where('username', $username)->set($attrs)->update('users');
   }
 
-  function find_all() {
+  function findById($userid) {
+    $query = $this->db
+      ->select('id, username, created_at, last_login_at, email, flickr_userid, photobucket_username, is_admin')
+      ->where('id', $userid)
+      ->get('users');
+
+    if ($query->num_rows == 1) {
+      $result = $query->result();
+      return $result[0];
+    }
+    else {
+      return null;
+    }
+  }
+
+  function findAll() {
     $sql = "
-      SELECT u.username, u.created_at, u.last_login_at, u.email,
+      SELECT u.id, u.username, u.created_at, u.last_login_at, u.email,
         Count(DISTINCT y.id) AS num_yoyos, Count(DISTINCT p.id) AS num_photos
       FROM users u
         LEFT JOIN yoyos y ON y.user_id = u.id
