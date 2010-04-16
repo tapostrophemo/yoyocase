@@ -59,7 +59,7 @@ $config['directory_trigger'] 	= 'd'; // experimental not currently in use
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0; // TODO: configure for PROD deploy
+$config['log_threshold'] = 1; // TODO: configure for PROD deploy
 
 /*
 |--------------------------------------------------------------------------
@@ -70,7 +70,7 @@ $config['log_threshold'] = 0; // TODO: configure for PROD deploy
 | system/logs/ folder.  Use a full server path with trailing slash.
 |
 */
-$config['log_path'] = ''; // TODO: configure for PROD deploy
+$config['log_path'] = '/home/djp/prog/yoyocase/log/'; // TODO: configure for PROD deploy
 
 $config['log_date_format'] = 'Y-m-d H:i:s';
 
