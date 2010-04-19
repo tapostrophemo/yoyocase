@@ -47,9 +47,9 @@ class Site extends MY_Controller
     }
   }
 
-  function _is_registered_user($junk) {
+  function _validate_login($junk) {
     if (!$this->User->is_registered($this->input->post('username'), $this->input->post('password'))) {
-      $this->form_validation->set_message('_is_registered_user', 'Invalid username or password');
+      $this->form_validation->set_message('_validate_login', 'Invalid username or password');
       return false;
     }
     return true;
@@ -58,6 +58,44 @@ class Site extends MY_Controller
   function logout() {
     $this->session->sess_destroy();
     redirect('/');
+  }
+
+  function passwordreset() {
+    if (!$this->form_validation->run('site_resetpass')) {
+      $this->load->view('pageTemplate', array('content' => $this->load->view('site/password', null, true)));
+    }
+    else {
+      $this->load->library('email');
+      if ($this->input->post('username') != 't_mo' && $this->email->isProdTest()) {
+        $this->redirect_with_error('We apologize, but password resets by email are under construction.');
+      }
+
+      $user = $this->User->findByUsername($this->input->post('username'));
+      $this->email->to($user->email);
+      $this->email->from('noreply@yoyocase.net');
+      $this->email->subject('password reset for yoyocase.net');
+      $this->email->message('TODO: create/store/include temporary token, instructions, etc.');
+
+      if ($this->email->send()) {
+        $this->load->view('pageTemplate', array('content' => 'An email with instructions on resetting your password has been sent to your registered email address.'));
+      }
+      else {
+        $this->redirect_with_error('Problem sending email to your registered address');
+      }
+    }
+  }
+
+  function _is_registered_user($junk) {
+    if ($this->form_validation->can_short_circut('_is_registered_user')) {
+      return false;
+    }
+
+    if (!$this->User->isRegisteredUsername($this->input->post('username'))) {
+      $this->form_validation->set_message('_is_registered_user', 'Username not found');
+      return false;
+    }
+
+    return true;
   }
 }
 

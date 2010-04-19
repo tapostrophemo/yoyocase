@@ -42,6 +42,12 @@ class User extends Model
     return $query->num_rows == 1;
   }
 
+  function isRegisteredUsername($username) {
+    $this->db->select('id')->where('username', $username);
+    $query = $this->db->get('users');
+    return $query->num_rows == 1;
+  }
+
   function mark_login($username) {
     $this->load->helper('date');
 
@@ -56,6 +62,10 @@ class User extends Model
       'current_login_at' => $now,
       'current_login_ip' => $this->input->ip_address()));
 
+    return $this->find_by_username($username);
+  }
+
+  function findByUsername($username) {
     return $this->find_by_username($username);
   }
 

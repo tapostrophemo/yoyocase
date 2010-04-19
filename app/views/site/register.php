@@ -4,7 +4,7 @@
 
 <div id="gallery">
 
-<div style="width:50%; margin:0 auto">
+<div class="soloform">
 
 <?=form_open('register')?>
  <table border="0" cellpadding="0" cellspacing="0">
@@ -29,7 +29,7 @@
 <br/>
 <br/>
 
-<p>Already registered? <a href="/login">Login</a>.</p>
+<p>Already registered? <a href="/login">Login.</a></p>
 
 </div>
 </div>

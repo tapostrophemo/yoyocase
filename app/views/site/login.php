@@ -4,7 +4,7 @@
 
 <div id="gallery">
 
-<div style="width:50%; margin:0 auto">
+<div class="soloform">
 
 <?=form_open('login')?>
  <table border="0" cellpadding="0" cellspacing="0">
@@ -25,15 +25,14 @@
 <br/>
 <br/>
 
+<p>Forgot your <a href="/passwordreset">password?</a></p>
 <p>Don't have an account yet? <a href="/register">Register</a> for one.</p>
 
 </div>
 
 </div>
 
-<div id="sidebar">
- <small><a href="/passwordreset">Forgot your password?</a></small>
-</div>
+<div id="sidebar"></div>
 
 <div class="clearing"></div>
 

@@ -86,6 +86,39 @@ class SiteTestCase extends MY_WebTestCase
     $this->assertText('User "Nolsøe" has no yoyos in their collection');
   }
 
+  function testResetPasswordValidations() {
+    // Given
+    $this->createUser('testUser1', 'testUser1@somewhere.com', 'lostPassword');
+    $this->get(BASE_URL.'/passwordreset');
+    // When
+    $this->clickSubmit('Reset password');
+    // Then
+    $this->assertText('The username field is required');
+    $this->assertNoText('Username not found'); // should short-circut validation callback
+
+    // When
+    $this->setField('username', 'bogusUsername');
+    $this->clickSubmit('Reset password');
+    // Then
+    $this->assertText('Username not found');
+  }
+
+  function testResetPasswordEmailConfirmationMessage() {
+    // Given
+    $this->createUser('testUser1', 'testUser1@somewhere.com', 'lostPassword');
+    $this->get(BASE_URL.'/passwordreset');
+    // When
+    $this->setField('username', 'testUser1');
+    $this->clickSubmit('Reset password');
+    // Then
+    $this->assertText('An email with instructions on resetting your password has been sent to your registered email address.');
+  }
+
+  // TODO: unit test for email from/to/subject/message contents
+
+  function testUserResetsPasswordWithTemporaryTokenFromEmail() {
+  }
+
   function testViewGalleryLinksShouldHaveUrlEncodedLinks() {
     // Given
     $this->deleteRecord('users', array('username' => "'drumma/yoyo'"));

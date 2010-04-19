@@ -10,6 +10,7 @@ $route['tour'] = 'pages/tour';
 $route['register'] = 'site/register';
 $route['login'] = 'site/login';
 $route['logout'] = 'site/logout';
+$route['passwordreset'] = 'site/passwordreset';
 
 $route['account'] = 'users';
 $route['preferences'] = 'users/preferences';
