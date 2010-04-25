@@ -5,7 +5,7 @@ class Cron extends Controller
   function __construct() {
     parent::__construct();
 
-    if ($this->input->ip_address() != '127.0.0.1') {
+    if ($this->input->ip_address() != '127.0.0.1') { // TODO: configure for PROD deploy; externalize?
       header($this->input->server('SERVER_PROTOCOL') . ' 403 Forbidden');
       echo '<html><head><title>403 Forbidden</title></head><body><h1>403 Forbidden</h1></body></html>';
       echo $this->input->ip_address() . '<br>';
