@@ -1,7 +1,7 @@
 <h2>Accounts</h2>
 
 <div id="userDetailDialog" class="rounded dialog">
- <a href="#" class="dialogClose" onclick="$('#userDetailDialog').hide()">close</a>
+ <a href="#" class="dialogClose" onclick="$('#userDetailDialog').hide(); return false;">close</a>
  <div id="userDetailContent">
  </div>
 </div>
@@ -33,7 +33,8 @@ $(document).ready(function () {
     $(link).click(function () {
       $("#userDetailContent").html('<div class="loading"><img src="/res/wait.gif" alt="loading..."/></div>');
       $("#userDetailContent").load(link.href);
-      $("#userDetailDialog").show();
+      var middleOffset = Math.round($(window).height()/2 + $(document).scrollTop() - $("#userDetailDialog").height()/2 - parseInt($("body").css("margin-bottom"))/2);
+      $("#userDetailDialog").css({"top": middleOffset+"px"}).show();
       return false;
     });
   });
