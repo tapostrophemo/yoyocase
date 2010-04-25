@@ -36,15 +36,19 @@ class Site extends MY_Controller
       $this->load->view('pageTemplate', array('title' => 'login and manage your yoyo collection', 'content' => $this->load->view('site/login', null, true)));
     }
     else {
-      $user = $this->User->mark_login($this->input->post('username'));
-      $this->session->set_userdata('username', $this->input->post('username'));
-      $this->session->set_userdata('userid', $user->id);
-      $this->session->set_userdata('flickr_userid', $user->flickr_userid);
-      $this->session->set_userdata('photobucket_username', $user->photobucket_username);
-      $this->session->set_userdata('is_admin', $user->is_admin);
-      $this->session->set_userdata('logged_in', true);
+      $user = $this->User->markLogin($this->input->post('username'));
+      $this->_setupSession($user);
       $this->redirect_with_message('Welcome back!', '/account');
     }
+  }
+
+  function _setupSession($user) {
+    $this->session->set_userdata('username', $user->username);
+    $this->session->set_userdata('userid', $user->id);
+    $this->session->set_userdata('flickr_userid', $user->flickr_userid);
+    $this->session->set_userdata('photobucket_username', $user->photobucket_username);
+    $this->session->set_userdata('is_admin', $user->is_admin);
+    $this->session->set_userdata('logged_in', true);
   }
 
   function _validate_login($junk) {
@@ -71,16 +75,29 @@ class Site extends MY_Controller
       }
 
       $user = $this->User->findByUsername($this->input->post('username'));
-      $this->email->to($user->email);
-      $this->email->from('noreply@yoyocase.net');
-      $this->email->subject('password reset for yoyocase.net');
-      $this->email->message('TODO: create/store/include temporary token, instructions, etc.');
+      if ($token = $this->User->createPerishableToken($user->id)) {
+        $message = $this->load->view('site/passwordEmail', array('user' => $user, 'token' => $token), true);
 
-      if ($this->email->send()) {
-        $this->load->view('pageTemplate', array('content' => 'An email with instructions on resetting your password has been sent to your registered email address.'));
+        $this->email->to($user->email);
+        $this->email->from('noreply@yoyocase.net');
+        $this->email->subject('password reset for yoyocase.net');
+        $this->email->message($message);
+
+        if ($this->email->send()) {
+          $content = 'An email with instructions on resetting your password has been sent to your registered email address.';
+          if ($this->email->inTestMode()) {
+            $content .= "<pre>$message</pre>";
+          }
+          $this->load->view('pageTemplate', array('content' => $content));
+        }
+        else {
+          log_message('error', 'unable to send password reset email' . $this->email->print_debugger());
+          $this->redirect_with_error('Problem sending email to your registered address');
+        }
       }
       else {
-        $this->redirect_with_error('Problem sending email to your registered address');
+        log_message('error', 'problem giving temporary login token to user');
+        $this->redirect_with_error("Sorry, the site's unable to reset your password right now. Please try again later.");
       }
     }
   }
@@ -96,6 +113,28 @@ class Site extends MY_Controller
     }
 
     return true;
+  }
+
+  function passreset($token) {
+    if ($user = $this->User->resetPerishableToken($token)) {
+      $this->User->markLogin($user->username);
+      $this->_setupSession($user);
+      $this->redirect_with_message('Please enter a new password', '/newpass');
+    }
+    else {
+      $this->redirect_with_error('That password reset request is invalid or has expired');
+    }
+  }
+
+  function newpass() {
+    if (!$this->form_validation->run('site_passwordresetform')) {
+      $this->load->view('pageTemplate', array('content' => $this->load->view('site/passwordResetForm', null, true)));
+    }
+    else {
+      log_message('error', '(INFO) password reset (username=' . $this->session->userdata('username') . ')');
+      $this->User->update($this->session->userdata('username'), null, $this->input->post('password'));
+      $this->redirect_with_message('Your password has been updated.', '/account');
+    }
   }
 }
 

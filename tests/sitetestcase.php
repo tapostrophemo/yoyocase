@@ -54,6 +54,7 @@ class SiteTestCase extends MY_WebTestCase
     $this->assertLink('collection');
     $this->assertLink('preferences');
     $this->assertLink('logout');
+    $this->assertNoRecord('users', 'perishable_token', "'TODO:'");
 
     $this->clickLink('logout');
 
@@ -103,7 +104,7 @@ class SiteTestCase extends MY_WebTestCase
     $this->assertText('Username not found');
   }
 
-  function testResetPasswordEmailConfirmationMessage() {
+  function testResetPasswordSendsEmailAndShowsConfirmationMessage() {
     // Given
     $this->createUser('testUser1', 'testUser1@somewhere.com', 'lostPassword');
     $this->get(BASE_URL.'/passwordreset');
@@ -112,11 +113,81 @@ class SiteTestCase extends MY_WebTestCase
     $this->clickSubmit('Reset password');
     // Then
     $this->assertText('An email with instructions on resetting your password has been sent to your registered email address.');
+    // NB: requires email config to be set to test mode
+    $this->assertText('Hi testUser1');
+    $this->assertPattern('/http:\/\/dev\.yoyocase\.net\/passreset\/.+/');
   }
 
-  // TODO: unit test for email from/to/subject/message contents
+  function parseFromPageText($pattern) {
+    $match = array();
+    $text = $this->getBrowser()->getContentAsText();
+    preg_match($pattern, $text, $match);
+    return $match[0];
+  }
+
+  function testResetPasswordFormValidations() {
+    // Given
+    $this->createUser('testUser1', 'testUser1@somewhere.com', 'lostPassword');
+    $this->get(BASE_URL.'/passwordreset');
+    $this->setField('username', 'testUser1');
+    $this->clickSubmit('Reset password');
+    // When
+    $link = $this->parseFromPageText('/\/passreset\/[^ ]+/');
+    $this->get(BASE_URL.$link);
+    $this->clickSubmit('Reset password');
+    // Then
+    $this->assertText('The password field is required');
+    $this->assertText('The confirm password field is required');
+
+    // When
+    $this->setField('password', 'Password1');
+    $this->setField('passconf', 'xPassword1');
+    $this->clickSubmit('Reset password');
+    // Then
+    $this->assertText('The confirm password field does not match the password field');
+  }
+
+  function testShouldUpdateWithNewPassword() {
+    // Given
+    $this->createUser('testUser1', 'testUser1@somewhere.com', 'lostPassword');
+    $this->get(BASE_URL.'/passwordreset');
+    $this->setField('username', 'testUser1');
+    $this->clickSubmit('Reset password');
+    // When
+    $link = $this->parseFromPageText('/\/passreset\/[^ ]+/');
+    $this->get(BASE_URL.$link);
+    $this->setField('password', 'Password1');
+    $this->setField('passconf', 'Password1');
+    $this->clickSubmit('Reset password');
+    // Then
+    $this->assertText('Your password has been updated');
+
+    // When
+    $this->clickLink('logout');
+    $this->logInAs('testUser1', 'Password1');
+    // Then
+    $this->assertLink('logout');
+  }
 
   function testUserResetsPasswordWithTemporaryTokenFromEmail() {
+    // Given
+    $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'lostPassword');
+    $this->updateRecord('users', 'perishable_token', "'newToken'", 'id', $userid);
+    // When
+    $this->get(BASE_URL.'/passreset/newToken');
+    // Then
+    $this->assertText('Please enter a new password');
+    $this->assertNoRecord('users', 'perishable_token', "'newToken'"); // each token should be usable only once
+  }
+
+  function testInvalidPasswordResetToken() {
+    // Given
+    $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'lostPassword');
+    $this->updateRecord('users', 'perishable_token', "'token1'", 'id', $userid);
+    // When
+    $this->get(BASE_URL.'/passreset/token2');
+    // Then
+    $this->assertText("That password reset request is invalid or has expired");
   }
 
   function testViewGalleryLinksShouldHaveUrlEncodedLinks() {

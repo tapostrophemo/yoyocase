@@ -11,6 +11,8 @@ $route['register'] = 'site/register';
 $route['login'] = 'site/login';
 $route['logout'] = 'site/logout';
 $route['passwordreset'] = 'site/passwordreset';
+$route['passreset/(:any)'] = 'site/passreset/$1';
+$route['newpass'] = 'site/newpass';
 
 $route['account'] = 'users';
 $route['preferences'] = 'users/preferences';

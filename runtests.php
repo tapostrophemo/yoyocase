@@ -41,6 +41,11 @@ class MY_WebTestCase extends WebTestCase
     `mysql -uyoyocase_user -pbob yoyocase -e "$sql"`;
   }
 
+  function assertNoRecord($tablename, $criteriaColumn, $criteriaValue) {
+    $sql = "SELECT Count(*) FROM $tablename WHERE $criteriaColumn = $criteriaValue";
+    $this->assertEqual((int) `mysql -uyoyocase_user -pbob yoyocase -e "$sql" | tail -1`, 0);
+  }
+
   function countRecords($tablename) {
     return (int) `mysql -uyoyocase_user -pbob yoyocase -Be "SELECT Count(*) FROM $tablename" | tail -1`;
   }

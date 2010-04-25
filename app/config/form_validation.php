@@ -18,6 +18,11 @@ $config = array(
     array('field' => 'account', 'label' => 'account', 'rules' => 'callback__is_registered_user')
   ),
 
+  'site_passwordresetform' => array(
+    array('field' => 'password', 'label' => 'password', 'rules' => 'trim|required'),
+    array('field' => 'passconf', 'label' => 'confirm password', 'rules' => 'trim|required|matches[password]')
+  ),
+
   'user_preferences' => array(
     array('field' => 'email', 'label' => 'email', 'rules' => 'trim|required|max_length[255]|valid_email|xss_clean'),
     array('field' => 'password', 'label' => 'password', 'rules' => 'trim'),

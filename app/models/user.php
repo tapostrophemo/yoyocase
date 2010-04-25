@@ -20,7 +20,7 @@ class User extends Model
       'crypted_password' => sha1("$password$salt"),
       'password_salt' => $salt,
       'persistence_token' => 'TODO:',
-      'perishable_token' => 'TODO:',
+      'perishable_token' => '',
       'current_login_at' => $now,
       'current_login_ip' => $this->input->ip_address(),
       'created_at' => $now
@@ -48,7 +48,7 @@ class User extends Model
     return $query->num_rows == 1;
   }
 
-  function mark_login($username) {
+  function markLogin($username) {
     $this->load->helper('date');
 
     // TODO: collapse the following to 1 SQL statement (is it possible?)
@@ -63,6 +63,26 @@ class User extends Model
       'current_login_ip' => $this->input->ip_address()));
 
     return $this->find_by_username($username);
+  }
+
+  function createPerishableToken($userid) {
+    $this->load->plugin('salt');
+    $token = salt();
+    $this->db->where('id', $userid)->set('perishable_token', $token)->update('users');
+    return $token;
+  }
+
+  function resetPerishableToken($token) {
+    $query = $this->db->select('id')->where('perishable_token', $token)->get('users');
+    if (!$query->num_rows == 1) {
+      return null;
+    }
+
+    $user = $this->findById($query->row()->id);
+    if ($user) {
+      $this->db->where('id', $user->id)->set('perishable_token', '')->update('users');
+    }
+    return $user;
   }
 
   function findByUsername($username) {
