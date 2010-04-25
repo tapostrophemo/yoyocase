@@ -85,6 +85,23 @@ class User extends Model
     return $user;
   }
 
+  function expirePerishableTokens() {
+    $flag = $this->db->simple_query("
+      UPDATE users
+      SET perishable_token = ''
+      WHERE id IN (SELECT user_id FROM user_pw_reset)");
+
+    $flag = $flag && $this->db->simple_query('TRUNCATE TABLE user_pw_reset');
+
+    $flag = $flag && $this->db->simple_query("
+      INSERT INTO user_pw_reset
+        SELECT id
+        FROM users
+        WHERE Trim(perishable_token) <> ''");
+
+    return $flag;
+  }
+
   function findByUsername($username) {
     return $this->find_by_username($username);
   }

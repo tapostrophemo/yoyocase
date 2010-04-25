@@ -41,6 +41,11 @@ class MY_WebTestCase extends WebTestCase
     `mysql -uyoyocase_user -pbob yoyocase -e "$sql"`;
   }
 
+  function assertRecord($tablename, $criteriaColumn, $criteriaValue) {
+    $sql = "SELECT Count(*) FROM $tablename WHERE $criteriaColumn = $criteriaValue";
+    $this->assertEqual((int) `mysql -uyoyocase_user -pbob yoyocase -e "$sql" | tail -1`, 1);
+  }
+
   function assertNoRecord($tablename, $criteriaColumn, $criteriaValue) {
     $sql = "SELECT Count(*) FROM $tablename WHERE $criteriaColumn = $criteriaValue";
     $this->assertEqual((int) `mysql -uyoyocase_user -pbob yoyocase -e "$sql" | tail -1`, 0);
@@ -70,6 +75,17 @@ class MY_WebTestCase extends WebTestCase
     $this->setField('username', $username);
     $this->setField('password', $password);
     $this->clickSubmit('Login');
+  }
+
+  function parseFromPageText($pattern) {
+    $match = array();
+    $text = $this->getBrowser()->getContentAsText();
+    preg_match($pattern, $text, $match);
+    return $match[0];
+  }
+
+  function getResetTokenPath() {
+    return $this->parseFromPageText('/\/passreset\/[^ ]+/');
   }
 }
 

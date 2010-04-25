@@ -118,13 +118,6 @@ class SiteTestCase extends MY_WebTestCase
     $this->assertPattern('/http:\/\/dev\.yoyocase\.net\/passreset\/.+/');
   }
 
-  function parseFromPageText($pattern) {
-    $match = array();
-    $text = $this->getBrowser()->getContentAsText();
-    preg_match($pattern, $text, $match);
-    return $match[0];
-  }
-
   function testResetPasswordFormValidations() {
     // Given
     $this->createUser('testUser1', 'testUser1@somewhere.com', 'lostPassword');
@@ -132,8 +125,7 @@ class SiteTestCase extends MY_WebTestCase
     $this->setField('username', 'testUser1');
     $this->clickSubmit('Reset password');
     // When
-    $link = $this->parseFromPageText('/\/passreset\/[^ ]+/');
-    $this->get(BASE_URL.$link);
+    $this->get(BASE_URL.$this->getResetTokenPath());
     $this->clickSubmit('Reset password');
     // Then
     $this->assertText('The password field is required');
@@ -154,8 +146,7 @@ class SiteTestCase extends MY_WebTestCase
     $this->setField('username', 'testUser1');
     $this->clickSubmit('Reset password');
     // When
-    $link = $this->parseFromPageText('/\/passreset\/[^ ]+/');
-    $this->get(BASE_URL.$link);
+    $this->get(BASE_URL.$this->getResetTokenPath());
     $this->setField('password', 'Password1');
     $this->setField('passconf', 'Password1');
     $this->clickSubmit('Reset password');

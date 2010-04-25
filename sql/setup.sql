@@ -26,6 +26,10 @@ CREATE TABLE `users` (
   UNIQUE KEY `username` (`username`)
 );
 
+CREATE TABLE `user_pw_reset` (
+  `user_id` int(11) NOT NULL
+);
+
 CREATE TABLE `yoyos` (
   `id` int(11) NOT NULL auto_increment,
   `manufacturer` varchar(255) default NULL,
