@@ -29,5 +29,27 @@ class Admin extends MY_Controller
     $user = $this->User->findById($id);
     $this->load->view('admin/userDetail', array('user' => $user));
   }
+
+  function registrationActivationReport() {
+    $this->load->model('Report');
+    $content = '<h2>Registration and activation</h2>';
+
+    $data = $this->Report->registration();
+    $content .= $this->load->view('admin/genericReport', array(
+      'title' => 'Registrations',
+      'data' => $data,
+      'fields' => array('date' => 'Date', 'num_registrations' => 'Registrations'),
+    ), true);
+
+    $data = $this->Report->activation();
+    $content .= $this->load->view('admin/genericReport', array(
+      'title' => 'Activations / Retentions',
+      'note' => 'counts as "activation" in current month and "retention" in past months',
+      'data' => $data,
+      'fields' => array('month' => 'Month', 'num_activations' => 'Activations'),
+    ), true);
+
+    $this->load->view('pageTemplate', array('content' => $content));
+  }
 }
 
