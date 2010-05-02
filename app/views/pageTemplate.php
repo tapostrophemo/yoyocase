@@ -2,6 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="description" content="yoyocase.net is a website where you can show off and manage your yo-yo collection"/>
+<meta name="keywords" content="yo-yo,yoyo,collecting,collection,website,site,software"/>
 <title><?php if (isset($title)) echo "$title - "; ?>yoyocase.net</title>
 <link rel="stylesheet" type="text/css" href="/res/main.css"/>
 <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
