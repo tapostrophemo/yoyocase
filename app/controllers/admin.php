@@ -32,22 +32,15 @@ class Admin extends MY_Controller
 
   function registrationActivationReport() {
     $this->load->model('Report');
-    $content = '<h2>Registration and activation</h2>';
 
-    $data = $this->Report->registration();
-    $content .= $this->load->view('admin/genericReport', array(
-      'title' => 'Registrations',
-      'data' => $data,
-      'fields' => array('date' => 'Date', 'num_registrations' => 'Registrations'),
-    ), true);
-
-    $data = $this->Report->activation();
-    $content .= $this->load->view('admin/genericReport', array(
-      'title' => 'Activations / Retentions',
-      'note' => 'counts as "activation" in current month and "retention" in past months',
-      'data' => $data,
-      'fields' => array('month' => 'Month', 'num_activations' => 'Activations'),
-    ), true);
+    $content = $this->load->view('admin/genericReport', array(
+      'title' => 'Registration, Activation and Retention',
+      'note' => 'counts as "activation" in curent month, "retention" in past months',
+      'data' => $this->Report->registrationAndActivation(),
+      'fields' => array(
+        'date' => 'Month',
+        'num_registrations' => 'Registrations',
+        'num_activations' => 'Activations/Retentions')), true);
 
     $this->load->view('pageTemplate', array('content' => $content));
   }

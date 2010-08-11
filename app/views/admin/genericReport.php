@@ -1,8 +1,6 @@
-<h3><?=$title?></h3>
+<h2><?=$title?></h2>
 
-<?php if (isset($note)): ?>
 <p>Note: <?=$note?></p>
-<?php endif; ?>
 
 <table class="report" width="100%">
  <tr>
@@ -18,6 +16,4 @@
  </tr>
 <?php endforeach; ?>
 </table>
-
-<br/>
 
