@@ -75,13 +75,13 @@ class Users extends MY_Controller
   function gallery($username) {
     $username = urldecode($username);
     $yoyos = array();
-    $user = $this->User->find_by_username($username);
+    $user = $this->User->findByUsername($username);
     $title = 'view yoyo collections';
     $username = htmlspecialchars($username);
     if ($user) {
       $title = "$username's yoyo collection";
       $this->load->model('Yoyo');
-      $yoyos = $this->Yoyo->find_all_by_userid($user->id);
+      $yoyos = $this->Yoyo->findAllByUserid($user->id, true);
       $content = $this->load->view('users/gallery', array('username' => $username, 'yoyos' => $yoyos), true);
     }
     else {

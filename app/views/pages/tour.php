@@ -20,6 +20,8 @@ img {
 <a name="2"></a>
 <p>2. Edit and save yoyo details:</p>
 <img src="/res/tour_edit.jpg" alt="edit yoyo"/>
+<p>More fields are available for saving advanced details about each yoyo:</p>
+<img src="/res/tour_edit_advanced.jpg" alt="advanced fields: modder, serial number, acquisition price/date, etc."/>
 
 <br/>
 
@@ -30,8 +32,9 @@ img {
 <br/>
 
 <a name="4"></a>
-<p>4. View a gallery of your yoyos:</p>
-<img src="/res/tour_gallery.jpg" alt="individual user's gallery"/>
+<p>4. View a gallery of your yoyos, including a lightbox slideshow of each yoyo's photos:</p>
+<img src="/res/tour_gallery.jpg" alt="individual user's gallery"/><br/>
+<img src="/res/tour_slideshow.jpg" alt="view slideshow of each yoyo's photos"/>
 
 <br/>
 <br/>

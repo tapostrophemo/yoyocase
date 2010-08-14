@@ -3,6 +3,7 @@
  * colors:
  * white (#ffffff) - background
  * orange-brown (#b24d17) - hrefs, accents
+ * dark/faded orange-brown (#2f241e) - lightbox background
  * light grey (#e9e9e9) - borders
  *
  * fonts:
@@ -166,8 +167,10 @@ a img {
 }
 
 img {
+/* TODO: ensure images aren't too large on edit screens and screw up the display
   max-width: 450px;
   width: expression(this.width > 450 ? 450 : true);
+*/
 }
 
 label {

@@ -4,9 +4,22 @@ function _urls_only($ary) {
   return $ary['url'];
 }
 
+$_current_yoyo_id;
+
+function _photo_belongs_to($photo) {
+  global $_current_yoyo_id;
+  return $_current_yoyo_id == $photo->yoyo_id;
+}
+
 class Yoyo extends Model
 {
-  function find_all_by_userid($userid) {
+  function findAllByUserid($userid, $getAllPhotos = false) {
+    return $this->find_all_by_userid($userid, $getAllPhotos);
+  }
+
+  function find_all_by_userid($userid, $getAllPhotos = false) {
+    global $_current_yoyo_id;
+
     // TODO: EXPLAIN's showing 2 full-table scans on this...but what else to index?
     $sql = "
       SELECT y.id, y.manufacturer, y.country, y.model_year, y.model_name, p.url AS first_photo
@@ -17,7 +30,28 @@ class Yoyo extends Model
       ) p ON p.yoyo_id = y.id
       WHERE user_id = ?";
     $query = $this->db->query($sql, $userid);
-    return $query->result();
+    $result = $query->result();
+
+    $allPhotos = array();
+    if ($getAllPhotos) {
+      $sql = "
+        SELECT p.yoyo_id, p.id, p.url
+        FROM photos p
+          JOIN yoyos y ON y.id = p.yoyo_id
+        WHERE y.user_id = ?";
+      $allPhotos = $this->db->query($sql, $userid)->result();
+    }
+    foreach ($result as $yoyo) {
+      if ($getAllPhotos) {
+        $_current_yoyo_id = $yoyo->id;
+        $yoyo->photos = array_filter($allPhotos, '_photo_belongs_to');
+      }
+      else {
+        $yoyo->photos = array();
+      }
+    }
+
+    return $result;
   }
 
   function add_for_user($userid, $data) {
