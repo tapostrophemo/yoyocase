@@ -118,6 +118,28 @@ p, ul, ol {
   text-align: center;
 }
 
+#galleryDetail div {
+  margin-bottom: 42px;
+  text-align: center;
+}
+#galleryDetail .thumbPending {
+  display: inline-block;
+  position: relative;
+  height: 111px;
+  width: 111px;
+  text-align: center;
+}
+#galleryDetail .thumbPending a {
+  font-size: 9px;
+  font-weight: normal;
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 111px;
+  width: 100%;
+  height: 100%;
+}
+
 #collectionList {
   list-style: none;
   margin: 0;

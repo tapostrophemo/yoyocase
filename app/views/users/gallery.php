@@ -5,19 +5,24 @@
 <script type="text/javascript" src="/res/yoxview/yoxview-init.js"></script>
 <?php endif; ?>
 
+<div id="galleryDetail">
 <?php foreach ($yoyos as $yoyo): ?>
-<div style="text-align:center" class="yoxview">
-<?php if (count($yoyo->photos)): ?>
- <?php foreach ($yoyo->photos as $photo): ?>
- <a href="<?=$photo->url?>"><img src="/thumbs/<?=$photo->id?>.jpg" alt="" title="<?=$photo->url?>"/></a>
- <?php endforeach; ?>
-<?php else: ?>
- <img src="/res/icon_unknown.png" alt="no photos"/>
-<?php endif; ?>
- <br/><b><?=$yoyo->model_year?> <?=$yoyo->manufacturer?> <?=$yoyo->model_name?></b>
-</div>
-<br/><br/>
+ <div class="yoxview">
+ <?php if (count($yoyo->photos)): ?>
+  <?php foreach ($yoyo->photos as $photo): ?>
+   <?php if (file_exists($_SERVER['DOCUMENT_ROOT'].'/thumbs/'.$photo->id.'.jpg')): ?>
+    <a href="<?=$photo->url?>"><img src="/thumbs/<?=$photo->id?>.jpg" alt="" title="<?=$photo->url?>"/></a>
+   <?php else: ?>
+    <span class="thumbPending"><a href="<?=$photo->url?>">icon&nbsp;pending...</a></span>
+   <?php endif; ?>
+  <?php endforeach; ?>
+ <?php else: ?>
+  <img src="/res/icon_unknown.png" alt="no photos"/>
+ <?php endif; ?>
+  <br/><b><?=$yoyo->model_year?> <?=$yoyo->manufacturer?> <?=$yoyo->model_name?></b>
+ </div>
 <?php endforeach; ?>
+</div><!-- /#gallery -->
 
 <p style="text-align:center"><a href="/galleries">view other yoyo collections</a></p>
 
