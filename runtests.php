@@ -70,6 +70,10 @@ class MY_WebTestCase extends WebTestCase
     return $this->insertRecord('yoyos', array('user_id' => $userid, 'model_name' => "'$name'"));
   }
 
+  function createPhoto($yoyoid, $url) {
+    $this->insertRecord('photos', array('yoyo_id' => $yoyoid, 'url' => "'$url'"));
+  }
+
   function logInAs($username , $password) {
     $this->get(BASE_URL.'/login');
     $this->setField('username', $username);

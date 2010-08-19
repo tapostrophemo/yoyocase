@@ -2,6 +2,29 @@
 
 class GalleryTestCase extends MY_WebTestCase
 {
+  function testGalleryStats() {
+    // Given
+    $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $this->createYoyo($userid, 'Freehand Zero');
+    $this->createYoyo($userid, 'FHZ');
+    // When
+    $this->get(BASE_URL.'/yoyos/testUser1');
+    // Then
+    $this->assertText("2 yoyos in testUser1's collection");
+  }
+
+  function testViewUserListForGalleries() {
+    // Given
+    $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $yoyoid = $this->createYoyo($userid, 'Freehand Zero');
+    $this->createPhoto($yoyoid, 'http://somewhere.com/photo.jpg');
+    // When
+    $this->get(BASE_URL.'/galleries');
+    // Then
+    $this->assertLink('testUser1');
+    $this->assertText("testUser1 (1 yo's, 1 pics)");
+  }
+
   function testGalleryForUnknownUser() {
     // Given
     $this->deleteRecord('users', array('username' => "'testUser1'"));
@@ -22,10 +45,8 @@ class GalleryTestCase extends MY_WebTestCase
 
   function testGalleryWithYoyosNoPhotos() {
     // Given
-    $this->deleteRecord('users', array('username' => "'testUser1'"));
-    $userid = $this->insertRecord('users', array('username' => "'testUser1'", 'email' => "'testUser1@somewhere.com'", 'crypted_password' => "'Password1'"));
-    $this->deleteRecord('yoyos', array('model_name' => "'Freehand Zero'"));
-    $this->insertRecord('yoyos', array('user_id' => $userid, 'model_name' => "'Freehand Zero'"));
+    $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $this->createYoyo($userid, 'Freehand Zero');
     // When
     $this->get(BASE_URL.'/yoyos/testUser1');
     // Then
@@ -36,12 +57,10 @@ class GalleryTestCase extends MY_WebTestCase
 
   function testGalleryWithPhotos() {
     // Given
-    $this->deleteRecord('users', array('username' => "'testUser1'"));
-    $userid = $this->insertRecord('users', array('username' => "'testUser1'", 'email' => "'testUser1@somewhere.com'", 'crypted_password' => "'Password1'"));
-    $this->deleteRecord('yoyos', array('model_name' => "'Freehand Zero'"));
-    $yoyoid = $this->insertRecord('yoyos', array('user_id' => $userid, 'model_name' => "'Freehand Zero'"));
-    $this->insertRecord('photos', array('yoyo_id' => $yoyoid, 'url' => "'http://farm5.static.flickr.com/4043/4175358221_bc84a52a75.jpg'"));
-    $this->insertRecord('photos', array('yoyo_id' => $yoyoid, 'url' => "'http://farm3.static.flickr.com/2692/4199629016_6565886579.jpg'"));
+    $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $yoyoid = $this->createYoyo($userid, 'Freehand Zero');
+    $this->createPhoto($yoyoid, 'http://farm5.static.flickr.com/4043/4175358221_bc84a52a75.jpg');
+    $this->createPhoto($yoyoid, 'http://farm3.static.flickr.com/2692/4199629016_6565886579.jpg');
     // When
     $this->get(BASE_URL.'/yoyos/testUser1');
     // Then
@@ -49,20 +68,6 @@ class GalleryTestCase extends MY_WebTestCase
     $this->assertText('Freehand Zero');
     $this->assertPattern('/http:\/\/farm5\.static\.flickr\.com\/4043\/4175358221_bc84a52a75\.jpg/');
     $this->assertPattern('/http:\/\/farm3\.static\.flickr\.com\/2692\/4199629016_6565886579\.jpg/');
-  }
-
-  function testGalleryStats() {
-    // Given
-    $this->deleteRecord('users', array('username' => "'testUser1'"));
-    $userid = $this->insertRecord('users', array('username' => "'testUser1'", 'email' => "'testUser1@somewhere.com'", 'crypted_password' => "'Password1'"));
-    $this->deleteRecord('yoyos', array('model_name' => "'Freehand Zero'"));
-    $yoyoid = $this->insertRecord('yoyos', array('user_id' => $userid, 'model_name' => "'Freehand Zero'"));
-    $this->deleteRecord('yoyos', array('model_name' => "'FHZ'"));
-    $yoyoid = $this->insertRecord('yoyos', array('user_id' => $userid, 'model_name' => "'FHZ'"));
-    // When
-    $this->get(BASE_URL.'/yoyos/testUser1');
-    // Then
-    $this->assertText("2 yoyos in testUser1's collection");
   }
 
   function testViewGalleryLinksShouldHaveUrlEncodedLinks() {
@@ -87,18 +92,6 @@ class GalleryTestCase extends MY_WebTestCase
     $this->clickLink('all galleries');
     // Then
     $this->assertPattern('/\/yoyos\/drumma%2Fyoyo/');
-  }
-
-  function testViewUserListForGalleries() {
-    // Given
-    $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
-    $yoyoid = $this->insertRecord('yoyos', array('user_id' => $userid, 'model_name' => "'Freehand Zero'"));
-    $this->insertRecord('photos', array('yoyo_id' => $yoyoid, 'url' => "'http://somewhere.com/photo.jpg'"));
-    // When
-    $this->get(BASE_URL.'/galleries');
-    // Then
-    $this->assertLink('testUser1');
-    $this->assertText("testUser1 (1 yo's, 1 pics)");
   }
 }
 
