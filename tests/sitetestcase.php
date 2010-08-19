@@ -180,41 +180,5 @@ class SiteTestCase extends MY_WebTestCase
     // Then
     $this->assertText("That password reset request is invalid or has expired");
   }
-
-  function testViewGalleryLinksShouldHaveUrlEncodedLinks() {
-    // Given
-    $this->deleteRecord('users', array('username' => "'drumma/yoyo'"));
-    $this->get(BASE_URL.'/register');
-    // When
-    $this->setField('username', 'drumma/yoyo');
-    $this->setField('password', 'Password1');
-    $this->setField('email', 'testUserDY@somewhere.com');
-    $this->clickSubmit('Register');
-    // Then
-    $this->assertText('Welcome, drumma/yoyo!');
-
-    // When
-    $this->clickLink('collection');
-    // Then
-    $this->assertPattern('/\/yoyos\/drumma%2Fyoyo/');
-
-    // When
-    $this->clickLink('yoyocase.net');
-    $this->clickLink('all galleries');
-    // Then
-    $this->assertPattern('/\/yoyos\/drumma%2Fyoyo/');
-  }
-
-  function testViewUserListForGalleries() {
-    // Given
-    $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
-    $yoyoid = $this->insertRecord('yoyos', array('user_id' => $userid, 'model_name' => "'Freehand Zero'"));
-    $this->insertRecord('photos', array('yoyo_id' => $yoyoid, 'url' => "'http://somewhere.com/photo.jpg'"));
-    // When
-    $this->get(BASE_URL.'/galleries');
-    // Then
-    $this->assertLink('testUser1');
-    $this->assertText("testUser1 (1 yo's, 1 pics)");
-  }
 }
 
