@@ -44,7 +44,7 @@ class Admin extends MY_Controller
 
     $this->load->view('pageTemplate', array('content' => $content));
   }
-
+/*
   function checkThumbnails() {
     $this->load->model('Photo');
     $data['max'] = $this->Photo->getMaxThumbnail();
@@ -77,5 +77,6 @@ class Admin extends MY_Controller
     $this->Photo->setMaxThumbnail($max);
     $this->load->view('pageTemplate', array('content' => "<h2>New Thumbnails</h2>New max: $max<br/>$s"));
   }
+*/
 }
 
