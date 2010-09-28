@@ -23,5 +23,17 @@ class Photo extends Model
   function delete($id) {
     $this->db->where('id', $id)->delete('photos');
   }
+
+  function getMaxThumbnail() {
+    return $this->db->where('name', 'max_thumbnail_id')->get('system')->row()->value;
+  }
+
+  function setMaxThumbnail($id) {
+    $this->db->where('name', 'max_thumbnail_id')->update('system', array('value' => $id));
+  }
+
+  function getUnThumbed($max) {
+    return $this->db->where('id >', $max)->select('id, url')->order_by('id')->get('photos')->result();
+  }
 }
 

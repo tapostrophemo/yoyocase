@@ -44,5 +44,38 @@ class Admin extends MY_Controller
 
     $this->load->view('pageTemplate', array('content' => $content));
   }
+
+  function checkThumbnails() {
+    $this->load->model('Photo');
+    $data['max'] = $this->Photo->getMaxThumbnail();
+    $data['photos'] = $this->Photo->getUnThumbed($data['max']);
+    $this->load->view('pageTemplate', array('content' => $this->load->view('admin/pendingThumbs', $data, true)));
+  }
+
+  function generateThumbnails($max) {
+    $docroot = $this->input->server('DOCUMENT_ROOT');
+    $path = $docroot . '/thumbs/';
+    $overlay = $docroot . '/res/cornerOverlay.gif';
+    $s = '';
+
+    $this->load->model('Photo');
+    $data = $this->Photo->getUnThumbed($max);
+
+    foreach ($data as $photo) {
+      $ext = pathinfo($photo->url, PATHINFO_EXTENSION);
+      $thumb = $path . $photo->id . '.' . $ext;
+      $s .= '<img src="/thumbs/' . $photo->id . '.' . $ext . '"/>';
+
+      $wget = sprintf('wget %s -O %s', $photo->url, $thumb);
+      $img1 = sprintf('composite -gravity Center %s %s %s', $overlay, $thumb, $thumb);
+      $img2 = sprintf('mogrify -gravity Center -crop 111x111+0+0 +repage %s', $thumb);
+      `$wget; $img1; $img2`;
+
+      $max = $photo->id;
+    }
+
+    $this->Photo->setMaxThumbnail($max);
+    $this->load->view('pageTemplate', array('content' => "<h2>New Thumbnails</h2>New max: $max<br/>$s"));
+  }
 }
 

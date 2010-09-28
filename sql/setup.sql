@@ -72,3 +72,9 @@ CREATE TABLE `acquisitions` (
   KEY `acq_yoyo_id_idx` (`yoyo_id`)
 );
 
+CREATE TABLE `system` (
+  `name`  varchar(255) default NULL,
+  `value`  varchar(4000) default NULL
+);
+INSERT INTO system VALUES('max_thumbnail_id', '1024');
+
