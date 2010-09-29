@@ -2,7 +2,7 @@
 
 <p>Note: <?=$note?></p>
 
-<table class="report" width="100%">
+<table class="report">
  <tr>
  <?php foreach ($fields as $column => $title): ?>
   <th><?=$title?></th>

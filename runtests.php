@@ -91,6 +91,10 @@ class MY_WebTestCase extends WebTestCase
   function getResetTokenPath() {
     return $this->parseFromPageText('/\/passreset\/[^ ]+/');
   }
+
+  function setMaxThumbnailId($num) {
+    `mysql -uyoyocase_user -pbob yoyocase -Be "UPDATE system SET value = '$num' WHERE name = 'max_thumbnail_id'"`;
+  }
 }
 
 $test = &new TestSuite('yoyocase.net tests');

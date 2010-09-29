@@ -34,7 +34,7 @@ class Admin extends MY_Controller
     $this->load->model('Report');
 
     $content = $this->load->view('admin/genericReport', array(
-      'title' => 'Registration, Activation and Retention',
+      'title' => 'Registration, activation and retention',
       'note' => 'counts as "activation" in curent month, "retention" in past months',
       'data' => $this->Report->registrationAndActivation(),
       'fields' => array(
@@ -44,7 +44,6 @@ class Admin extends MY_Controller
 
     $this->load->view('pageTemplate', array('content' => $content));
   }
-/*
   function checkThumbnails() {
     $this->load->model('Photo');
     $data['max'] = $this->Photo->getMaxThumbnail();
@@ -52,6 +51,7 @@ class Admin extends MY_Controller
     $this->load->view('pageTemplate', array('content' => $this->load->view('admin/pendingThumbs', $data, true)));
   }
 
+/*
   function generateThumbnails($max) {
     $docroot = $this->input->server('DOCUMENT_ROOT');
     $path = $docroot . '/thumbs/';

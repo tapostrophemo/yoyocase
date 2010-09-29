@@ -37,5 +37,23 @@ class AdminTestCase extends MY_WebTestCase
     // Then
     $this->assertText("testUser1 (1y / 1p)");
   }
+
+  function testAdminSeesImagesNeedingThumbnails() {
+    $this->createAdminUser('testAdmin1', 'testAdmin1@somewhere.com', 'AdminPassword1');
+    $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $yoyoid = $this->createYoyo($userid, 'Freehand Zero');
+    $photoid = $this->createPhoto($yoyoid, 'http://somewhere.com/photo.jpg');
+    $yoyoid2 = $this->createYoyo($userid, 'Throw Monkey');
+    $photoid2 = $this->createPhoto($yoyoid2, 'http://elsewhere.com/photo.jpg');
+    $this->setMaxThumbnailId($photoid - 1);
+    $this->logInAs('testAdmin1', 'AdminPassword1');
+
+    $this->clickLink('site admin');
+    $this->clickLink('check thumbnails');
+
+    $this->assertText('ID Username Yoyo URL');
+    $this->assertText("$photoid testUser1 Freehand Zero http://somewhere.com/photo.jpg");
+    $this->assertText("$photoid2 testUser1 Throw Monkey http://elsewhere.com/photo.jpg");
+  }
 }
 

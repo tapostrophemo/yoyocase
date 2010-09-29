@@ -33,7 +33,14 @@ class Photo extends Model
   }
 
   function getUnThumbed($max) {
-    return $this->db->where('id >', $max)->select('id, url')->order_by('id')->get('photos')->result();
+    $sql = "
+      SELECT p.id, u.username, y.model_name, p.url
+      FROM photos p
+        JOIN yoyos y ON y.id = p.yoyo_id
+        JOIN users u ON u.id = y.user_id
+      WHERE p.id > ?
+      ORDER BY p.id";
+    return $this->db->query($sql, array($max))->result();
   }
 }
 

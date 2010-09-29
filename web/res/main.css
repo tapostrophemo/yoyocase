@@ -243,6 +243,10 @@ hr {
   margin-top: 10em;
 }
 
+.report {
+  border-collapse: collapse;
+  width: 100%;
+}
 .report th {
   text-align: left;
 }
