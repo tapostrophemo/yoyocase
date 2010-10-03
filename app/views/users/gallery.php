@@ -1,7 +1,7 @@
 <?php if (count($yoyos) == 0): ?>
-  <p class="err">User "<?=$username?>" has no yoyos in their collection</p>
+  <p class="err miniRound">User "<?=$username?>" has no yoyos in their collection</p>
 <?php else: ?>
-  <p class="msg"><?=count($yoyos)?> yoyo<?=count($yoyos)>1?'s':''?> in <?=$username?>'s collection</p>
+  <p class="msg miniRound"><?=count($yoyos)?> yoyo<?=count($yoyos)>1?'s':''?> in <?=$username?>'s collection</p>
 <script type="text/javascript" src="/res/yoxview/yoxview-init.js"></script>
 <?php endif; ?>
 

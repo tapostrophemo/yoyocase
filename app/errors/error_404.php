@@ -13,10 +13,12 @@
 </div>
 
 <div id="content">
- <div class="err">
+ <div class="err rounded">
   <h1><?php echo $heading; ?></h1>
   <?php echo $message; ?>
  </div>
+
+ <p style="text-align:center">Please visit <a href="/">our home page</a>.</p>
 </div><!-- /#content -->
 
 <div id="footer">
