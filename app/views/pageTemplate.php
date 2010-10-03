@@ -36,10 +36,10 @@
 
 <div id="content">
 <?php if ($this->session->flashdata('err')): ?>
- <div class="err"><?=$this->session->flashdata('err')?></div>
+ <div class="err miniRound"><?=$this->session->flashdata('err')?></div>
 <?php endif; ?>
 <?php if ($this->session->flashdata('msg')): ?>
- <div class="msg"><?=$this->session->flashdata('msg')?></div>
+ <div class="msg miniRound"><?=$this->session->flashdata('msg')?></div>
 <?php endif; ?>
 
  <?= $content ?>

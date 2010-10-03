@@ -4,7 +4,7 @@ class MY_Controller extends Controller
 {
   function __construct() {
     parent::Controller();
-    $this->form_validation->set_error_delimiters('<div class="err">', '</div>');
+    $this->form_validation->set_error_delimiters('<div class="err miniRound">', '</div>');
     log_message('debug', 'MY_Controller class initialized');
   }
 

@@ -76,6 +76,10 @@ p, ul, ol {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
 }
+.miniRound {
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+}
 
 #nav {
   position: absolute;
