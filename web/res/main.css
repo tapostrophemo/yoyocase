@@ -127,6 +127,7 @@ p, ul, ol {
   text-align: center;
 }
 #galleryDetail .thumbPending {
+  background: transparent url("/res/icon_gradient.png") center center no-repeat;
   display: inline-block;
   position: relative;
   height: 111px;
