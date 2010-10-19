@@ -13,6 +13,11 @@ function _photo_belongs_to($photo) {
 
 class Yoyo extends Model
 {
+  function __construct() {
+    parent::__construct();
+    $this->load->helper('date');
+  }
+
   function findAllByUserid($userid, $getAllPhotos = false) {
     return $this->find_all_by_userid($userid, $getAllPhotos);
   }
@@ -55,7 +60,6 @@ class Yoyo extends Model
   }
 
   function add_for_user($userid, $data) {
-    $this->load->helper('date');
     $data['user_id'] = $userid;
     $data['created_at'] = mdate('%Y-%m-%d %H:%i:%s', time());
     $this->db->insert('yoyos', $data);
@@ -93,6 +97,10 @@ class Yoyo extends Model
     return 1 == $row->ct;
   }
 
+  function findById($id) {
+    return $this->find_by_id($id);
+  }
+
   function find_by_id($id) {
     $sql = "
       SELECT y.id, y.user_id, y.manufacturer, y.mod, y.country, y.model_year, y.model_name,
@@ -116,9 +124,26 @@ class Yoyo extends Model
   }
 
   function update($yoyoid, $data) {
-    $this->load->helper('date');
     $data['updated_at'] = mdate('%Y-%m-%d %H:%i:%s', time());
     return $this->db->where('id', $yoyoid)->update('yoyos', $data);
+  }
+
+  function delete($yoyoid) {
+    $this->db->where('id', $yoyoid)->delete('yoyos');
+    $this->db->where('yoyo_id', $yoyoid)->delete('photos');
+  }
+
+  function archive($yoyoid) {
+    $yoyo = $this->findById($yoyoid);
+    $yoyo->photos = $this->db
+      ->select('id, url, created_at, updated_at')
+      ->where('yoyo_id', $yoyoid)
+      ->get('photos')->result();
+    $this->db->insert('archives', array(
+      'yoyo_id' => $yoyoid,
+      'data' => serialize($yoyo),
+      'date' => mdate('%Y-%m-%d %H:%i:%s', time())));
+    $this->delete($yoyoid);
   }
 }
 

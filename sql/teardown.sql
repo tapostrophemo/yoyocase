@@ -1,5 +1,6 @@
 drop table if exists
   system,
+  archives,
   acquisitions,
   photos,
   yoyos,

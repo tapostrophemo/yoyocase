@@ -93,6 +93,23 @@ class Yoyos extends MY_Controller
     }
   }
 
+  function delete($yoyoid) {
+    $yoyo = $this->Yoyo->findById($yoyoid);
+    if ($yoyo && $yoyo->user_id == $this->session->userdata('userid')) {
+      if ($this->input->post('archive')) {
+        $this->Yoyo->archive($yoyoid);
+        $this->redirectWithMessage('Yoyo archived and deleted', 'yoyos');
+      }
+      else {
+        $this->Yoyo->delete($yoyoid);
+        $this->redirectWithMessage('Yoyo deleted', 'yoyos');
+      }
+    }
+    else {
+      $this->redirectWithError('Only users are allowed to delete their own yoyos', 'account');
+    }
+  }
+
   function removePhoto($photoid) {
     $photo = $this->Photo->find_by_id($photoid);
     $yoyo = $this->Yoyo->find_by_id($photo->yoyo_id);

@@ -223,5 +223,57 @@ class YoyosTestCase extends MY_WebTestCase
     // Then
     $this->assertText('Acquired by purchase on 2009-12-13 for $15.99 from yoyonation.com');
   }
+
+  function testDeleteYoyo() {
+    // Given
+    $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $yoyoid = $this->createYoyo($userid, 'FHZ');
+    $photoid = $this->createPhoto($yoyoid, 'http://somewhere.com/photo.jpg');
+    $this->logInAs('testUser1', 'Password1');
+    $this->clickLink('collection');
+    $this->clickLink('FHZ');
+    // When
+    $this->clickSubmit('Delete');
+    // Then
+    $this->assertText('Your collection');
+    $this->assertText('Yoyo deleted');
+    $this->assertNoRecord('yoyos', 'id', $yoyoid);
+    $this->assertNoRecord('photos', 'id', $photoid);
+  }
+
+  function testOnlyOwnerCanDeleteYoyo() {
+    // Given
+    $ownerid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $yoyoid = $this->createYoyo($ownerid, 'FHZ');
+    $photoid = $this->createPhoto($yoyoid, 'http://somewhere.com/photo.jpg');
+    $this->createUser('testUser2', 'testUser2@somewhere.com', 'Password2');
+    $this->logInAs('testUser2', 'Password2');
+    // When
+    $this->post("/yoyo/$yoyoid/delete");
+    // Then
+    $this->assertText('Only users are allowed to delete their own yoyos');
+    $this->assertRecord('yoyos', 'id', $yoyoid);
+    $this->assertRecord('photos', 'id', $photoid);
+  }
+
+  function testDeleteYoyoViaArchive() {
+    // Given
+    $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $yoyoid = $this->createYoyo($userid, 'FHZ');
+    $photoid = $this->createPhoto($yoyoid, 'http://somewhere.com/photo.jpg');
+    $this->logInAs('testUser1', 'Password1');
+    $this->clickLink('collection');
+    $this->clickLink('FHZ');
+    // When
+    $this->setFieldByName('archive', true);
+    $this->clickSubmit('Delete');
+    // Then
+    $this->assertText('Your collection');
+    $this->assertText('Yoyo archived and deleted');
+    $this->assertRecord('archives', 'yoyo_id', $yoyoid);
+    // TODO: assert contents of record (ARCHIVE.DATA) or something
+    $this->assertNoRecord('yoyos', 'id', $yoyoid);
+    $this->assertNoRecord('photos', 'id', $photoid);
+  }
 }
 

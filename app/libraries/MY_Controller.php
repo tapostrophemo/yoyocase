@@ -8,9 +8,17 @@ class MY_Controller extends Controller
     log_message('debug', 'MY_Controller class initialized');
   }
 
+  function redirectWithError($errmsg, $path = '') {
+    $this->redirect_with_error($errmsg, $path);
+  }
+
   function redirect_with_error($errmsg, $path = '') {
     $this->session->set_flashdata('err', $errmsg);
     redirect($path);
+  }
+
+  function redirectWithMessage($msg, $path = '') {
+    $this->redirect_with_message($msg, $path);
   }
 
   function redirect_with_message($msg, $path = '') {

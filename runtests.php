@@ -71,7 +71,7 @@ class MY_WebTestCase extends WebTestCase
   }
 
   function createPhoto($yoyoid, $url) {
-    $this->insertRecord('photos', array('yoyo_id' => $yoyoid, 'url' => "'$url'"));
+    return $this->insertRecord('photos', array('yoyo_id' => $yoyoid, 'url' => "'$url'"));
   }
 
   function logInAs($username , $password) {
