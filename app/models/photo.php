@@ -15,6 +15,10 @@ class Photo extends Model
     return $query->result();
   }
 
+  function findById($id) {
+    return $this->find_by_id($id);
+  }
+
   function find_by_id($id) {
     $query = $this->db->select('yoyo_id, url')->where('id', $id)->get('photos');
     return $query->row();

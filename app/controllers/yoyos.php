@@ -57,6 +57,10 @@ class Yoyos extends MY_Controller
 
   function view($yoyoid) {
     $yoyo = $this->_findYoyo($yoyoid);
+    if ($yoyo->user_id != $this->session->userdata('userid')) {
+      $this->redirectWithError('Only owners are allowed to view yoyo details', 'yoyos');
+    }
+
     $data = array(
       'yoyo' => $yoyo,
       'photos' => $this->Photo->find_all_by_yoyoid($yoyoid),
@@ -106,19 +110,19 @@ class Yoyos extends MY_Controller
       }
     }
     else {
-      $this->redirectWithError('Only users are allowed to delete their own yoyos', 'account');
+      $this->redirectWithError('Only owners are allowed to delete their own yoyos', 'account');
     }
   }
 
   function removePhoto($photoid) {
-    $photo = $this->Photo->find_by_id($photoid);
-    $yoyo = $this->Yoyo->find_by_id($photo->yoyo_id);
+    $photo = $this->Photo->findById($photoid);
+    $yoyo = $this->Yoyo->findById($photo->yoyo_id);
     if ($photo && $yoyo && $yoyo->user_id == $this->session->userdata('userid')) {
       $this->Photo->delete($photoid);
       redirect("yoyo/{$photo->yoyo_id}/edit");
     }
     else {
-      $this->redirect_with_error("You cannot remove photos from another user's yoyos");
+      $this->redirect_with_error("You cannot remove photos from another user's yoyos", 'yoyos');
     }
   }
 

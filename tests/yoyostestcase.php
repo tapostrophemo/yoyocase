@@ -251,7 +251,7 @@ class YoyosTestCase extends MY_WebTestCase
     // When
     $this->post("/yoyo/$yoyoid/delete");
     // Then
-    $this->assertText('Only users are allowed to delete their own yoyos');
+    $this->assertText('Only owners are allowed to delete their own yoyos');
     $this->assertRecord('yoyos', 'id', $yoyoid);
     $this->assertRecord('photos', 'id', $photoid);
   }
@@ -274,6 +274,19 @@ class YoyosTestCase extends MY_WebTestCase
     // TODO: assert contents of record (ARCHIVE.DATA) or something
     $this->assertNoRecord('yoyos', 'id', $yoyoid);
     $this->assertNoRecord('photos', 'id', $photoid);
+  }
+
+  function testOnlyOwnerCanViewYoyoDetails() {
+    // Given
+    $ownerid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $yoyoid = $this->createYoyo($ownerid, 'FHZ');
+    $this->createUser('testUser2', 'testUser2@somewhere.com', 'Password2');
+    // When
+    $this->logInAs('testUser2', 'Password2');
+    $this->get("/yoyo/$yoyoid");
+    // Then
+    $this->assertText('Only owners are allowed to view yoyo details');
+    $this->assertNoText('FHZ');
   }
 }
 
