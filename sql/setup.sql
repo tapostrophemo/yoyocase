@@ -78,3 +78,11 @@ CREATE TABLE `system` (
 );
 INSERT INTO system VALUES('max_thumbnail_id', '1024');
 
+CREATE TABLE `archives` (
+  `id` int(11) NOT NULL auto_increment,
+  `yoyo_id` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  `data` text default NULL,
+  PRIMARY KEY (`id`)
+);
+

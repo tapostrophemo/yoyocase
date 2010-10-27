@@ -233,6 +233,7 @@ class YoyosTestCase extends MY_WebTestCase
     $this->clickLink('collection');
     $this->clickLink('FHZ');
     // When
+    $this->setFieldByName('archive', false);
     $this->clickSubmit('Delete');
     // Then
     $this->assertText('Your collection');
@@ -270,6 +271,7 @@ class YoyosTestCase extends MY_WebTestCase
     // Then
     $this->assertText('Your collection');
     $this->assertText('Yoyo archived and deleted');
+    $this->assertRecord('archives', 'user_id', $userid);
     $this->assertRecord('archives', 'yoyo_id', $yoyoid);
     // TODO: assert contents of record (ARCHIVE.DATA) or something
     $this->assertNoRecord('yoyos', 'id', $yoyoid);

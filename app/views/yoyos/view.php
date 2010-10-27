@@ -51,11 +51,6 @@
  <input type="button" value="Back to collection" onclick="document.location.href='<?=$cancel_url?>'"/>
 </form>
 
-<?=form_open("yoyo/{$yoyo->id}/delete")?>
- <input type="checkbox" name="archive"/> <label for="archive">Archive?</label>
- <input type="submit" value="Delete"/>
-</form>
-
 <hr/>
 
 <?php $i = 1; foreach ($photos as $photo): ?>
@@ -65,14 +60,10 @@
 <?php endforeach; ?>
 
 <br/>
-
-<?=form_open("yoyo/{$yoyo->id}/edit", array('method' => 'GET'))?>
- <input type="submit" value="Edit"/>
- <input type="button" value="Back to collection" onclick="document.location.href='<?=$cancel_url?>'"/>
-</form>
+<br/>
 
 <?=form_open("yoyo/{$yoyo->id}/delete")?>
- <input type="checkbox" name="archive"/> <label for="archive">Archive?</label>
+ <input type="checkbox" name="archive" checked="checked"/> <label for="archive">Archive?</label>
  <input type="submit" value="Delete"/>
 </form>
 

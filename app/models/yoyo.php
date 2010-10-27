@@ -140,6 +140,7 @@ class Yoyo extends Model
       ->where('yoyo_id', $yoyoid)
       ->get('photos')->result();
     $this->db->insert('archives', array(
+      'user_id' => $yoyo->user_id,
       'yoyo_id' => $yoyoid,
       'data' => serialize($yoyo),
       'date' => mdate('%Y-%m-%d %H:%i:%s', time())));
