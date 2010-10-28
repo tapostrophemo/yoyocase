@@ -51,7 +51,6 @@ class Admin extends MY_Controller
     $this->load->view('pageTemplate', array('content' => $this->load->view('admin/pendingThumbs', $data, true)));
   }
 
-/*
   function generateThumbnails($max) {
     $docroot = $this->input->server('DOCUMENT_ROOT');
     $path = $docroot . '/thumbs/';
@@ -61,22 +60,39 @@ class Admin extends MY_Controller
     $this->load->model('Photo');
     $data = $this->Photo->getUnThumbed($max);
 
+    $status = array();
     foreach ($data as $photo) {
       $ext = pathinfo($photo->url, PATHINFO_EXTENSION);
       $thumb = $path . $photo->id . '.' . $ext;
       $s .= '<img src="/thumbs/' . $photo->id . '.' . $ext . '"/>';
 
-      $wget = sprintf('wget %s -O %s', $photo->url, $thumb);
-      $img1 = sprintf('composite -gravity Center %s %s %s', $overlay, $thumb, $thumb);
-      $img2 = sprintf('mogrify -gravity Center -crop 111x111+0+0 +repage %s', $thumb);
-      `$wget; $img1; $img2`;
+      $wget = sprintf('wget %s -O %s 2>&1', $photo->url, $thumb);
+      $img1 = sprintf('composite -gravity Center %s %s %s 2>&1', $overlay, $thumb, $thumb);
+      $img2 = sprintf('mogrify -gravity Center -crop 111x111+0+0 %s 2>&1', $thumb);
+
+      $this->_execCmd($wget, $status);
+      $this->_execCmd($img1, $status);
+      $this->_execCmd($img2, $status);
 
       $max = $photo->id;
     }
 
     $this->Photo->setMaxThumbnail($max);
-    $this->load->view('pageTemplate', array('content' => "<h2>New Thumbnails</h2>New max: $max<br/>$s"));
+    $content = "<h2>New Thumbnails</h2>New max: $max<br/>$s";
+    if (!empty($status)) {
+      $content .= '<br/>errors:<br/><pre>' . print_r($status, true) . '</pre>';
+    }
+    $this->load->view('pageTemplate', array('content' => $content));
   }
-*/
+
+  function _execCmd($cmd, &$status) {
+    $retval = -1;
+    $lines = array();
+    exec($cmd, $lines, $retval);
+    if ($retval != 0) {
+      $status[$photo->id][] = "command [$wget] returned $retval";
+      $status[$photo->id][] = $lines;
+    }
+  }
 }
 

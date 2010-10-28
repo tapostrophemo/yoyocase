@@ -23,11 +23,9 @@
  </tbody>
 </table>
 
-<!--
 <?=form_open("admin/generateThumbnails/$max")?>
  <input type="submit" value="Generate Thumbnails"/>
 </form>
--->
 
 <?php else: ?>
 
