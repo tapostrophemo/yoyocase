@@ -2,7 +2,7 @@
 
 <div id="gallery">
 
-<p>What is yoyocase.net? It is a website that lets you manage your yoyo collection online.
+<p>What is <tt>yoyocase.net</tt>? It is a website that lets you manage your yoyo collection online.
  Managing your collection online means you'll be able to easily share your collection with
  friends, traders, and other yoyo enthusiasts.</p>
 
@@ -18,10 +18,10 @@
 
 <br/>
 
-<p>Some of the features planned for yoyocase.net include:</p>
+<p>Some of the features planned for <tt>yoyocase.net</tt> include:</p>
 <ul>
- <li>link pictures from other popular image hosting sites (imageshack, imgur, etc.)</li>
- <li>keep track of gifts, purchases and trades (date, people/stores involved, etc.)</li>
+ <li>option to upload your photos directly to this site</li>
+ <li>link pictures from other popular image hosting sites</li>
  <li>keep in touch with other yoyo enthusiasts</li>
 </ul>
 
@@ -39,6 +39,7 @@
 <div id="sidebar">
 
 <div id="smallLogin">
+ <p><a href="/register">Register for an account</a></p>
  <?=form_open('login')?>
   <label for="username">Username</label><br/>
   <input type="text" name="username"/><br/>
