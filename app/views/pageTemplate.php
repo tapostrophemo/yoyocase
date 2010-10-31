@@ -50,6 +50,7 @@
  User submissions copyright the submitter. Some other content derived from Creative Commons-licensed material.<br/>
  <br/>
  <a href="/credits">credits</a> |
+ <a href="/tos">terms of service</a> |
  <a href="/privacy">privacy</a> |
  <a href="http://twitter.com/yoyocase" target="_blank">follow us on Twitter</a>
 </div>

@@ -322,3 +322,12 @@ a.dialogClose {
   width: 70%;
 }
 
+#tosRegBlock {
+  font-size: 90%;
+  border: 1px solid black;
+  margin: 1em;
+  padding: 1em;
+  height: 250px;
+  overflow: auto;
+}
+

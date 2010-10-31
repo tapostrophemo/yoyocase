@@ -4,6 +4,7 @@ $route['default_controller'] = 'pages';
 $route['scaffolding_trigger'] = "";
 
 $route['privacy'] = 'pages/privacy';
+$route['tos'] = 'pages/tos';
 $route['credits'] = 'pages/credits';
 $route['tour'] = 'pages/tour';
 

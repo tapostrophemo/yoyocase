@@ -20,10 +20,12 @@
    <td><label for="email">Email</label>&nbsp;</td>
    <td><input type="text" name="email" value="<?=set_value('email')?>"/></td>
   </tr>
-  <tr>
-   <td colspan="2"><input type="submit" value="Register"/></td>
-  </tr>
  </table>
+ <div id="tosRegBlock">
+  <p>By registering for an account, you agree to abide by the following</p>
+  <?=$this->load->view('pages/tos')?>
+ </div>
+ <input type="submit" value="Register"/>
 </form>
 
 <br/>
