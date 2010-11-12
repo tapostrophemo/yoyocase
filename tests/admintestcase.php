@@ -38,6 +38,41 @@ class AdminTestCase extends MY_WebTestCase
     $this->assertText("testUser1 (1y / 1p)");
   }
 
+  function testAdminAccountListIsSortable() {
+    // Given
+    $this->createAdminUser('testAdmin1', 'testAdmin1@somewhere.com', 'AdminPassword1');
+
+    $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $this->logInAs('testUser1', 'Password1');
+    $this->clickLink('logout');
+    sleep(1);
+
+    $this->createUser('anotherUser', 'anotherUser@somewhere.com', 'Password1');
+    sleep(1);
+
+    $this->createUser('zUser', 'zUser@somewhere.com', 'Password1');
+    $this->logInAs('zUser', 'Password1');
+    $this->clickLink('logout');
+    sleep(1);
+    $this->logInAs('zUser', 'Password1');
+    $this->clickLink('logout');
+
+    // When
+    $this->logInAs('testAdmin1', 'AdminPassword1');
+    $this->clickLink('site admin');
+    $this->clickLink('user accounts');
+
+    // When..Then
+    $this->clickLink('Username');
+    $this->assertPattern('/anotherUser.*testUser1.*zUser/s');
+
+    $this->clickLink('Registered on');
+    $this->assertPattern('/zUser.*anotherUser.*testUser1/s');
+
+    $this->clickLink('Last login');
+    $this->clickLink('/zUser.*testUser1.*anotherUser/s');
+  }
+
   function testAdminSeesImagesNeedingThumbnails() {
     $this->createAdminUser('testAdmin1', 'testAdmin1@somewhere.com', 'AdminPassword1');
     $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');

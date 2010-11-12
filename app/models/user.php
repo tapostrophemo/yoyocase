@@ -162,7 +162,7 @@ class User extends Model
     }
   }
 
-  function findAll() {
+  function findAll($sort = 'u.id') {
     $sql = "
       SELECT u.id, u.username, u.created_at, u.last_login_at, u.email,
         Count(DISTINCT y.id) AS num_yoyos, Count(DISTINCT p.id) AS num_photos
@@ -170,9 +170,22 @@ class User extends Model
         LEFT JOIN yoyos y ON y.user_id = u.id
         LEFT JOIN photos p ON p.yoyo_id = y.id
       GROUP BY u.username, u.created_at, u.last_login_at, u.email
-      ORDER BY u.id";
+      ORDER BY $sort";
     $query = $this->db->query($sql);
     return $query->result();
+  }
+
+  function findAllSorted($by) {
+    switch ($by) {
+      case 'username': return $this->findAll('u.username');
+      case 'reg':      return $this->findAll('u.created_at DESC');
+      case 'login':    return $this->findAll('u.last_login_at DESC');
+      default: return array();
+    }
+  }
+
+  static function isValidSortKey($name) {
+    return in_array($name, array('username', 'reg', 'login'));
   }
 }
 

@@ -58,7 +58,11 @@ class MY_WebTestCase extends WebTestCase
   function createUser($username, $email, $password) {
     $this->deleteRecord('users', array('username' => "'$username'"));
     $pass = sha1($password);
-    return $this->insertRecord('users', array('username' => "'$username'", 'email' => "'$email'", 'crypted_password' => "'$pass'"));
+    return $this->insertRecord('users', array(
+      'username' => "'$username'",
+      'email' => "'$email'",
+      'crypted_password' => "'$pass'",
+      'created_at' => 'NOW()'));
   }
 
   function createAdminUser($username, $email, $password) {
@@ -98,7 +102,13 @@ class MY_WebTestCase extends WebTestCase
 }
 
 $test = &new TestSuite('yoyocase.net tests');
-foreach (glob('tests/*.php') as $file) {
+if ($_SERVER['argv'][1]) {
+  $files = array($_SERVER['argv'][1]);
+}
+else {
+  $files = glob('tests/*.php');
+}
+foreach ($files as $file) {
   $test->addTestFile($file);
 }
 exit($test->run(new TextReporter()) ? 0 : 1);

@@ -68,7 +68,7 @@ p, ul, ol {
   margin: 0;
   padding: 12px 31px;
 }
-#header a {
+#header a, .report thead a {
   color: black;
 }
 

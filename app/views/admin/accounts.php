@@ -7,18 +7,22 @@
 </div>
 
 <table class="report">
- <tr>
-  <th>Username</th>
-  <th>Registered on</th>
-  <th>Last login</th>
- </tr>
-<?php foreach ($accounts as $account): ?>
- <tr>
-  <td><a href="/admin/userDetail/<?=$account->id?>"><?=$account->username?></a> <small>(<?=$account->num_yoyos?>y / <?=$account->num_photos?>p)</small></td>
-  <td><?=$account->created_at?></td>
-  <td><?=$account->last_login_at?></td>
- </tr>
-<?php endforeach; ?>
+ <thead>
+  <tr>
+   <th><a href="/admin/accounts/username">Username</a></th>
+   <th><a href="/admin/accounts/reg">Registered on</a></th>
+   <th><a href="/admin/accounts/login">Last login</a></th>
+  </tr>
+ </thead>
+ <tbody>
+ <?php foreach ($accounts as $account): ?>
+  <tr>
+   <td><a href="/admin/userDetail/<?=$account->id?>"><?=$account->username?></a> <small>(<?=$account->num_yoyos?>y / <?=$account->num_photos?>p)</small></td>
+   <td><?=$account->created_at?></td>
+   <td><?=$account->last_login_at?></td>
+  </tr>
+ <?php endforeach; ?>
+ </tbody>
 </table>
 
 <br/>
@@ -29,7 +33,7 @@
 <script type="text/javascript">
 $(document).ready(function () {
 
-  jQuery.each($(".report a"), function (i, link) {
+  jQuery.each($(".report tbody a"), function (i, link) {
     $(link).click(function () {
       $("#userDetailContent").html('<div class="loading"><img src="/res/wait.gif" alt="loading..."/></div>');
       $("#userDetailContent").load(link.href);

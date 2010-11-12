@@ -18,9 +18,17 @@ class Admin extends MY_Controller
     $this->load->view('pageTemplate', array('content' => $this->load->view('admin/menu', null, true)));
   }
 
-  function accounts() {
+  function accounts($sort = null) {
     $this->load->model('User');
-    $data = array('accounts' => $this->User->findAll());
+    if (!$sort) {
+      $data = array('accounts' => $this->User->findAll());
+    }
+    else if (User::isValidSortKey($sort)) {
+      $data = array('accounts' => $this->User->findAllSorted($sort));
+    }
+    else {
+      $data = array('accounts' => array());
+    }
     $this->load->view('pageTemplate', array('content' => $this->load->view('admin/accounts', $data, true)));
   }
 
