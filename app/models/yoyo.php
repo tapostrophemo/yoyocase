@@ -18,6 +18,10 @@ class Yoyo extends Model
     $this->load->helper('date');
   }
 
+  function _now() {
+    return mdate('%Y-%m-%d %H:%i:%s', time());
+  }
+
   function findAllByUserid($userid, $getAllPhotos = false) {
     return $this->find_all_by_userid($userid, $getAllPhotos);
   }
@@ -59,9 +63,9 @@ class Yoyo extends Model
     return $result;
   }
 
-  function add_for_user($userid, $data) {
+  function addForUser($userid, $data) {
     $data['user_id'] = $userid;
-    $data['created_at'] = mdate('%Y-%m-%d %H:%i:%s', time());
+    $data['created_at'] = $this->_now();
     $this->db->insert('yoyos', $data);
     return $this->db->insert_id();
   }
@@ -124,7 +128,7 @@ class Yoyo extends Model
   }
 
   function update($yoyoid, $data) {
-    $data['updated_at'] = mdate('%Y-%m-%d %H:%i:%s', time());
+    $data['updated_at'] = $this->_now();
     return $this->db->where('id', $yoyoid)->update('yoyos', $data);
   }
 
@@ -143,7 +147,7 @@ class Yoyo extends Model
       'user_id' => $yoyo->user_id,
       'yoyo_id' => $yoyoid,
       'data' => serialize($yoyo),
-      'date' => mdate('%Y-%m-%d %H:%i:%s', time())));
+      'date' => $this->_now()));
     $this->delete($yoyoid);
   }
 }

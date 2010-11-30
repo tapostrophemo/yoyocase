@@ -2,7 +2,7 @@
  *
  * colors:
  * white (#ffffff) - background
- * orange-brown (#b24d17) - hrefs, accents
+ * orange-brown (#b24d17) - hrefs, accents, popup and status message (error/warning) borders
  * dark/faded orange-brown (#2f241e) - lightbox background
  * light grey (#e9e9e9) - borders
  *
@@ -17,7 +17,7 @@
  * text - proper sentence case
  */
 
-/* resets */
+/*** resets ***/
 
 html {
   font-size: 62.5%;
@@ -33,29 +33,25 @@ ul {
   padding: 0 0 0 1em;
 }
 
-p {
+h1, p {
   margin: 0;
 }
 
-/* our stuff */
+a img {
+  border: 0;
+}
+
+/*** grid ***/
 
 body {
-  background: white url(/res/stringball.jpg) bottom center no-repeat;
-  font: normal 11px sans-serif;
   margin-bottom: 193px;
 }
 
-p, ul, ol {
-  margin-bottom: 1em;
-}
-
 #container {
-  background: transparent url(/res/top.jpg) top center repeat-x;
   padding-top: 83px;
 }
 
 #header {
-  background-color: white;
   position: absolute;
   top: 9px;
   left: 50px;
@@ -63,22 +59,9 @@ p, ul, ol {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
 }
-#header h1 {
-  font-size: 24px;
-  margin: 0;
-  padding: 12px 31px;
-}
-#header a, .report thead a {
-  color: black;
-}
 
-.rounded {
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-}
-.miniRound {
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
+#header h1 {
+  padding: 12px 31px;
 }
 
 #nav {
@@ -88,19 +71,17 @@ p, ul, ol {
   white-space: nowrap;
   width: 99%;
 }
+
 #nav ul {
-  background-color: #fff;
   float: right;
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
 #nav li {
   display: inline-block;
   padding: 9px 19px;
-}
-#nav a {
-  font-size: 14px;
 }
 
 #content {
@@ -109,8 +90,15 @@ p, ul, ol {
   width: 625px;
 }
 
-#content h2 {
+#content h2, #footer, #galleryDetail div, .thumbPending, #collectionList li,
+.msg, .err,
+#userDetailDialog .loading {
   text-align: center;
+}
+
+#sidebar {
+  float: right;
+  width: 160px;
 }
 
 #gallery {
@@ -118,25 +106,22 @@ p, ul, ol {
   width: 452px;
 }
 
-#gallery.full td {
-  text-align: center;
+#footer {
+  margin-top: 10em;
 }
 
 #galleryDetail div {
   margin-bottom: 42px;
-  text-align: center;
 }
-#galleryDetail .thumbPending {
-  background: transparent url("/res/icon_gradient.png") center center no-repeat;
+
+.thumbPending {
   display: inline-block;
   position: relative;
   height: 111px;
   width: 111px;
-  text-align: center;
 }
-#galleryDetail .thumbPending a {
-  font-size: 9px;
-  font-weight: normal;
+
+.thumbPending a {
   position: absolute;
   top: 0;
   left: 0;
@@ -150,47 +135,34 @@ p, ul, ol {
   margin: 0;
   padding: 0;
 }
+
 #collectionList li {
   float: left;
   height: 175px;
   margin: 0;
   padding: 1px;
-  text-align: center;
   width: 111px;
+}
+
+#userList li {
+  float: left;
+  width: 50%;
+}
+
+p, ul, ol {
+  margin-bottom: 1em;
+}
+
+hr {
+  margin: 2em 3em;
 }
 
 td {
   vertical-align: top;
 }
 
-.addOne {
-  text-align: center;
-}
-
-#sidebar {
-  float: right;
-  width: 160px;
-}
-
-.clearing {
-  clear: both;
-}
-
-.readme {
-  font: normal 10px monospace;
-  white-space: pre;
-}
-
-a {
-  color: #b24d17;
-  font-weight: bold;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-a img {
-  border: 0;
+label {
+  padding-right: 1em;
 }
 
 img {
@@ -200,72 +172,30 @@ img {
 */
 }
 
-label {
-  font-weight: bold;
-  padding-right: 1em;
-}
-
-hr {
-  color: #e9e9e9;
-  margin: 2em 3em;
-}
-
-.msg, .errorExplanation, .err {
-  border: 2px solid #b24d17;
-  padding: 3px;
-  margin: 0 3em 2em;
-  text-align: center;
-}
-
-.err {
-  background-color: black;
-  color: white;
-  font-weight: bold;
-}
-
-.errorExplanation {
-  background-color: black;
-  color: white;
-  text-align: left;
-}
-
 .submit {
   margin-top: 3em;
-}
-
-#userList li {
-  float: left;
-  width: 50%;
 }
 
 .clearing {
   clear: both;
 }
 
-#footer {
-  font-size: 9px;
-  text-align: center;
-  margin-top: 10em;
+.msg, .err {
+  padding: 3px;
+  margin: 0 3em 2em;
 }
 
 .report {
   border-collapse: collapse;
   width: 100%;
 }
+
 .report th {
   text-align: left;
 }
+
 .report td {
-  border-top: 1px solid #e9e9e9;
   padding: 2px 5px 2px 0;
-}
-
-#smallLogin label, #smallLogin input, #smallLogin a {
-  font-size: 80%;
-}
-
-.advField label, .advField input {
-  font-size: 75%;
 }
 
 .adv {
@@ -273,37 +203,21 @@ hr {
 }
 
 #advToggle {
-  background: transparent url(/res/expandCollapse.png) 0 0 no-repeat;
-  font-size: 10px;
   line-height: 11px;
   overflow: hidden;
   padding-left: 11px;
 }
-#advToggle.expanded {
-  background-position: -11px 0;
-}
+
 #advShow, #advHide {
-  background-color: white;
   padding-left: 7px;
 }
 
 #userDetailDialog {
-  background-color: white;
-  border: 1px solid #b24d17;
-  -moz-box-shadow: 3px 3px 7px;
-
   position: absolute;
   left: 50%;
   margin-left: -175px;
   width: 350px;
-}
-#userDetailDialog .loading {
-  text-align: center;
-  width: 350px;
-}
-#userDetailDialog .report td {
-  border-top: 0;
-  font-size: 90%;
+  -moz-box-shadow: 3px 3px 7px;
 }
 
 .dialog {
@@ -313,8 +227,6 @@ hr {
 
 a.dialogClose {
   float: right;
-  font-size: 80%;
-  font-style: italic;
 }
 
 .soloform {
@@ -323,11 +235,118 @@ a.dialogClose {
 }
 
 #tosRegBlock {
-  font-size: 90%;
-  border: 1px solid black;
   margin: 1em;
   padding: 1em;
   height: 250px;
   overflow: auto;
+}
+
+.rounded {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+.miniRound {
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+}
+
+/*** fonts/colors ***/
+
+#header, #nav ul, #advShow, #advHide, #userDetailDialog {
+  background-color: white;
+}
+
+body {
+  background: white url("/res/stringball.jpg") bottom center no-repeat;
+  font: normal 11px sans-serif;
+}
+
+#container {
+  background: transparent url("/res/top.jpg") top center repeat-x;
+}
+
+#header a, .report thead a {
+  color: black;
+}
+
+#header h1 {
+  font-size: 24px;
+}
+
+#nav a {
+  font-size: 14px;
+}
+
+#advToggle, #userDetailDialog .report td {
+  font-size: 10px;
+}
+
+#footer, a.dialogClose, #tosRegBlock, .thumbPending a,
+#smallLogin label, #smallLogin input, #smallLogin a,
+.advField label, .advField input {
+  font-size: 9px;
+}
+
+a, label, .err {
+  font-weight: bold;
+}
+
+a {
+  color: #b24d17;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.thumbPending {
+  background: transparent url("/res/icon_gradient.png") center center no-repeat;
+}
+
+.thumbPending a {
+  font-weight: normal;
+}
+
+#tosRegBlock {
+  border: 1px solid black;
+}
+
+hr {
+  color: #e9e9e9;
+}
+
+.report td {
+  border-top: 1px solid #e9e9e9;
+}
+
+#userDetailDialog .report td {
+  border-top: 0;
+}
+
+#userDetailDialog {
+  border: 1px solid #b24d17;
+}
+
+.msg, .err {
+  border: 2px solid #b24d17;
+}
+
+.err {
+  background-color: black;
+  color: white;
+}
+
+#advToggle {
+  background: transparent url("/res/expandCollapse.png") 0 0 no-repeat;
+}
+
+#advToggle.expanded {
+  background-position: -11px 0;
+}
+
+a.dialogClose {
+  font-style: italic;
 }
 

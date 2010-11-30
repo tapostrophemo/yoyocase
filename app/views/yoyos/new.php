@@ -104,30 +104,24 @@ $(document).ready(function () {
     <input type="button" value="Cancel" onclick="document.location.href='<?=$cancel_url?>'"/>
    </td>
   </tr>
-
-  <tr>
-   <td colspan="2">
-
-   <?php if (!($this->session->userdata('flickr_userid') || $this->session->userdata('photobucket_username'))): ?>
-
-    <hr/>
-
-    <p>Photo uploads are not implemented at <tt>yoyocase.net</tt>. However, if you have a flickr
-     or Photobucket account, you can link photos from there to here.</p>
-    <p>First, click "Save" on this screen. Then go to your account "preferences" screen and click
-     either "Verify flickr account" or "Verify Photobucket account" and follow the prompts.</p>
-
-   <?php else: ?>
-
-    <?php $this->load->view('yoyos/thumbnailSelect', array(
-            'flickrThumbnails' => flickr_thumbnails(),
-            'photobucketThumbnails' => photobucket_thumbnails())); ?>
-
-   <?php endif; ?>
-
-   </td>
-  </tr>
  </table>
+
+<?php if (!($this->session->userdata('flickr_userid') || $this->session->userdata('photobucket_username'))): ?>
+
+ <hr/>
+
+ <p>Photo uploads are not implemented at <tt>yoyocase.net</tt>. However, if you have a flickr
+  or Photobucket account, you can link photos from there to here.</p>
+ <p>First, click "Save" on this screen. Then go to your account "preferences" screen and click
+  either "Verify flickr account" or "Verify Photobucket account" and follow the prompts.</p>
+
+<?php else: ?>
+
+ <?php $this->load->view('yoyos/thumbnailSelect', array(
+         'flickrThumbnails' => flickr_thumbnails(),
+         'photobucketThumbnails' => photobucket_thumbnails())); ?>
+
+<?php endif; ?>
 
  <div class="submit">
   <input type="submit" value="Save"/>

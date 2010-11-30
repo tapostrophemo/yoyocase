@@ -6,7 +6,7 @@ class Yoyos extends MY_Controller
     parent::__construct();
 
     if (!$this->session->userdata('logged_in')) {
-      $this->redirect_with_error('You must be logged in to add/edit yoyos', 'login');
+      $this->redirectWithError('You must be logged in to add/edit yoyos', 'login');
     }
 
     $this->load->helper('thumbnail');
@@ -30,11 +30,11 @@ class Yoyos extends MY_Controller
     }
     else {
       $data = $this->_get_form_data();
-      $yoyoid = $this->Yoyo->add_for_user($this->session->userdata('userid'), $data);
+      $yoyoid = $this->Yoyo->addForUser($this->session->userdata('userid'), $data);
       if ($yoyoid) {
         $this->_savePhotos($yoyoid);
         $this->_saveAcquisition($yoyoid);
-        $this->redirect_with_message('Yoyo added to collection successfully', 'yoyos');
+        $this->redirectWithMessage('Yoyo added to collection successfully', 'yoyos');
       }
       else {
         echo 'TODO: handle problem where yoyo not saved on create (go back and try again?)';
@@ -73,7 +73,7 @@ class Yoyos extends MY_Controller
     if (!$this->form_validation->run('yoyo')) {
       $yoyo = $this->_findYoyo($yoyoid);
       if ($yoyo->user_id != $this->session->userdata('userid')) {
-        $this->redirect_with_error("You cannot update another user's yoyos", 'account');
+        $this->redirectWithError("You cannot update another user's yoyos", 'account');
       }
 
       $data = array(
@@ -89,7 +89,7 @@ class Yoyos extends MY_Controller
       if ($rval) {
         $this->_savePhotos($yoyoid);
         $this->_updateAcquisition($yoyoid);
-        $this->redirect_with_message('Yoyo saved successfully', "yoyo/$yoyoid");
+        $this->redirectWithMessage('Yoyo saved successfully', "yoyo/$yoyoid");
       }
       else {
         echo 'TODO: handle problem where yoyo not saved on update (go back and try again?)';
@@ -122,14 +122,14 @@ class Yoyos extends MY_Controller
       redirect("yoyo/{$photo->yoyo_id}/edit");
     }
     else {
-      $this->redirect_with_error("You cannot remove photos from another user's yoyos", 'yoyos');
+      $this->redirectWithError("You cannot remove photos from another user's yoyos", 'yoyos');
     }
   }
 
   function _findYoyo($yoyoid) {
     $yoyo = $this->Yoyo->find_by_id($yoyoid);
     if (!$yoyo) {
-      $this->redirect_with_error('Yoyo not found', 'yoyos');
+      $this->redirectWithError('Yoyo not found', 'yoyos');
     }
     return $yoyo;
   }
