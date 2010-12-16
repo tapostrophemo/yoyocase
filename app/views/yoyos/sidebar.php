@@ -4,4 +4,6 @@
 </ul>
 
 <a href="/yoyos/<?=urlencode($this->session->userdata('username'))?>">view gallery</a>
+<br/>
+<a href="/yoyoreport">collection report</a>
 

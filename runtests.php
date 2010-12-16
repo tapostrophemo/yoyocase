@@ -41,6 +41,12 @@ class MY_WebTestCase extends WebTestCase
     `mysql -uyoyocase_user -pbob yoyocase -e "$sql"`;
   }
 
+  function updateRecordValues($tablename, $criteriaColumn, $criteriaValue, $fieldsAndValues) {
+    foreach ($fieldsAndValues as $field => $value) {
+      $this->updateRecord($tablename, $field, $value, $criteriaColumn, $criteriaValue);
+    }
+  }
+
   function assertRecord($tablename, $criteriaColumn, $criteriaValue) {
     $sql = "SELECT Count(*) FROM $tablename WHERE $criteriaColumn = $criteriaValue";
     $this->assertEqual((int) `mysql -uyoyocase_user -pbob yoyocase -e "$sql" | tail -1`, 1);

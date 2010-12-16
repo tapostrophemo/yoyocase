@@ -192,6 +192,7 @@ img {
 
 .report th {
   text-align: left;
+  vertical-align: top;
 }
 
 .report td {

@@ -89,5 +89,14 @@ class Users extends MY_Controller
     }
     $this->load->view('pageTemplate', array('title' => $title, 'content' => $content));
   }
+
+  function collectionReport() {
+    $userid = $this->session->userdata('userid');
+    $this->load->model('Report');
+    $details = $this->Report->getCollectionDetail($userid);
+    $summary = $this->Report->getCollectionSummary($userid);
+    $report = $this->load->view('users/collectionReport', array('details' => $details, 'summary' => $summary), true);
+    $this->load->view('pageTemplate', array('content' => $report));
+  }
 }
 

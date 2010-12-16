@@ -20,5 +20,25 @@ class Report extends Model
       ORDER BY Year(x1.created_at), Month(x1.created_at)";
     return $this->db->query($sql)->result_array();
   }
+
+  function getCollectionDetail($userid) {
+    $query = $this->db->query("
+      SELECT y.manufacturer, y.country, y.model_year, y.model_name, y.notes, y.condition, y.mod,
+             y.serialnum, y.value, a.date AS acq_date, a.type AS acq_type, a.party, a.price
+      FROM yoyos y
+        LEFT JOIN acquisitions a ON a.yoyo_id = y.id AND a.user_id = y.user_id
+      WHERE y.user_id = ?
+    ", $userid);
+    return $query->result();
+  }
+
+  function getCollectionSummary($userid) {
+    $query = $this->db->query("
+      SELECT Count(y.id) AS num, Sum(a.price) AS price, Sum(y.value) AS value
+      FROM yoyos y
+        LEFT JOIN acquisitions a ON a.yoyo_id = y.id AND a.user_id = y.user_id
+      WHERE y.user_id = ?", $userid);
+    return $query->row();
+  }
 }
 
