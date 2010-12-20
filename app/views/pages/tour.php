@@ -26,8 +26,10 @@ img {
 <br/>
 
 <a name="3"></a>
-<p>3. Get an overview of your collection:</p>
+<p>3. Get an overview and a report of your collection:</p>
 <img src="/res/tour_collection.jpg" alt="collection view"/>
+<br/>
+<img src="/res/tour_collectionReport.png" alt="collection report"/>
 
 <br/>
 
