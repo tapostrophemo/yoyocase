@@ -46,7 +46,7 @@
 
 <br/>
 
-<?=form_open("yoyo/{$yoyo->id}/edit", array('method' => 'GET'))?>
+<?=form_open("yoyo/{$yoyo->id}/edit", array('method' => 'POST'))?>
  <input type="submit" value="Edit"/>
  <input type="button" value="Back to collection" onclick="document.location.href='<?=$cancel_url?>'"/>
 </form>
