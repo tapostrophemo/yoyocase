@@ -22,7 +22,7 @@ foreach ($services as $service) {
         $i++; if (($i % 3) == 0) echo "</tr>\n<tr>";
       }
       echo "</tr>\n";
-     echo "</table>\n";
+      echo "</table>\n";
     }
     else {
       echo '<p>Your flickr account is authorized, but you need to add some photos to your photostream.</p>';
