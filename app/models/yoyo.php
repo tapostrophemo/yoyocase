@@ -116,7 +116,7 @@ class Yoyo extends Model
     return $query->row();
   }
 
-  function find_photos_for_collector($userid) {
+  function findPhotosForCollector($userid) {
     $sql = "
       SELECT p.url
       FROM photos p
