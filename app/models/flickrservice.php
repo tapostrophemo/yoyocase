@@ -4,6 +4,9 @@ require_once(APPPATH . 'libraries/photohostingservice.php');
 
 class FlickrService extends PhotoHostingService
 {
+  var $name = 'flickr';
+  var $description = 'photostream';
+
   function getServiceUserToken() {
     return $this->session->userdata('flickr_userid');
   }

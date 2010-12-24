@@ -90,8 +90,18 @@ body {
   width: 625px;
 }
 
+table.thumbnailSelect {
+  width: 100%;
+}
+
+.thumbnailSelect td {
+  padding-bottom: 23px;
+  vertical-align: bottom;
+}
+
 #content h2, #footer, #galleryDetail div, .thumbPending, #collectionList li,
 .msg, .err,
+.thumbnailSelect td,
 #userDetailDialog .loading {
   text-align: center;
 }

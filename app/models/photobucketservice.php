@@ -4,6 +4,9 @@ require_once(APPPATH . 'libraries/photohostingservice.php');
 
 class PhotobucketService extends PhotoHostingService
 {
+  var $name = 'Photobucket';
+  var $description = 'account';
+
   function getServiceUserToken() {
     return $this->session->userdata('photobucket_username');
   }

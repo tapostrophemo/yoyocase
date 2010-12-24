@@ -21,7 +21,6 @@ class Yoyos extends MY_Controller
 
   function add() {
     if (!$this->form_validation->run('yoyo')) {
-      $this->load->helper('thumbnail');
       $data = array(
         'yoyos' => $this->Yoyo->find_all_by_userid($this->session->userdata('userid')),
         'cancel_url' => '/yoyos');
@@ -70,7 +69,6 @@ class Yoyos extends MY_Controller
 
   function edit($yoyoid) {
     if (!$this->form_validation->run('yoyo')) {
-      $this->load->helper('thumbnail');
       $yoyo = $this->_findYoyo($yoyoid);
       if ($yoyo->user_id != $this->session->userdata('userid')) {
         $this->redirectWithError("You cannot update another user's yoyos", 'account');
