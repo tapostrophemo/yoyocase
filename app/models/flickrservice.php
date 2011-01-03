@@ -15,6 +15,12 @@ class FlickrService extends PhotoHostingService
     $this->load->library('Flickr_API');
     $thumbnails = array();
     $response = $this->flickr_api->photos_search(array('user_id' => $this->getServiceUserToken()));
+    if (false !== $this->flickr_api->get_error_code()) {
+      throw new Exception($this->flickr_api->get_error_message(), $this->flickr_api->get_error_code());
+    }
+    if (!$response) {
+      return $thumbnails;
+    }
     foreach ($response['photos']['photo'] as $p) {
       $url = $this->flickr_api->get_photo_url($p['id'], $p['farm'], $p['server'], $p['secret']);
       if (!in_array($url, $usedPhotos)) {
