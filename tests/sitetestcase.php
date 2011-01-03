@@ -32,7 +32,7 @@ class SiteTestCase extends MY_WebTestCase
   }
 
   function _assertFunFacts($numAccounts, $numYoyos, $numPhotos) {
-    $this->assertText("$numAccounts user accounts");
+    $this->assertText("$numAccounts users");
     $this->assertText("$numYoyos yoyos");
     $this->assertText("$numPhotos photos");
   }
