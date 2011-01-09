@@ -83,7 +83,7 @@ class Photobucket_API
     // may need calls to Media/GetMediaLinks, Search/SearchImages, or
     // Users/GetRecentUserMedia; may need to loop through results and get details,
     // such as Media/GetMediaLinks; however, for now...
-    return unserialize($api->user($this->CI->session->userdata('photobucket_username'))->search()->get()->getResponseString());
+    return unserialize($api->user($this->CI->session->userdata('photobucket_username'))->search(array('perpage' => 100))->get()->getResponseString());
   }
 }
 
