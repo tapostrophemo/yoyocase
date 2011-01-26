@@ -2,7 +2,10 @@
 
 class Pages extends Controller
 {
-  function index() { $this->_view('home'); }
+  function index() {
+    $this->load->model('Misc');
+    $this->_view('home');
+  }
 
   function privacy() { $this->_view('privacy'); }
 

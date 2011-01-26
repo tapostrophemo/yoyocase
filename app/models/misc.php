@@ -14,10 +14,12 @@ class Misc extends Model
       $data[$row['item']] = $row['num_items'];
     }
 
-//    $sql = "
-      
-
     return $data;
+  }
+
+  function randomThumbs() {
+    $thumbs = glob($this->input->server('DOCUMENT_ROOT').'/thumbs/*.jpg');
+    return array_map('basename', $thumbs);
   }
 }
 

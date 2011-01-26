@@ -13,6 +13,7 @@ class SiteTestCase extends MY_WebTestCase
     $this->assertNoLink('preferences');
     $this->assertNoLink('site admin');
     $this->assertNoLink('logout');
+    $this->assertPattern('<div id="slideshow">');
   }
 
   function testSiteFunFacts() {

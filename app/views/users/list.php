@@ -13,6 +13,7 @@
 
 <div id="sidebar">
  <?php $this->load->view('site/facts', array('facts' => $facts)); ?>
+ <?php $this->load->view('yoyos/randomThumb'); ?>
 </div>
 
 <div class="clearing"></div>

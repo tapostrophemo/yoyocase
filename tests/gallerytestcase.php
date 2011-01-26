@@ -23,6 +23,7 @@ class GalleryTestCase extends MY_WebTestCase
     // Then
     $this->assertLink('testUser1');
     $this->assertText("testUser1 (1 yo's, 1 pics)");
+    $this->assertPattern('<div id="slideshow">');
   }
 
   function testGalleryForUnknownUser() {

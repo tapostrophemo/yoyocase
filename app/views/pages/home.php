@@ -51,6 +51,8 @@
  <p><a href="/passwordreset">Forgot your password?</a></p>
 </div>
 
+<?php $this->load->view('yoyos/randomThumb'); ?>
+
 </div>
 
 <div class="clearing"></div>
