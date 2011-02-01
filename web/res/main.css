@@ -262,6 +262,10 @@ a.dialogClose {
   -webkit-border-radius: 6px;
 }
 
+#slideshow img {
+  display: none;
+}
+
 /*** fonts/colors ***/
 
 #header, #nav ul, #advShow, #advHide, #userDetailDialog {
