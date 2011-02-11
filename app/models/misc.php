@@ -13,12 +13,16 @@ class Misc extends Model
     foreach ($result as $row) {
       $data[$row['item']] = $row['num_items'];
     }
-
     return $data;
   }
 
   function randomThumbs() {
-    $thumbs = glob($this->input->server('DOCUMENT_ROOT').'/thumbs/*.jpg');
+    $thumbs = array();
+    foreach (glob($this->input->server('DOCUMENT_ROOT').'/thumbs/*.jpg') as $thumb) {
+      if (mt_rand(0, 42) > 41) {
+        $thumbs[] = $thumb;
+      }
+    }
     return array_map('basename', $thumbs);
   }
 }
