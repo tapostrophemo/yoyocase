@@ -12,7 +12,7 @@
 <div id="container">
 
 <div id="header">
-<?php if (isset($this->session) && $this->session->userdata('logged_in')): ?>
+<?php if ($this->session->userdata('logged_in')): ?>
  <h1><a href="/account">yoyocase.net</a></h1>
 <?php else: ?>
  <h1><a href="/">yoyocase.net</a></h1>
@@ -21,7 +21,7 @@
 
 <div id="nav">
  <ul class="rounded">
- <?php if (isset($this->session) && $this->session->userdata('logged_in')): ?>
+ <?php if ($this->session->userdata('logged_in')): ?>
   <li><a href="/yoyos">collection</a></li>
   <li><a href="/preferences">preferences</a></li>
   <?php if ($this->session->userdata('is_admin')): echo '<li><a href="/admin">site admin</a></li>'; endif; ?>
@@ -35,6 +35,9 @@
 </div>
 
 <div id="content">
+
+<?php $this->load->view('site/newUserLink'); ?>
+
 <?php if ($this->session->flashdata('err')): ?>
  <div class="err miniRound"><?=$this->session->flashdata('err')?></div>
 <?php endif; ?>

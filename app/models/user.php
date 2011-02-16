@@ -48,6 +48,14 @@ class User extends Model
     return $query->num_rows == 1;
   }
 
+  function isNew($username) {
+    $query = $this->db->select('last_login_at')->where('username', $username)->get('users');
+    if ($query->num_rows == 0) {
+      return false;
+    }
+    return !isset($query->row()->last_login_at);
+  }
+
   function markLogin($username) {
     $this->load->helper('date');
 
@@ -62,7 +70,7 @@ class User extends Model
       'current_login_at' => $now,
       'current_login_ip' => $this->input->ip_address()));
 
-    return $this->find_by_username($username);
+    return $this->findByUsername($username);
   }
 
   function createPerishableToken($userid) {

@@ -7,6 +7,7 @@ $route['privacy'] = 'pages/privacy';
 $route['tos'] = 'pages/tos';
 $route['credits'] = 'pages/credits';
 $route['tour'] = 'pages/tour';
+$route['help'] = 'pages/help';
 
 $route['register'] = 'site/register';
 $route['login'] = 'site/login';

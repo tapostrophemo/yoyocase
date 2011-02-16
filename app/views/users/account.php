@@ -8,6 +8,7 @@
   <li>View <a href="/yoyos/<?=$this->session->userdata('username')?>">your gallery</a></li>
   <li>View <a href="/galleries">all galleries</a></li>
  </ul>
+ <p>Need <a href="/help">help? Read this.</a></p>
  <p>Whatever you decide to do, be sure to <a href="/logout">logout</a> when you leave.</p>
 </div>
 

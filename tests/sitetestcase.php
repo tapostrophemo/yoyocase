@@ -14,6 +14,7 @@ class SiteTestCase extends MY_WebTestCase
     $this->assertNoLink('site admin');
     $this->assertNoLink('logout');
     $this->assertPattern('<div id="slideshow">');
+    $this->assertNoText('Instructions for new users...');
   }
 
   function testSiteFunFacts() {
@@ -36,6 +37,33 @@ class SiteTestCase extends MY_WebTestCase
     $this->assertText("$numAccounts users");
     $this->assertText("$numYoyos yoyos");
     $this->assertText("$numPhotos photos");
+  }
+
+  function testInstructionsForNewUsers() {
+    // Given
+    $this->deleteRecord('users', array('username' => "'testUser1'", 'email' => "'testUser1@somewhere.com'"));
+    $this->get(BASE_URL.'/register');
+    // When
+    $this->setField('username', 'testUser1');
+    $this->setField('password', 'Password1');
+    $this->setField('email', 'testUser1@somewhere.com');
+    $this->clickSubmit('Register');
+    // Then
+    $this->assertLink('Instructions for new users...');
+    $this->clickLink('collection');
+    $this->assertLink('Instructions for new users...');
+
+    $this->clickLink('logout');
+
+    // When..Then (1st visit after registering)
+    $this->logInAs('testUser1', 'Password1');
+    $this->assertLink('Instructions for new users...');
+
+    $this->clickLink('logout');
+
+    // When..Then (after 2nd visit, no special instructions)
+    $this->logInAs('testUser1', 'Password1');
+    $this->assertNoLink('Instructions for new users...');
   }
 
   function testRegisterNewUser() {

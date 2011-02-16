@@ -16,18 +16,18 @@ class Site extends MY_Controller
     }
     else {
       $username = $this->input->post('username');
-      $password = $this->input->post('password');
       $email = $this->input->post('email');
-      $newUserId = $this->User->register($username, $password, $email);
+      $newUserId = $this->User->register($username, $this->input->post('password'), $email);
       if (null == $newUserId) {
         $this->redirect_with_error('Username has already been taken', '/register');
       }
 
-      $this->session->set_userdata('username', $this->input->post('username'));
+      $this->session->set_userdata('username', $username);
       $this->session->set_userdata('userid', $newUserId);
       $this->session->set_userdata('logged_in', true);
+      $this->session->set_flashdata('new_user', true);
       log_message('error', "(INFO) new user registration (id=$newUserId, username=$username, email=$email)"); // TODO: submit/fix CI bug re: log levels(?)
-      $this->redirect_with_message('Welcome, ' . $this->input->post('username') . '!', '/preferences');
+      $this->redirectWithMessage("Welcome, $username!", '/account');
     }
   }
 
@@ -36,6 +36,9 @@ class Site extends MY_Controller
       $this->load->view('pageTemplate', array('title' => 'login and manage your yoyo collection', 'content' => $this->load->view('site/login', null, true)));
     }
     else {
+      if ($this->User->isNew($this->input->post('username'))) {
+        $this->session->set_flashdata('new_user', true);
+      }
       $user = $this->User->markLogin($this->input->post('username'));
       $this->_setupSession($user);
       $this->redirect_with_message('Welcome back!', '/account');

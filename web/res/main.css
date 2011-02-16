@@ -163,6 +163,10 @@ p, ul, ol {
   margin-bottom: 1em;
 }
 
+ol li {
+  margin: 0 0 1em -2em;
+}
+
 hr {
   margin: 2em 3em;
 }
