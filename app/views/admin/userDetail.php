@@ -7,5 +7,6 @@
  <tr><td><label>Last login</label></td><td><?=$user->last_login_at?></td></tr>
  <tr><td><label>Flickr userid</label></td><td><?=$user->flickr_userid?></td></tr>
  <tr><td><label>Photobucket username</label></td><td><?=$user->photobucket_username?></td></tr>
+ <tr><td colspan="2" style="text-align:center"><a href="/admin/deleteUser/<?=$user->id?>">delete</a></td></tr>
 </table>
 

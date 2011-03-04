@@ -38,6 +38,17 @@ class Admin extends MY_Controller
     $this->load->view('admin/userDetail', array('user' => $user));
   }
 
+  function deleteUser($id) {
+    $this->load->model('User');
+    $this->load->model('Yoyo');
+    $yoyos = $this->Yoyo->findAllByUserid($id);
+    foreach ($yoyos as $yoyo) {
+      $this->Yoyo->archive($yoyo->id);
+    }
+    $this->User->archive($id);
+    $this->redirectWithMessage('user deleted', 'admin/accounts');
+  }
+
   function registrationActivationReport() {
     $this->load->model('Report');
 

@@ -2,7 +2,7 @@
 
 class AdminTestCase extends MY_WebTestCase
 {
-  function testAdminCanViewOtherAccounts() {
+  function testAdminCanViewOrDeleteOtherAccounts() {
     // Given
     $this->createAdminUser('testAdmin1', 'testAdmin1@somewhere.com', 'AdminPassword1');
     $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
@@ -36,6 +36,17 @@ class AdminTestCase extends MY_WebTestCase
     $this->clickLink('(refresh)');
     // Then
     $this->assertText("testUser1 (1y / 1p)");
+
+    // When
+    $this->deleteRecord('archives', array('user_id' => $userid));
+    $this->get("/admin/userDetail/$userid");
+    $this->clickLink("delete");
+    // Then
+    $this->assertRecords(2, 'archives', 'user_id', $userid); // NB: 1 for user, 1 for yoyo
+    $this->assertRecord('archives', 'yoyo_id', $yoyoid);
+    $this->assertNoRecord('users', 'id', $userid);
+    $this->assertNoRecord('yoyos', 'id', $yoyoid);
+    $this->assertText("user deleted");
   }
 
   function testAdminAccountListIsSortable() {

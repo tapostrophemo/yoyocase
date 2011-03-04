@@ -11,17 +11,8 @@ function _photo_belongs_to($photo) {
   return $_current_yoyo_id == $photo->yoyo_id;
 }
 
-class Yoyo extends Model
+class Yoyo extends MY_Model
 {
-  function __construct() {
-    parent::__construct();
-    $this->load->helper('date');
-  }
-
-  function _now() {
-    return mdate('%Y-%m-%d %H:%i:%s', time());
-  }
-
   function findAllByUserid($userid, $getAllPhotos = false) {
     return $this->find_all_by_userid($userid, $getAllPhotos);
   }

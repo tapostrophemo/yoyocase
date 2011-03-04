@@ -1,6 +1,6 @@
 <?php
 
-class User extends Model
+class User extends MY_Model
 {
   function register($username, $password, $email) {
     $this->db->select('id')->where('username', $username);
@@ -153,6 +153,16 @@ class User extends Model
     }
 
     $this->db->where('username', $username)->set($attrs)->update('users');
+  }
+
+  function archive($userid) {
+    $user = $this->findById($userid);
+    $this->db->insert('archives', array(
+      'user_id' => $userid,
+      'yoyo_id' => 0,
+      'data' => serialize($user),
+      'date' => $this->_now()));
+    $this->db->where('id', $userid)->delete('users');
   }
 
   function findById($userid) {

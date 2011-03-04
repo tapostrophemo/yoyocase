@@ -47,9 +47,13 @@ class MY_WebTestCase extends WebTestCase
     }
   }
 
-  function assertRecord($tablename, $criteriaColumn, $criteriaValue) {
+  function assertRecords($count, $tablename, $criteriaColumn, $criteriaValue) {
     $sql = "SELECT Count(*) FROM $tablename WHERE $criteriaColumn = $criteriaValue";
-    $this->assertEqual((int) `mysql -uyoyocase_user -pbob yoyocase -e "$sql" | tail -1`, 1);
+    $this->assertEqual((int) `mysql -uyoyocase_user -pbob yoyocase -e "$sql" | tail -1`, $count);
+  }
+
+  function assertRecord($tablename, $criteriaColumn, $criteriaValue) {
+    $this->assertRecords(1, $tablename, $criteriaColumn, $criteriaValue);
   }
 
   function assertNoRecord($tablename, $criteriaColumn, $criteriaValue) {
