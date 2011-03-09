@@ -56,10 +56,18 @@ class UsersTestCase extends MY_WebTestCase
     $this->clickSubmit('Update');
     // Then
     $this->assertText('The confirm password field does not match the password field.');
+
+    // When
+    $this->createUser('testUserX', 'testUserX@somewhere.com', 'Password1');
+    $this->clickLink('preferences');
+    $this->setField('email', 'testUserX@somewhere.com');
+    $this->clickSubmit('Update');
+    // Then
+    $this->assertText('Email has already been taken.');
+    $this->assertField('email', 'testUser1@elsewhere.com');
   }
 
   function testPhotoIntegrationSettings() {
-//updateRecord($tablename, $field, $value, $criteriaColumn, $criteriaValue)
     // Given
     $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
     $this->updateRecord('users', 'flickr_userid', "'1234@4321'", 'username', "'testUser1'");

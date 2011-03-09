@@ -152,7 +152,7 @@ class User extends MY_Model
       $attrs['crypted_password'] = sha1("$password$salt");
     }
 
-    $this->db->where('username', $username)->set($attrs)->update('users');
+    return $this->db->where('username', $username)->set($attrs)->update('users');
   }
 
   function archive($userid) {

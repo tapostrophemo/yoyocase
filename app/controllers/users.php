@@ -23,10 +23,20 @@ class Users extends MY_Controller
       $this->load->view('pageTemplate', array('content' => $this->load->view('users/preferences', $data, true)));
     }
     else {
-      $this->User->update($this->session->userdata('username'),
+      $updateSuccessful = $this->User->update($this->session->userdata('username'),
         $this->input->post('email'),
         $this->input->post('password'));
-      $this->redirect_with_message('Preferences updated.', '/account');
+      if ($updateSuccessful) {
+        $this->redirect_with_message('Preferences updated.', '/account');
+      }
+      else {
+        if ($this->db->_error_number() == 1062) {
+          $this->redirect_with_error('Email has already been taken.', '/preferences');
+        }
+        else {
+          $this->redirect_with_error('There was a problem...TODO: figure out problem', '/account');
+        }
+      }
     }
   }
 
