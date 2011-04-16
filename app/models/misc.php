@@ -1,6 +1,6 @@
 <?php
 
-class Misc extends Model
+class Misc extends CI_Model
 {
   function fun_facts() {
     $sql = "

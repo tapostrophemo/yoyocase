@@ -1,6 +1,6 @@
 <?php
 
-class Cron extends Controller
+class Cron extends CI_Controller
 {
   function __construct() {
     parent::__construct();

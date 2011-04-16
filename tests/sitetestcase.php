@@ -111,7 +111,7 @@ class SiteTestCase extends MY_WebTestCase
     $this->assertText('Welcome, Nolsøe!');
 
     // When
-    $this->get(BASE_URL.'/yoyos/Nolsøe');
+    $this->get(BASE_URL.'/yoyos/Nols%C3%B8e');
     // Then
     $this->assertText('User "Nolsøe" has no yoyos in their collection');
   }

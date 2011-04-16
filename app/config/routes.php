@@ -1,7 +1,24 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 $route['default_controller'] = 'pages';
-$route['scaffolding_trigger'] = "";
+//$route['scaffolding_trigger'] = ""; // TODO: ci2 - verify this is no longer needed
+/*
+|...
+| Please see the user guide for complete details:
+|
+|	http://codeigniter.com/user_guide/general/routing.html
+|...
+| -------------------------------------------------------------------------
+| RESERVED ROUTES
+| -------------------------------------------------------------------------
+|...
+|	$route['404_override'] = 'errors/page_missing';
+|
+| This route will tell the Router what URI segments to use if those provided
+| in the URL cannot be matched to a valid route.
+|
+*/
+$route['404_override'] = ''; // TODO: ci2 - learn about this
 
 $route['privacy'] = 'pages/privacy';
 $route['tos'] = 'pages/tos';

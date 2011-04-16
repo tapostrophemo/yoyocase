@@ -1,6 +1,6 @@
 <?php
 
-class Pages extends Controller
+class Pages extends CI_Controller
 {
   function index() {
     $this->load->model('Misc');

@@ -1,6 +1,6 @@
 <?php
 
-class PhotoHostingService extends Model
+class PhotoHostingService extends CI_Model
 {
   function getThumbnails() {
     if (!$this->getServiceUserToken()) {

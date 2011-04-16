@@ -1,34 +1,56 @@
 <?php
 
-error_reporting(E_ALL | E_STRICT);
+define('ENVIRONMENT', 'development'); // TODO: configure for PROD deploy
 
-$system_folder = '../lib/ci-1.7.3'; // TODO: configure for PROD deploy
-$application_folder = '../app'; // TODO: configure for PROD deploy
+if (defined('ENVIRONMENT')) {
+	switch (ENVIRONMENT) {
+		case 'development':
+			error_reporting(E_ALL);
+		break;
+	
+		case 'testing':
+		case 'production':
+			error_reporting(0);
+		break;
 
-if (strpos($system_folder, '/') === FALSE) {
-	if (function_exists('realpath') AND @realpath(dirname(__FILE__)) !== FALSE) {
-		$system_folder = realpath(dirname(__FILE__)).'/'.$system_folder;
+		default:
+			exit('The application environment is not set correctly.');
 	}
 }
-else {
-	$system_folder = str_replace("\\", "/", $system_folder); 
+
+$system_path = '../lib/ci-2.0.2'; // TODO: configure for PROD deploy
+$application_folder = '../app'; // TODO: configure for PROD deploy
+
+if (defined('STDIN')) {
+	chdir(dirname(__FILE__));
 }
 
-define('EXT', '.php');
+if (realpath($system_path) !== FALSE) {
+	$system_path = realpath($system_path).'/';
+}
+
+$system_path = rtrim($system_path, '/').'/';
+
+if ( ! is_dir($system_path)) {
+	exit("Your system folder path does not appear to be set correctly. Please open the following file and correct this: ".pathinfo(__FILE__, PATHINFO_BASENAME));
+}
+
 define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
+define('EXT', '.php');
+define('BASEPATH', str_replace("\\", "/", $system_path));
 define('FCPATH', str_replace(SELF, '', __FILE__));
-define('BASEPATH', $system_folder.'/');
+define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
+
 
 if (is_dir($application_folder)) {
 	define('APPPATH', $application_folder.'/');
 }
 else {
-	if ($application_folder == '') {
-		$application_folder = 'application';
+	if ( ! is_dir(BASEPATH.$application_folder.'/')) {
+		exit("Your application folder path does not appear to be set correctly. Please open the following file and correct this: ".SELF);
 	}
-
 	define('APPPATH', BASEPATH.$application_folder.'/');
 }
 
-require_once BASEPATH.'codeigniter/CodeIgniter'.EXT;
+require_once BASEPATH.'core/CodeIgniter'.EXT;
 

@@ -1,6 +1,6 @@
 <?php
 
-class Report extends Model
+class Report extends CI_Model
 {
   function registrationAndActivation() {
     $sql = "

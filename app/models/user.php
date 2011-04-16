@@ -9,7 +9,7 @@ class User extends MY_Model
       return null;
     }
 
-    $this->load->plugin('salt');
+    $this->load->helper('salt');
     $this->load->helper('date');
 
     $salt = salt();
@@ -74,7 +74,7 @@ class User extends MY_Model
   }
 
   function createPerishableToken($userid) {
-    $this->load->plugin('salt');
+    $this->load->helper('salt');
     $token = salt();
     $this->db->where('id', $userid)->set('perishable_token', $token)->update('users');
     return $token;
@@ -146,7 +146,7 @@ class User extends MY_Model
     }
 
     if ($password != null) {
-      $this->load->plugin('salt');
+      $this->load->helper('salt');
       $salt = salt();
       $attrs['password_salt'] = $salt;
       $attrs['crypted_password'] = sha1("$password$salt");

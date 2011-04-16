@@ -1,6 +1,6 @@
 <?php
 
-class Photo extends Model
+class Photo extends CI_Model
 {
   function add_for_yoyo($yoyoid, $data) {
     $this->load->helper('date');
