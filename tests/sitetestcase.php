@@ -17,6 +17,27 @@ class SiteTestCase extends MY_WebTestCase
     $this->assertNoText('Instructions for new users...');
   }
 
+  function test404() {
+    // Given..When
+    $this->assertTrue($this->get(BASE_URL . '/foo'));
+    // Then
+    $this->assertText('4-yo-4');
+    $this->assertLink('register');
+    $this->assertLink('galleries');
+    $this->assertLink('login');
+
+    // Given
+    $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
+    $this->logInAs('testUser1', 'Password1');
+    // When
+    $this->assertTrue($this->get(BASE_URL . '/foo'));
+    // Then
+    $this->assertText('4-yo-4');
+    $this->assertLink('collection');
+    $this->assertLink('preferences');
+    $this->assertLink('logout');
+  }
+
   function testSiteFunFacts() {
     // Given
     $numAccounts = $this->countRecords('users');
