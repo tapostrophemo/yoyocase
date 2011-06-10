@@ -112,7 +112,7 @@ class MY_WebTestCase extends WebTestCase
 }
 
 $test = &new TestSuite('yoyocase.net tests');
-if ($_SERVER['argv'][1]) {
+if (isset($_SERVER['argv'][1])) {
   $files = array($_SERVER['argv'][1]);
 }
 else {
