@@ -1,6 +1,6 @@
 <?php
 
-define('ENVIRONMENT', 'development'); // TODO: configure for PROD deploy
+define('ENVIRONMENT', 'testing'); // TODO: configure for PROD deploy
 
 if (defined('ENVIRONMENT')) {
 	switch (ENVIRONMENT) {
