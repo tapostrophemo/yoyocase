@@ -100,7 +100,7 @@ table.thumbnailSelect {
 }
 
 #content h2, #footer, #galleryDetail div, .thumbPending, #collectionList li,
-.msg, .err,
+.msg, .err, .announce,
 .thumbnailSelect td,
 #userDetailDialog .loading {
   text-align: center;
@@ -355,6 +355,10 @@ hr {
 .err {
   background-color: black;
   color: white;
+}
+
+.announce {
+  font-size: 18px;
 }
 
 #advToggle {
