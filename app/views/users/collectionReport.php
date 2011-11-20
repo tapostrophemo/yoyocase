@@ -28,12 +28,12 @@
   <td><?=$yoyo->model_year?></td>
   <td><?=$yoyo->manufacturer?><?php if ($yoyo->country) print " ({$yoyo->country})"; ?></td>
   <td><?=$yoyo->model_name?></td>
-  <td><?php if ($yoyo->value) print '$'.$yoyo->value; ?></td>
+  <td class="numeric"><?php if ($yoyo->value) print '$'.$yoyo->value; ?></td>
   <td><?=$yoyo->condition?></td>
   <td><?=$yoyo->serialnum?></td>
   <td><?=$yoyo->acq_type?> <?=$yoyo->acq_date?></td>
   <td><?=$yoyo->party?></td>
-  <td><?php if ($yoyo->price) print '$'.$yoyo->price; ?></td>
+  <td class="numeric"><?php if ($yoyo->price) print '$'.$yoyo->price; ?></td>
   <td><?=$yoyo->notes?></td>
  </tr>
 <?php endforeach; ?>

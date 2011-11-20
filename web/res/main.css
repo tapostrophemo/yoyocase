@@ -270,6 +270,10 @@ a.dialogClose {
   display: none;
 }
 
+.numeric {
+  text-align: right;
+}
+
 /*** fonts/colors ***/
 
 #header, #nav ul, #advShow, #advHide, #userDetailDialog {

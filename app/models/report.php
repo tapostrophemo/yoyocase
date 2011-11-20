@@ -40,5 +40,23 @@ class Report extends CI_Model
       WHERE y.user_id = ?", $userid);
     return $query->row();
   }
+
+  function getArchiveList() {
+    $query = $this->db->query("
+      SELECT u.username, a.user_id, Count(*) AS num_deletes, Min(a.date) AS start_date, Max(a.date) AS end_date
+      FROM archives a LEFT JOIN users u ON u.id = a.user_id
+      GROUP BY u.username, a.user_id
+      ORDER BY u.username");
+    return $query->result_array();
+  }
+
+  function getArchivesForUser($userid) {
+    $query = $this->db->query("
+      SELECT a.id, u.username, a.user_id, a.yoyo_id, a.date, a.data
+      FROM archives a LEFT JOIN users u ON u.id = a.user_id
+      WHERE a.user_id = ?
+      ORDER BY a.id DESC", $userid);
+    return $query->result_array();
+  }
 }
 

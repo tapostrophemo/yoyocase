@@ -49,6 +49,19 @@ class Admin extends MY_Controller
     $this->redirectWithMessage('user deleted', 'admin/accounts');
   }
 
+  function archives($userid = null) {
+    $this->load->model('Report');
+    if ($userid) {
+    $content = $this->load->view('admin/archiveDetail',
+        array('data' => $this->Report->getArchivesForUser($userid)), true);
+    }
+    else {
+      $content = $this->load->view('admin/archiveList',
+        array('data' => $this->Report->getArchiveList()), true);
+    }
+    $this->load->view('pageTemplate', array('content' => $content));
+  }
+
   function registrationActivationReport() {
     $this->load->model('Report');
 
@@ -63,6 +76,7 @@ class Admin extends MY_Controller
 
     $this->load->view('pageTemplate', array('content' => $content));
   }
+
   function checkThumbnails() {
     $this->load->model('Photo');
     $data['max'] = $this->Photo->getMaxThumbnail();
