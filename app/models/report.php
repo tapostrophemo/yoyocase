@@ -17,7 +17,7 @@ class Report extends CI_Model
         ) x
         GROUP BY Date_Format(created_at, '%b. %Y')
       ) x2 ON x1.mdate = x2.mdate
-      ORDER BY Year(x1.created_at), Month(x1.created_at)";
+      ORDER BY Year(x1.created_at) DESC, Month(x1.created_at) DESC";
     return $this->db->query($sql)->result_array();
   }
 
