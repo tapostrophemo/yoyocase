@@ -7,6 +7,7 @@
 
 <div id="galleryDetail">
 <?php foreach ($yoyos as $yoyo): ?>
+ <a name="<?=$yoyo->id?>"></a>
  <div class="yoxview">
  <?php if (count($yoyo->photos)): ?>
   <?php foreach ($yoyo->photos as $photo): ?>
