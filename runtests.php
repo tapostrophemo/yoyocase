@@ -80,8 +80,12 @@ class MY_WebTestCase extends WebTestCase
     $this->updateRecord('users', 'is_admin', 1, 'id', $userId);
   }
 
-  function createYoyo($userid, $name) {
-    return $this->insertRecord('yoyos', array('user_id' => $userid, 'model_name' => "'$name'"));
+  function createYoyo($userid, $name, $notes = null) {
+    $data = array('user_id' => $userid, 'model_name' => "'$name'");
+    if (isset($notes)) {
+      $data['notes'] = "'$notes'";
+    }
+    return $this->insertRecord('yoyos', $data);
   }
 
   function createPhoto($yoyoid, $url) {

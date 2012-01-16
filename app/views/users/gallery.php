@@ -19,7 +19,12 @@
  <?php else: ?>
   <img src="/res/icon_unknown.png" alt="no photos"/>
  <?php endif; ?>
-  <br/><b><?=$yoyo->model_year?> <?=$yoyo->manufacturer?> <?=$yoyo->model_name?></b>
+  <p><label><?=$yoyo->model_year?> <?=$yoyo->manufacturer?> <?=$yoyo->model_name?></label>
+  <?php if ($yoyo->notes): ?>
+   <span><?=nl2br($this->security->xss_clean($yoyo->notes))?></span>
+   <span class="d"><?=isset($yoyo->updated_at) ? $yoyo->updated_at : $yoyo->created_at?></span>
+  <?php endif; ?>
+  </p>
  </div>
 <?php endforeach; ?>
 </div><!-- /#gallery -->

@@ -124,6 +124,17 @@ table.thumbnailSelect {
   margin-bottom: 42px;
 }
 
+#galleryDetail p span {
+  display: block;
+  text-align: justify;
+  margin: 0 145px;
+}
+#galleryDetail p span.d {
+  color: #888;
+  font-style: italic;
+  text-align: right;
+}
+
 .thumbPending {
   display: inline-block;
   position: relative;

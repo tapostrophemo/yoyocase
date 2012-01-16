@@ -17,10 +17,14 @@ class Pages extends CI_Controller
 
   function help() { $this->_view('help'); }
 
-  function fourYoFour() { $this->_view('404'); }
-
   function _view($page) {
     $this->load->view('pageTemplate', array('title' => 'online yoyo collection software', 'content' => $this->load->view("pages/$page", null, true)));
+  }
+
+  function fourYoFour() {
+    $this->load->view('pageTemplate', array(
+      'title' => '404 page not found: online yoyo collection software',
+      'content' => $this->load->view("pages/404", null, true)));
   }
 }
 

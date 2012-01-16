@@ -2,6 +2,14 @@
 
 class SiteTestCase extends MY_WebTestCase
 {
+  var $started = 2009;
+  var $yearNow;
+
+  function __construct() {
+    parent::__construct();
+    $this->yearNow = date("Y");
+  }
+
   function testHomepage() {
     // Given..When
     $this->assertTrue($this->get(BASE_URL));
@@ -15,6 +23,7 @@ class SiteTestCase extends MY_WebTestCase
     $this->assertNoLink('logout');
     $this->assertPattern('<div id="slideshow">');
     $this->assertNoText('Instructions for new users...');
+    $this->assertText("{$this->started}-{$this->yearNow}, Dan Parks. All Rights Reserved.");
   }
 
   function test404() {
@@ -25,6 +34,7 @@ class SiteTestCase extends MY_WebTestCase
     $this->assertLink('register');
     $this->assertLink('galleries');
     $this->assertLink('login');
+    $this->assertText("{$this->started}-{$this->yearNow}, Dan Parks. All Rights Reserved.");
 
     // Given
     $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');

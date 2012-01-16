@@ -49,7 +49,7 @@
 </div><!-- /#content -->
 
 <div id="footer">
- Copyright &copy; 2009, 2010, 2011, Dan Parks. All Rights Reserved.<br/>
+ Copyright &copy; 2009-<?=date("Y")?>, <a href="http://www.eastofcleveland.com" target="_blank">Dan Parks</a>. All Rights Reserved.<br/>
  User submissions copyright the submitter. Some other content derived from Creative Commons-licensed material.<br/>
  <br/>
  <a href="/credits">credits</a> |

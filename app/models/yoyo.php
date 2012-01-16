@@ -22,7 +22,7 @@ class Yoyo extends MY_Model
 
     // TODO: EXPLAIN's showing 2 full-table scans on this...but what else to index?
     $sql = "
-      SELECT y.id, y.manufacturer, y.country, y.model_year, y.model_name, p.url AS first_photo
+      SELECT y.id, y.manufacturer, y.country, y.model_year, y.model_name, y.created_at, y.updated_at, y.notes, p.url AS first_photo
       FROM yoyos y LEFT JOIN (
         SELECT yoyo_id, url
         FROM photos

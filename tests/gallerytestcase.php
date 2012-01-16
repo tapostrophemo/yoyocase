@@ -2,6 +2,11 @@
 
 class GalleryTestCase extends MY_WebTestCase
 {
+  function setUp() {
+    // Given
+    $this->deleteRecord('users', array('username' => "'testUser1'"));
+  }
+
   function testGalleryStats() {
     // Given
     $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
@@ -27,8 +32,6 @@ class GalleryTestCase extends MY_WebTestCase
   }
 
   function testGalleryForUnknownUser() {
-    // Given
-    $this->deleteRecord('users', array('username' => "'testUser1'"));
     // When
     $this->get(BASE_URL.'/yoyos/testUser1');
     // Then
@@ -47,15 +50,22 @@ class GalleryTestCase extends MY_WebTestCase
   function testGalleryWithYoyosNoPhotos() {
     // Given
     $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
-    $this->createYoyo($userid, 'Freehand Zero');
+    $this->createYoyo($userid, 'Freehand Zero', 'Awesome throw...and great for modding!');
     // When
     $this->get(BASE_URL.'/yoyos/testUser1');
     // Then
     $this->assertText("1 yoyo in testUser1's collection");
     $this->assertText('Freehand Zero');
     $this->assertPattern('/icon_unknown\.png/');
+    $this->assertText('Awesome throw...and great for modding!');
+    // Given
+    $this->createyoyo($userid, 'FHZ', 'You have been <script>alert(\"pwned!\")</script>');
+    // When
+    $this->get(BASE_URL.'/yoyos/testUser1');
+    // Then
+    $this->assertText('You have been [removed]alert("pwned!")[removed]');
   }
-
+/*
   function testGalleryWithPhotos() {
     // Given
     $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
@@ -94,5 +104,6 @@ class GalleryTestCase extends MY_WebTestCase
     // Then
     $this->assertPattern('/\/yoyos\/drumma%2Fyoyo/');
   }
+*/
 }
 
