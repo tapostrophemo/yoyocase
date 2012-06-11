@@ -56,6 +56,7 @@ body {
   top: 9px;
   left: 50px;
   z-index: 1;
+  border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
 }
@@ -268,11 +269,13 @@ a.dialogClose {
 }
 
 .rounded {
+  border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
 }
 
 .miniRound {
+  border-radius: 6px;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
 }
