@@ -1,35 +1,29 @@
-<h2>Welcome to yoyocase.net</h2>
+<h2>Yoyo collecting for everyone</h2>
 
 <div id="gallery">
 
-<p>What is <tt>yoyocase.net</tt>? It is a website that lets you manage your yoyo collection online.
- Managing your collection online means you'll be able to easily share your collection with
- friends, traders, and other yoyo enthusiasts.</p>
+<h3>Put your yoyo collection online to share with friends, traders, and other yoyo enthusiasts.</h3>
 
-<br/>
-
-<p>The site is new and growing, but already you can:</p>
+<p><tt>yoyocase.net</tt> is a website where you can show off and manage your yoyo collection. The
+ site is new and growing, but already you can:</p>
 <ul>
- <li>link pictures of your collection from flickr or Photobucket accounts</li>
  <li>post yoyo details (manufacturer, model name, notes, etc.)</li>
  <li>include advanced details (cost, estimated value, condition, etc.)</li>
+ <li>link pictures of your collection from flickr or Photobucket accounts</li>
  <li>view photo galleries of other users' collections</li>
 </ul>
 
 <br/>
 
-<p>Some of the features planned for <tt>yoyocase.net</tt> include:</p>
-<ul>
- <li>option to upload your photos directly to this site</li>
- <li>link pictures from other popular image hosting sites</li>
- <li>keep in touch with other yoyo enthusiasts</li>
-</ul>
+<span style="font-size:17px; border:2px solid #B24D17; border-radius:5px; text-align:center; padding:7px 15px">
+ <a href="/register">Sign-up for a free account →</a>
+</span>
 
-<br/>
+<br/><br/><br/>
 
-<p><a href="/tour">Tour some of the features</a> of the site.</p>
+<p>Not sure if you should join? View some of the <a href="/tour">features</a> of the site.</p>
 
-<br/>
+<br/><br/>
 
 <p><small>Note: this site is focused only on yo-yos and yo-yo related items. Postings with illegal
  or inappropriate material can and may be removed by the site operators.</small></p>
@@ -39,7 +33,7 @@
 <div id="sidebar">
 
 <div id="smallLogin">
- <p><a href="/register">Register for an account</a></p>
+ <p><small>Current users, login</small></p>
  <?=form_open('login')?>
   <label for="username">Username</label><br/>
   <input type="text" name="username"/><br/>
