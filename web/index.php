@@ -1,6 +1,6 @@
 <?php
 
-define('ENVIRONMENT', 'testing'); // TODO: configure for PROD deploy
+define('ENVIRONMENT', 'development'); // TODO: configure for PROD deploy
 
 if (defined('ENVIRONMENT')) {
 	switch (ENVIRONMENT) {
@@ -18,7 +18,7 @@ if (defined('ENVIRONMENT')) {
 	}
 }
 
-$system_path = '../lib/ci-2.0.2'; // TODO: configure for PROD deploy
+$system_path = '../lib/ci-2.1.3'; // TODO: configure for PROD deploy
 $application_folder = '../app'; // TODO: configure for PROD deploy
 
 if (defined('STDIN')) {
@@ -52,5 +52,5 @@ else {
 	define('APPPATH', BASEPATH.$application_folder.'/');
 }
 
-require_once BASEPATH.'core/CodeIgniter'.EXT;
+require_once BASEPATH.'core/CodeIgniter.php';
 
