@@ -20,5 +20,7 @@ RewriteBase /
 #RewriteCond $1 !^(index\.php|favicon\.ico|res)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+# added the following on the prod server...what did they change (and how long ago)? (3/6/2013)
+#RewriteRule ^(.*)$ index.php/?$1 [L]
 RewriteRule ^(.*)$ index.php/$1 [L]
 
