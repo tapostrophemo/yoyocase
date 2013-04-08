@@ -1,16 +1,14 @@
 ExpiresActive On
 ExpiresDefault A0
-# 2 months (60*60*24*60)
-ExpiresByType image/ico A5184000
-ExpiresByType image/x-icon A5184000
-# 1 month (60*60*24*30)
-ExpiresByType image/gif A2592000
-ExpiresByType image/png A2592000
-ExpiresByType image/jpg A2592000
-ExpiresByType image/jpeg A2592000
-# 1 day (60*60*24*1)
-ExpiresByType text/css A86400
-ExpiresByType text/javascript A86400
+ExpiresByType image/ico "access plus 2 months"
+ExpiresByType image/x-icon "access plus 2 months"
+ExpiresByType image/vnd.microsoft.icon "access plus 2 months"
+ExpiresByType image/gif "access plus 1 month"
+ExpiresByType image/png "access plus 1 month"
+ExpiresByType image/jpg "access plus 1 month"
+ExpiresByType image/jpeg "access plus 1 month"
+ExpiresByType text/css "access plus 1 day"
+ExpiresByType text/javascript "access plus 1 day"
 
 FileETag none
 
