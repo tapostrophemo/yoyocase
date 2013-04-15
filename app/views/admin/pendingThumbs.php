@@ -7,6 +7,7 @@
   <tr>
    <th>ID</th>
    <th>Username</th>
+   <th>Date</th>
    <th>Yoyo</th>
    <th>URL</th>
  </tr>
@@ -16,6 +17,7 @@
   <tr>
    <td><?=$photo->id?></td>
    <td><?=$photo->username?></td>
+   <td><?=$photo->created_at?></td>
    <td><?=$photo->model_name?></td>
    <td><?=htmlspecialchars($photo->url)?></td>
   </tr>

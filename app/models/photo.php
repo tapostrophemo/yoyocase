@@ -38,7 +38,7 @@ class Photo extends CI_Model
 
   function getUnThumbed($max) {
     $sql = "
-      SELECT p.id, u.username, y.model_name, p.url
+      SELECT p.id, u.username, p.created_at, y.model_name, p.url
       FROM photos p
         JOIN yoyos y ON y.id = p.yoyo_id
         JOIN users u ON u.id = y.user_id
