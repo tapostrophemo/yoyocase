@@ -97,7 +97,7 @@ class AdminTestCase extends MY_WebTestCase
     $this->clickLink('site admin');
     $this->clickLink('check thumbnails');
 
-    $this->assertText('ID Username Yoyo URL');
+    $this->assertText('ID Username Date Yoyo URL');
     $this->assertText("$photoid testUser1 Freehand Zero http://somewhere.com/photo.jpg");
     $this->assertText("$photoid2 testUser1 Throw Monkey http://elsewhere.com/photo.jpg");
   }
