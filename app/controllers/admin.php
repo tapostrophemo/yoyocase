@@ -12,14 +12,18 @@ class Admin extends MY_Controller
     if (!$this->session->userdata('is_admin')) {
       $this->redirect_with_error('Authorized administrators only', 'account');
     }
+
+    $this->load->model('User');
+    $this->load->model('Yoyo');
+    $this->load->model('Report');
+    $this->load->model('Photo');
   }
 
-  function index() {
+  public function index() {
     $this->load->view('pageTemplate', array('content' => $this->load->view('admin/menu', null, true)));
   }
 
-  function accounts($sort = null) {
-    $this->load->model('User');
+  public function accounts($sort = null) {
     if (!$sort) {
       $data = array('accounts' => $this->User->findAll());
     }
@@ -32,15 +36,12 @@ class Admin extends MY_Controller
     $this->load->view('pageTemplate', array('content' => $this->load->view('admin/accounts', $data, true)));
   }
 
-  function userDetail($id) {
-    $this->load->model('User');
+  public function userDetail($id) {
     $user = $this->User->findById($id);
     $this->load->view('admin/userDetail', array('user' => $user));
   }
 
-  function deleteUser($id) {
-    $this->load->model('User');
-    $this->load->model('Yoyo');
+  public function deleteUser($id) {
     $yoyos = $this->Yoyo->findAllByUserid($id);
     foreach ($yoyos as $yoyo) {
       $this->Yoyo->archive($yoyo->id);
@@ -49,10 +50,9 @@ class Admin extends MY_Controller
     $this->redirectWithMessage('user deleted', 'admin/accounts');
   }
 
-  function archives($userid = null) {
-    $this->load->model('Report');
+  public function archives($userid = null) {
     if ($userid) {
-    $content = $this->load->view('admin/archiveDetail',
+      $content = $this->load->view('admin/archiveDetail',
         array('data' => $this->Report->getArchivesForUser($userid)), true);
     }
     else {
@@ -62,9 +62,7 @@ class Admin extends MY_Controller
     $this->load->view('pageTemplate', array('content' => $content));
   }
 
-  function registrationActivationReport() {
-    $this->load->model('Report');
-
+  public function registrationActivationReport() {
     $content = $this->load->view('admin/genericReport', array(
       'title' => 'Registration, activation and retention',
       'note' => 'counts as "activation" in curent month, "retention" in past months',
@@ -77,20 +75,18 @@ class Admin extends MY_Controller
     $this->load->view('pageTemplate', array('content' => $content));
   }
 
-  function checkThumbnails() {
-    $this->load->model('Photo');
+  public function checkThumbnails() {
     $data['max'] = $this->Photo->getMaxThumbnail();
     $data['photos'] = $this->Photo->getUnThumbed($data['max']);
     $this->load->view('pageTemplate', array('content' => $this->load->view('admin/pendingThumbs', $data, true)));
   }
 
-  function generateThumbnails($max) {
+  public function generateThumbnails($max) {
     $docroot = $this->input->server('DOCUMENT_ROOT');
     $path = $docroot . '/thumbs/';
     $overlay = $docroot . '/res/cornerOverlay.gif';
     $s = '';
 
-    $this->load->model('Photo');
     $data = $this->Photo->getUnThumbed($max);
 
     $status = array();
@@ -118,7 +114,7 @@ class Admin extends MY_Controller
     $this->load->view('pageTemplate', array('content' => $content));
   }
 
-  function _execCmd($cmd, &$status) {
+  private function _execCmd($cmd, &$status) {
     $retval = -1;
     $lines = array();
     exec($cmd, $lines, $retval);
