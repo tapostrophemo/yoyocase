@@ -57,8 +57,6 @@ body {
   left: 50px;
   z-index: 1;
   border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
 }
 
 #header h1 {
@@ -244,7 +242,7 @@ img {
   left: 50%;
   margin-left: -175px;
   width: 350px;
-  -moz-box-shadow: 3px 3px 7px;
+  box-shadow: 3px 3px 7px;
 }
 
 .dialog {
@@ -270,14 +268,10 @@ a.dialogClose {
 
 .rounded {
   border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
 }
 
 .miniRound {
   border-radius: 6px;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
 }
 
 #slideshow img {
