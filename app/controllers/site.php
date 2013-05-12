@@ -22,9 +22,9 @@ class Site extends MY_Controller
         $this->redirect_with_error('Username has already been taken', '/register');
       }
 
-      $this->session->set_userdata('username', $username);
-      $this->session->set_userdata('userid', $newUserId);
-      $this->session->set_userdata('logged_in', true);
+      $this->load->library('usersession');
+
+      $this->usersession->setupBasic($username, $newUserId);
       $this->session->set_flashdata('new_user', true);
       log_message('error', "(INFO) new user registration (id=$newUserId, username=$username, email=$email)"); // TODO: submit/fix CI bug re: log levels(?)
       $this->redirectWithMessage("Welcome, $username!", '/account');
@@ -46,12 +46,8 @@ class Site extends MY_Controller
   }
 
   function _setupSession($user) {
-    $this->session->set_userdata('username', $user->username);
-    $this->session->set_userdata('userid', $user->id);
-    $this->session->set_userdata('flickr_userid', $user->flickr_userid);
-    $this->session->set_userdata('photobucket_username', $user->photobucket_username);
-    $this->session->set_userdata('is_admin', $user->is_admin);
-    $this->session->set_userdata('logged_in', true);
+    $this->load->library('usersession');
+    $this->usersession->setup($user);
   }
 
   function _validate_login($junk) {

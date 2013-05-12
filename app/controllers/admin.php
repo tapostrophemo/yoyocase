@@ -51,16 +51,10 @@ class Admin extends MY_Controller
   }
 
   public function impersonate($userid) {
+    $this->load->library('usersession');
+
     $user = $this->User->findById($userid);
-
-    $this->session->set_userdata('username', $user->username);
-    $this->session->set_userdata('userid', $user->id);
-    $this->session->set_userdata('flickr_userid', $user->flickr_userid);
-    $this->session->set_userdata('photobucket_username', $user->photobucket_username);
-    $this->session->set_userdata('is_admin', $user->is_admin);
-    $this->session->set_userdata('logged_in', true);
-    $this->session->set_userdata('impersonating', true);
-
+    $this->usersession->impersonate($user);
     $this->redirectWithMessage("You are now impersonating: {$user->username}", '/account');
   }
 
