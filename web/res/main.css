@@ -282,7 +282,26 @@ a.dialogClose {
   text-align: right;
 }
 
+#impersonating {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  margin-left: -175px;
+  width: 340px;
+  box-shadow: 3px 3px 7px;
+  border-radius: 7px;
+  text-align: center;
+  padding: 5px;
+}
+
 /*** fonts/colors ***/
+
+#impersonating {
+  font-size: 22px;
+  font-weight: bold;
+  background-color: #b24d17;
+  border: 3px solid black;
+}
 
 #header, #nav ul, #advShow, #advHide, #userDetailDialog {
   background-color: white;

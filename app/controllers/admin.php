@@ -50,6 +50,20 @@ class Admin extends MY_Controller
     $this->redirectWithMessage('user deleted', 'admin/accounts');
   }
 
+  public function impersonate($userid) {
+    $user = $this->User->findById($userid);
+
+    $this->session->set_userdata('username', $user->username);
+    $this->session->set_userdata('userid', $user->id);
+    $this->session->set_userdata('flickr_userid', $user->flickr_userid);
+    $this->session->set_userdata('photobucket_username', $user->photobucket_username);
+    $this->session->set_userdata('is_admin', $user->is_admin);
+    $this->session->set_userdata('logged_in', true);
+    $this->session->set_userdata('impersonating', true);
+
+    $this->redirectWithMessage("You are now impersonating: {$user->username}", '/account');
+  }
+
   public function archives($userid = null) {
     if ($userid) {
       $content = $this->load->view('admin/archiveDetail',

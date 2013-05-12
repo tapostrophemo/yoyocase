@@ -9,6 +9,11 @@
 <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
 </head>
 <body>
+
+<?php if ($this->session->userdata('impersonating')): ?>
+<div id="impersonating">Impersonating: <?=$this->session->userdata('username')?></div>
+<?php endif; ?>
+
 <div id="container">
 
 <div id="header">
