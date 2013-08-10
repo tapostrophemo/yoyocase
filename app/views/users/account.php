@@ -1,15 +1,14 @@
 <h2>Your account</h2>
 
 <div id="gallery">
- <p>What do you want to do next?</p>
  <ul>
-  <li>Manage your <a href="/yoyos">collection</a></li>
-  <li>Edit your <a href="/preferences">account preferences</a></li>
-  <li>View <a href="/yoyos/<?=$this->session->userdata('username')?>">your gallery</a></li>
-  <li>View <a href="/galleries">all galleries</a></li>
+  <li><a href="/yoyos" class="lsf-icon collection">manage your collection</a></li>
+  <li><a href="/yoyoreport" class="lsf-icon report">collection report</a></li>
+  <li><a href="/preferences" class="lsf-icon preferences">set your account preferences</a></li>
+  <li><a href="/yoyos/<?=$this->session->userdata('username')?>" class="lsf-icon gallery">view your gallery</a></li>
+  <li><a href="/galleries" class="lsf-icon galleries">view all galleries</a></li>
+  <li><a href="/help" class="lsf-icon help">read help docs</a></li>
  </ul>
- <p>Need <a href="/help">help? Read this.</a></p>
- <p>Whatever you decide to do, be sure to <a href="/logout">logout</a> when you leave.</p>
 </div>
 
 <div id="sidebar">

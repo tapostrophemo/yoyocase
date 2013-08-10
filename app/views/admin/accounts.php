@@ -27,7 +27,7 @@
 
 <br/>
 
-<p><a href="/admin/accounts">(refresh)</a></p>
+<p><a href="/admin/accounts" class="lsf-icon refresh">refresh</a></p>
 
 <script type="text/javascript" src="/res/jquery-1.4.2.min.js"></script>
 <script type="text/javascript">

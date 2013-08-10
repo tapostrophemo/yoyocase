@@ -10,10 +10,6 @@
 </head>
 <body>
 
-<?php if ($this->session->userdata('impersonating')): ?>
-<div id="impersonating">Impersonating: <?=$this->session->userdata('username')?></div>
-<?php endif; ?>
-
 <div id="container">
 
 <div id="header">
@@ -22,19 +18,23 @@
 <?php else: ?>
  <h1><a href="/">yoyocase.net</a></h1>
 <?php endif; ?>
+<?php if ($this->session->userdata('impersonating')): ?>
+<div id="impersonating">Impersonating: <?=$this->session->userdata('username')?></div>
+<?php endif; ?>
 </div>
 
 <div id="nav">
  <ul class="rounded">
  <?php if ($this->session->userdata('logged_in')): ?>
-  <li><a href="/yoyos">collection</a></li>
-  <li><a href="/preferences">preferences</a></li>
-  <?php if ($this->session->userdata('is_admin')): echo '<li><a href="/admin">site admin</a></li>'; endif; ?>
-  <li><a href="/logout">logout</a></li>
+  <li><a href="/yoyos" class="lsf-icon collection">collection</a></li>
+  <li><a href="/preferences" class="lsf-icon preferences">preferences</a></li>
+  <?php if ($this->session->userdata('is_admin')): echo '<li><a href="/admin" class="lsf-icon admin">site admin</a></li>'; endif; ?>
+  <li><a href="/galleries" class="lsf-icon galleries">galleries</a></li>
+  <li><a href="/logout" class="lsf-icon logout">logout</a></li>
  <? else: ?>
-  <li><a href="/register">register</a></li>
-  <li><a href="/galleries">galleries</a></li>
-  <li><a href="/login">login</a></li>
+  <li><a href="/register" class="lsf-icon register">register</a></li>
+  <li><a href="/galleries" class="lsf-icon galleries">galleries</a></li>
+  <li><a href="/login" class="lsf-icon login">login</a></li>
  <? endif; ?>
  </ul>
 </div>

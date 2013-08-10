@@ -30,7 +30,7 @@ body {
 
 ul {
   margin: 0;
-  padding: 0 0 0 1em;
+  padding: 0;
 }
 
 h1, p {
@@ -105,6 +105,10 @@ table.thumbnailSelect {
   text-align: center;
 }
 
+#content ul {
+  list-style: none;
+}
+
 #sidebar {
   float: right;
   width: 160px;
@@ -113,6 +117,10 @@ table.thumbnailSelect {
 #gallery {
   float: left;
   width: 452px;
+}
+
+#gallery ul {
+  list-style: none;
 }
 
 #footer {
@@ -296,11 +304,47 @@ a.dialogClose {
 
 /*** fonts/colors ***/
 
+@font-face {
+  font-family: 'LigatureSymbols';
+  src: url('/res/LigatureSymbols/LigatureSymbols-2.11.eot');
+  src: url('/res/LigatureSymbols/LigatureSymbols-2.11.eot?#iefix') format('embedded-opentype'),
+       url('/res/LigatureSymbols/LigatureSymbols-2.11.woff') format('woff'),
+       url('/res/LigatureSymbols/LigatureSymbols-2.11.ttf') format('truetype'),
+       url('/res/LigatureSymbols/LigatureSymbols-2.11.svg#LigatureSymbols') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.lsf-icon:before {
+  font-family: 'LigatureSymbols';
+  text-rendering: optimizeLegibility;
+  font-smoothing: antialiased;
+  margin-right: 0.3em;
+  font-size: 200%;
+  vertical-align: middle;
+}
+
+.lsf-icon.login:before { content: '\E087' }
+.lsf-icon.logout:before { content: '\E088' }
+.lsf-icon.refresh:before { content: '\E10e' }
+.lsf-icon.register:before { content: '\E073' }
+.lsf-icon.preferences:before { content: '\E055' }
+.lsf-icon.collection:before { content: '\E129' }
+.lsf-icon.report:before { content: '\E127' }
+.lsf-icon.gallery:before { content: '\E074' }
+.lsf-icon.galleries:before { content: '\E101' }
+.lsf-icon.help:before { content: '\E070' }
+.lsf-icon.admin:before { content: '\E051' }
+.lsf-icon.account:before { content: '\E137' }
+.lsf-icon.archive:before { content: '\E002' }
+
 #impersonating {
   font-size: 22px;
   font-weight: bold;
   background-color: #b24d17;
   border: 3px solid black;
+  margin-left: -100px;
+  margin-top: 30px;
 }
 
 #header, #nav ul, #advShow, #advHide, #userDetailDialog {
@@ -338,7 +382,7 @@ body {
   font-size: 9px;
 }
 
-a, label, .err {
+label, .err {
   font-weight: bold;
 }
 
