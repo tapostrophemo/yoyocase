@@ -18,7 +18,7 @@ if (defined('ENVIRONMENT')) {
 	}
 }
 
-$system_path = '../lib/ci-2.1.3'; // TODO: configure for PROD deploy
+$system_path = '../lib/ci-2.1.4'; // TODO: configure for PROD deploy
 $application_folder = '../app'; // TODO: configure for PROD deploy
 
 if (defined('STDIN')) {
