@@ -8,8 +8,8 @@ class UsersTestCase extends MY_WebTestCase
     // When
     $this->logInAs('testUser1', 'Password1');
     // Then
-    $this->assertLink('your gallery');
-    $this->assertLink('all galleries');
+    $this->assertLink('view your gallery');
+    $this->assertLink('view all galleries');
 
     // When
     $this->clickLink('collection');

@@ -16,7 +16,7 @@ class AdminImpersonationTestCase extends MY_WebTestCase
     $this->assertText('Impersonating: testUser1');
 
     // When
-    $this->clickLink('account preferences');
+    $this->clickLink('preferences');
     // Then
     $this->assertField('email', 'testUser1@somewhere.com');
   }
