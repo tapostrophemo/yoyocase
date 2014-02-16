@@ -82,7 +82,9 @@ class Users extends MY_Controller
     $this->load->view('pageTemplate', array('title' => 'view yoyo collections', 'content' => $this->load->view('users/list', $data, true)));
   }
 
-  function gallery($username) {
+  public function gallery($username) {
+    $this->load->helper('recommendation');
+
     $username = urldecode($username);
     $yoyos = array();
     $user = $this->User->findByUsername($username);
@@ -92,7 +94,7 @@ class Users extends MY_Controller
       $title = "$username's yoyo collection";
       $this->load->model('Yoyo');
       $yoyos = $this->Yoyo->findAllByUserid($user->id, true);
-      $content = $this->load->view('users/gallery', array('username' => $username, 'yoyos' => $yoyos), true);
+      $content = $this->load->view('users/gallery', array('user' => $user, 'username' => $username, 'yoyos' => $yoyos), true);
     }
     else {
       $content = $this->load->view('users/notFound', array('username' => $username), true);

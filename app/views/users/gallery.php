@@ -1,7 +1,14 @@
 <?php if (count($yoyos) == 0): ?>
   <p class="err miniRound">User "<?=$username?>" has no yoyos in their collection</p>
 <?php else: ?>
-  <p class="msg miniRound"><?=count($yoyos)?> yoyo<?=count($yoyos)>1?'s':''?> in <?=$username?>'s collection</p>
+  <div class="msg miniRound">
+   <p><?=count($yoyos)?> yoyo<?=count($yoyos)>1?'s':''?> in <?=$username?>'s collection</p>
+   <p>Similar collections:
+    <?php $count = 0; foreach (similarCollections($user->id) as $userId => $arr): ?>
+     <a href="/yoyos/<?= $arr['username'] ?>"><?= $arr['username'] ?></a>
+    <?php $count++; if ($count > 5) break; endforeach; ?>
+   </p>
+  </div>
 <script type="text/javascript" src="/res/yoxview/yoxview-init.js"></script>
 <?php endif; ?>
 

@@ -10,4 +10,12 @@
 <?php endif; ?>
 <br/>
 <a href="/yoyoreport" class="lsf-icon report">collection report</a>
+<br/>
 
+<br/>
+<p>Users with collections similar to yours:</p>
+<ul>
+<?php $count = 0; foreach (similarCollections() as $userId => $arr): ?>
+ <li><a href="/yoyos/<?= $arr['username'] ?>"><?= $arr['username'] ?></a></li>
+<?php $count++; if ($count > 9) break; endforeach; ?>
+</ul>

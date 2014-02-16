@@ -141,5 +141,68 @@ class Yoyo extends MY_Model
       'date' => $this->_now()));
     $this->delete($yoyoid);
   }
+
+  private function getNormalizedForUser($id) {
+    $sql = "
+      SELECT norm_name, Count(*) AS weight
+      FROM (
+        SELECT Concat(mn.normalized, ' ', yn.normalized) AS norm_name
+        FROM users u
+          JOIN yoyos y ON y.user_id = u.id
+          LEFT JOIN mfr_norm mn ON mn.manufacturer = y.manufacturer
+          LEFT JOIN model_norm yn ON yn.model_name = y.model_name
+        WHERE u.id = ?
+      ) x
+      WHERE norm_name IS NOT NULL
+      GROUP BY norm_name
+    ";
+    return $this->db->query($sql, $id)->result_array();
+  }
+
+  private function getNormalizedForOtherUsers($id) {
+    $sql = "
+      SELECT user_id, username, norm_name, Count(*) AS weight
+      FROM (
+        SELECT u.id AS user_id, u.username,
+               Concat(mn.normalized, ' ', yn.normalized) AS norm_name
+        FROM users u
+          JOIN yoyos y ON y.user_id = u.id
+          LEFT JOIN mfr_norm mn ON mn.manufacturer = y.manufacturer
+          LEFT JOIN model_norm yn ON yn.model_name = y.model_name
+        WHERE u.id <> ?
+      ) x
+      WHERE norm_name IS NOT NULL
+      GROUP BY user_id, username, norm_name
+    ";
+    return $this->db->query($sql, $id)->result_array();
+  }
+
+  public function getCollectionsSimilarTo($userId) {
+    $mine = $this->Yoyo->getNormalizedForUser($userId);
+    $theirs = $this->Yoyo->getNormalizedForOtherUsers($userId);
+    $data = array();
+
+    foreach ($theirs as $t) {
+      foreach ($mine as $m) {
+        if ($t['norm_name'] == $m['norm_name']) {
+          $data[$t['user_id']]['username'] = $t['username'];
+          $data[$t['user_id']]['theirs'][$t['norm_name']] = $t['weight'];
+          $data[$t['user_id']]['mine'][$m['norm_name']] = $m['weight'];
+        }
+      }
+    }
+
+    foreach ($data as $userId => $arr) {
+      $data[$userId]['score'] = count($arr['theirs']);
+    }
+
+    uasort($data, '_similaritySort');
+
+    return $data;
+  }
 }
 
+function _similaritySort($a, $b) {
+  if ($a['score'] == $b['score']) return 0;
+  return ($a['score'] > $b['score']) ? -1 : 1;
+}

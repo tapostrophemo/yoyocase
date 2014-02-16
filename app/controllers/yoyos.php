@@ -14,8 +14,9 @@ class Yoyos extends MY_Controller
     log_message('debug', 'Yoyos class initialized');
   }
 
-  function index() {
+  public function index() {
     $data = array('yoyos' => $this->Yoyo->find_all_by_userid($this->session->userdata('userid')));
+    $this->load->helper('recommendation');
     $this->load->view('pageTemplate', array('content' => $this->load->view('yoyos/collection', $data, true)));
   }
 
@@ -53,7 +54,9 @@ class Yoyos extends MY_Controller
       'notes' => $this->input->post('notes'));
   }
 
-  function view($yoyoid) {
+  public function view($yoyoid) {
+    $this->load->helper('recommendation');
+
     $yoyo = $this->_findYoyo($yoyoid);
     if ($yoyo->user_id != $this->session->userdata('userid')) {
       $this->redirectWithError('Only owners are allowed to view yoyo details', 'yoyos');
@@ -67,8 +70,10 @@ class Yoyos extends MY_Controller
     $this->load->view('pageTemplate', array('content' => $this->load->view('yoyos/view', $data, true)));
   }
 
-  function edit($yoyoid) {
+  public function edit($yoyoid) {
     if (!$this->form_validation->run('yoyo')) {
+      $this->load->helper('recommendation');
+
       $yoyo = $this->_findYoyo($yoyoid);
       if ($yoyo->user_id != $this->session->userdata('userid')) {
         $this->redirectWithError("You cannot update another user's yoyos", 'account');
