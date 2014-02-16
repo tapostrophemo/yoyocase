@@ -51,21 +51,24 @@ class SiteTestCase extends MY_WebTestCase
   function testSiteFunFacts() {
     // Given
     $numAccounts = $this->countRecords('users');
+    $numCollections = $this->countRecords('(SELECT DISTINCT u.id FROM users u JOIN yoyos y ON y.user_id = u.id) x');
     $numYoyos = $this->countRecords('yoyos');
     $numPhotos = $this->countRecords('photos');
+
     // When
     $this->get(BASE_URL.'/register');
     // Then
-    $this->_assertFunFacts($numAccounts, $numYoyos, $numPhotos);
+    $this->_assertFunFacts($numAccounts, $numCollections, $numYoyos, $numPhotos);
 
     // When
     $this->get(BASE_URL.'/galleries');
     // Then
-    $this->_assertFunFacts($numAccounts, $numYoyos, $numPhotos);
+    $this->_assertFunFacts($numAccounts, $numCollections, $numYoyos, $numPhotos);
   }
 
-  function _assertFunFacts($numAccounts, $numYoyos, $numPhotos) {
+  function _assertFunFacts($numAccounts, $numCollections, $numYoyos, $numPhotos) {
     $this->assertText("$numAccounts users");
+    $this->assertText("$numCollections collections");
     $this->assertText("$numYoyos yoyos");
     $this->assertText("$numPhotos photos");
   }

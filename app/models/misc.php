@@ -6,6 +6,8 @@ class Misc extends CI_Model
     $sql = "
       SELECT 'num_users' AS item, Count(*) AS num_items FROM users
       UNION
+      SELECT 'num_collections' AS item, Count(*) AS num_items FROM (SELECT DISTINCT u.id FROM users u JOIN yoyos y ON y.user_id = u.id) x
+      UNION
       SELECT 'num_yoyos', Count(*) FROM yoyos
       UNION
       SELECT 'num_photos', Count(*) FROM photos";
