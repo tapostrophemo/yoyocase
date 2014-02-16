@@ -22,6 +22,7 @@ class Yoyos extends MY_Controller
 
   function add() {
     if (!$this->form_validation->run('yoyo')) {
+      $this->load->helper('recommendation');
       $data = array(
         'yoyos' => $this->Yoyo->find_all_by_userid($this->session->userdata('userid')),
         'cancel_url' => '/yoyos');
