@@ -23,12 +23,23 @@ class GalleryTestCase extends MY_WebTestCase
     $userid = $this->createUser('testUser1', 'testUser1@somewhere.com', 'Password1');
     $yoyoid = $this->createYoyo($userid, 'Freehand Zero');
     $this->createPhoto($yoyoid, 'http://somewhere.com/photo.jpg');
+    $u2 = $this->createUser('testUser2', 'testUser2@somewhere.com', 'Password2');
     // When
     $this->get(BASE_URL.'/galleries');
     // Then
     $this->assertLink('testUser1');
     $this->assertText("testUser1 (1 yo's, 1 pics)");
+    $this->assertNoLink('testUser2');
+    $this->assertNoText("testUser2 (0 yo's, 0 pics)");
     $this->assertPattern('<div id="slideshow">');
+
+    // Given
+    $y2 = $this->createYoyo($u2, 'FHZ');
+    // When
+    $this->get(BASE_URL.'/galleries');
+    // Then
+    $this->assertLink('testUser2');
+    $this->assertText("testUser2 (1 yo's, 0 pics)");
   }
 
   function testGalleryForUnknownUser() {
@@ -106,4 +117,3 @@ class GalleryTestCase extends MY_WebTestCase
   }
 */
 }
-

@@ -180,6 +180,19 @@ class User extends MY_Model
     }
   }
 
+  function findAllActive() {
+    $sql = "
+      SELECT u.id, u.username, u.created_at, u.last_login_at, u.email,
+        Count(DISTINCT y.id) AS num_yoyos, Count(DISTINCT p.id) AS num_photos
+      FROM users u
+        JOIN yoyos y ON y.user_id = u.id
+        LEFT JOIN photos p ON p.yoyo_id = y.id
+      GROUP BY u.username, u.created_at, u.last_login_at, u.email
+      ORDER BY u.id
+    ";
+    return $this->db->query($sql)->result();
+  }
+
   function findAll($sort = 'u.id') {
     $sql = "
       SELECT u.id, u.username, u.created_at, u.last_login_at, u.email,

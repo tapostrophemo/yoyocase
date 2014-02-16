@@ -1,4 +1,4 @@
-<h2>Galleries</h2>
+<h2>Collector's galleries</h2>
 
 <div id="gallery">
  <ul id="userList">
