@@ -87,3 +87,14 @@ CREATE TABLE `archives` (
   PRIMARY KEY (`id`)
 );
 
+CREATE TABLE `mfr_norm` (
+  `manufacturer` varchar(255) NOT NULL,
+  `normalized` varchar(255) NOT NULL,
+  PRIMARY KEY (`manufacturer`)
+);
+
+CREATE TABLE `model_norm` (
+  `model_name` varchar(255) NOT NULL,
+  `normalized` varchar(255) NOT NULL,
+  PRIMARY KEY (`model_name`)
+);

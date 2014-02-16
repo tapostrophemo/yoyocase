@@ -1,4 +1,6 @@
 drop table if exists
+  mfr_norm,
+  model_norm,
   system,
   archives,
   acquisitions,
@@ -7,4 +9,3 @@ drop table if exists
   user_pw_reset,
   users,
   schema_migrations;
-
