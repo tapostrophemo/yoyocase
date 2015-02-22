@@ -142,6 +142,59 @@ class Yoyo extends MY_Model
     $this->delete($yoyoid);
   }
 
+  private function getNormalizedNames($table) {
+    $query = $this->db->query("SELECT DISTINCT normalized FROM $table ORDER BY 1");
+    $rows = array();
+    foreach ($query->result() as $row) {
+      $rows[] = $row->normalized;
+    }
+    return $rows;
+  }
+
+  private function getNonNormalizedNames($table, $column) {
+    $sql = "
+      SELECT DISTINCT y.$column
+      FROM yoyos y
+        LEFT JOIN $table m ON m.$column = y.$column
+      WHERE m.normalized IS NULL
+      ORDER BY 1";
+    $query = $this->db->query($sql);
+    $rows = array();
+    foreach ($query->result() as $row) {
+      $rows[] = $row->$column;
+    }
+    return $rows;
+  }
+
+  public function getNormalizedManufacturers() {
+    return $this->getNormalizedNames('mfr_norm');
+  }
+
+  public function getNormalizedModels() {
+    return $this->getNormalizedNames('model_norm');
+  }
+
+  public function getNonNormalizedManufacturers() {
+    return $this->getNonNormalizedNames('mfr_norm', 'manufacturer');
+  }
+
+  public function getNonNormalizedModels() {
+    return $this->getNonNormalizedNames('model_norm', 'model_name');
+  }
+
+  public function setNormalizedName($what, $raw, $normalized) {
+    switch ($what) {
+    case 'mfr':
+      $this->db->insert('mfr_norm', array('manufacturer' => $raw, 'normalized' => $normalized));
+      break;
+    case 'model':
+      $this->db->insert('model_norm', array('model_name' => $raw, 'normalized' => $normalized));
+      break;
+    default:
+      show_error("unknown target for name normalization: $what");
+    }
+  }
+
   private function getNormalizedForUser($id) {
     $sql = "
       SELECT norm_name, Count(*) AS weight

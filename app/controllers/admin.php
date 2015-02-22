@@ -131,5 +131,27 @@ class Admin extends MY_Controller
       $status[$photo->id][] = $lines;
     }
   }
-}
 
+  public function checkNormalizations() {
+    $data = array(
+      'manufacturers' => array(
+        'new' => $this->Yoyo->getNonNormalizedManufacturers(),
+        'current' => $this->Yoyo->getNormalizedManufacturers()),
+      'models' => array(
+        'new' => $this->Yoyo->getNonNormalizedModels(),
+        'current' => $this->Yoyo->getNormalizedModels()));
+    $this->load->view('pageTemplate', array('content' => $this->load->view('admin/nameNormilazations', $data, true)));
+  }
+
+  public function normalize($what) {
+    $raw = $this->input->post('raw');
+    if (!$this->form_validation->run('admin_normalize_name')) {
+      $this->load->view('admin/normalize', array('what' => $what, 'raw' => $raw));
+    }
+    else {
+      $normalized = $this->input->post('normalized');
+      $this->Yoyo->setNormalizedName($what, urldecode($raw), $normalized);
+      $this->redirectWithMessage('new normalization saved', 'admin/checkNormalizations');
+    }
+  }
+}

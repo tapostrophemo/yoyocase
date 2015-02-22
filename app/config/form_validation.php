@@ -43,6 +43,10 @@ $config = array(
     array('field' => 'acq_party', 'label' => 'acquired from', 'rules' => 'trim|max_length[255]|xss_clean'),
     array('field' => 'acq_price', 'label' => 'acquisition price', 'rules' => 'trim|numeric|max_length[15]'),
     array('field' => 'notes', 'label' => 'notes', 'rules' => 'trim|xss_clean')
+  ),
+
+  'admin_normalize_name' => array(
+    array('field' => 'normalized', 'label' => 'new normalized name', 'rules' => 'trim|required|max_length[255]|xss_clean'),
+    array('field' => 'raw', 'label' => 'raw value', 'rules' => 'trim|required|max_length[255]|xss_clean')
   )
 );
-

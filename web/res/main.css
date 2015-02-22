@@ -101,7 +101,7 @@ table.thumbnailSelect {
 #content h2, #footer, #galleryDetail div, .thumbPending, #collectionList li,
 .msg, .err, .announce,
 .thumbnailSelect td,
-#userDetailDialog .loading {
+.loading {
   text-align: center;
 }
 
@@ -245,17 +245,14 @@ img {
   padding-left: 7px;
 }
 
-#userDetailDialog {
+.dialog {
+  display: none;
+  padding: 7px;
   position: absolute;
   left: 50%;
   margin-left: -175px;
   width: 350px;
   box-shadow: 3px 3px 7px;
-}
-
-.dialog {
-  display: none;
-  padding: 7px;
 }
 
 a.dialogClose {
@@ -337,6 +334,7 @@ a.dialogClose {
 .lsf-icon.admin:before { content: '\E051' }
 .lsf-icon.account:before { content: '\E137' }
 .lsf-icon.archive:before { content: '\E002' }
+.lsf-icon.engine:before { content: '\E055' }
 
 #impersonating {
   font-size: 22px;
@@ -347,7 +345,7 @@ a.dialogClose {
   margin-top: 30px;
 }
 
-#header, #nav ul, #advShow, #advHide, #userDetailDialog {
+#header, #nav ul, #advShow, #advHide, .dialog {
   background-color: white;
 }
 
@@ -372,7 +370,7 @@ body {
   font-size: 14px;
 }
 
-#advToggle, #userDetailDialog .report td {
+#advToggle, .dialog .report td {
   font-size: 10px;
 }
 
@@ -415,11 +413,11 @@ hr {
   border-top: 1px solid #e9e9e9;
 }
 
-#userDetailDialog .report td {
+.dialog .report td {
   border-top: 0;
 }
 
-#userDetailDialog {
+.dialog {
   border: 1px solid #b24d17;
 }
 
