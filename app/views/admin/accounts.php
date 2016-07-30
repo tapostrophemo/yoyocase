@@ -6,7 +6,7 @@
  </div>
 </div>
 
-<table class="report">
+<table id="report">
  <thead>
   <tr>
    <th><a href="/admin/accounts/username">Username</a></th>
@@ -32,17 +32,14 @@
 <script type="text/javascript" src="/res/jquery-1.4.2.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
-
-  jQuery.each($(".report tbody a"), function (i, link) {
+  jQuery.each($("#report tbody a"), function (i, link) {
     $(link).click(function () {
-      $("#userDetailContent").html('<div class="loading"><img src="/res/wait.gif" alt="loading..."/></div>');
+      $("#userDetailContent").html('<div class="u-text-center"><img src="/res/wait.gif" alt="loading..."/></div>');
       $("#userDetailContent").load(link.href);
       var middleOffset = Math.round($(window).height()/2 + $(document).scrollTop() - $("#userDetailDialog").height()/2 - parseInt($("body").css("margin-bottom"))/2);
-      $("#userDetailDialog").css({"top": middleOffset+"px"}).show();
+      $("#userDetailDialog").css({"top": (middleOffset-200)+"px"}).show();
       return false;
     });
   });
-
 });
 </script>
-

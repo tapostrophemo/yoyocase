@@ -2,7 +2,7 @@
 
 <?php if (count($photos)): ?>
 
-<table class="report">
+<table>
  <thead>
   <tr>
    <th>ID</th>
@@ -34,4 +34,3 @@
 <p>All thumbnails are up to date.</p>
 
 <?php endif; ?>
-

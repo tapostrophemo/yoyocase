@@ -2,10 +2,6 @@
 
 <h2>Reset your password</h2>
 
-<div id="gallery">
-
-<div class="soloform">
-
 <?=form_open('newpass')?>
 <table>
  <tr>
@@ -21,12 +17,3 @@
  </tr>
 </table>
 </form>
-
-</div>
-
-</div>
-
-<div id="sidebar"></div>
-
-<div class="clearing"></div>
-

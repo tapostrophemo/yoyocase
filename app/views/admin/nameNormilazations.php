@@ -24,8 +24,6 @@
  </div>
 </fieldset>
 
-<div class="clearing"></div>
-
 <div id="nameDialog" class="rounded dialog">
  <a href="#" class="dialogClose" onclick="$('#nameDialog').hide(); return false;">close</a>
  <div id="nameContent"></div>
@@ -36,11 +34,11 @@
 $(document).ready(function () {
   jQuery.each($("fieldset a"), function (i, link) {
     $(link).click(function () {
-      $("#nameContent").html('<div class="loading"><img src="/res/wait.gif" alt="loading..."></div>');
+      $("#nameContent").html('<div class="u-text-center"><img src="/res/wait.gif" alt="loading..."></div>');
       var data = $(link).attr("data-raw");
       $("#nameContent").load(link.href, { "raw": data });
       var middleOffset = Math.round($(window).height()/2 + $(document).scrollTop() - $("#userDetailDialog").height()/2 - parseInt($("body").css("margin-bottom"))/2);
-      $("#nameDialog").css({"top": middleOffset+"px"}).show();
+      $("#nameDialog").css({"top": (middleOffset-200)+"px"}).show();
       return false;
     });
   });
@@ -70,5 +68,3 @@ $(document).ready(function () {
  <?php endforeach; ?>
  </ul>
 </div>
-
-<div class="clearing"></div>

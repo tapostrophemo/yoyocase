@@ -2,9 +2,7 @@
 
 <h2>Edit preferences</h2>
 
-<div id="gallery">
-
- <?=form_open("/preferences") ?>
+<?=form_open("/preferences") ?>
   <table border="0" cellpadding="0" cellspacing="0">
    <tr>
     <td style="line-height:2.25em"><label for="username">Username</label></td>
@@ -22,41 +20,29 @@
     <td><label for="passconf">Confirm Password</label></td>
     <td><input type="password" name="passconf" value=""/></td>
    </tr>
-   <tr>
-    <td colspan="2" style="line-height:4.5em">
-     <input type="submit" value="Update"/>
-     <input type="button" value="Cancel" onclick="document.location.href='/account'"/>
-    </td>
-   </tr>
   </table>
- </form>
+  <input type="submit" value="Update"/>
+  <a class="button" href="/account">Cancel</a>
+</form>
 
- <hr/>
+<hr/>
 
- <?=form_open("/update_flickr_info_1")?>
+<?=form_open("/update_flickr_info_1")?>
   <p><small>Clicking this button will redirect your browser to flickr's site to verify your
    flickr account and to give <tt>yoyocase.net</tt> permission to read from that account.</small></p>
   <input type="submit" value="Verify flickr account"/><br/><br/>
   <p><small>Note: If the following is filled in, you have successfully verified your flickr account,
    and unless that account has changed, you don't need to re-verify it:</small></p>
   <label>flickr user id:</label> <?=$user->flickr_userid?>
- </form>
+</form>
 
- <hr/>
+<hr/>
 
- <?=form_open('/update_photobucket_info_1')?>
+<?=form_open('/update_photobucket_info_1')?>
   <p><small>Clicking this button will redirect your browser to Photobucket's site to verify your
    Photobucket account and give <tt>yoyocase.net</tt> permission to read from that account.</small></p>
   <input type="submit" value="Verify Photobucket account"/><br/><br/>
   <p><small>Note: If the following is filled in, you have successfully verified your Photobucket account,
    and unless that account has changed, you don't need to re-verify it:</small></p>
   <label>Photobucket username:</label> <?=$user->photobucket_username?>
- </form>
-
-</div>
-
-<div id="sidebar">
-</div>
-
-<div class="clearing"></div>
-
+</form>

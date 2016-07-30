@@ -2,7 +2,7 @@
 
 <p>Note: <?=$note?></p>
 
-<table class="report">
+<table>
  <tr>
  <?php foreach ($fields as $column => $title): ?>
   <th><?=$title?></th>
@@ -16,4 +16,3 @@
  </tr>
 <?php endforeach; ?>
 </table>
-

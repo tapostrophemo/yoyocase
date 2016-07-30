@@ -2,29 +2,29 @@
 
 <h2>Register for an account</h2>
 
-<div id="gallery">
-
-<div class="soloform">
-
 <?=form_open('register')?>
  <table border="0" cellpadding="0" cellspacing="0">
   <tr>
-   <td><label for="username">Username</label>&nbsp;</td>
+   <td><label for="username">*Username</label>&nbsp;</td>
    <td><input type="text" name="username" value="<?=set_value('username')?>"/></td>
   </tr>
   <tr>
-   <td><label for="password">Password</label>&nbsp;</td>
+   <td><label for="password">*Password</label>&nbsp;</td>
    <td><input type="password" name="password" value=""/></td>
   </tr>
   <tr>
-   <td><label for="email">Email</label>&nbsp;</td>
+   <td><label for="email">*Email</label>&nbsp;</td>
    <td><input type="text" name="email" value="<?=set_value('email')?>"/></td>
   </tr>
+  <tr>
+   <td colspan="2">
+    <p>By registering for an account, you agree to abide by the following:</p>
+    <div id="tosRegBlock">
+     <?=$this->load->view('pages/tos')?>
+    </div>
+   </td>
+  </tr>
  </table>
- <div id="tosRegBlock">
-  <p>By registering for an account, you agree to abide by the following</p>
-  <?=$this->load->view('pages/tos')?>
- </div>
  <input type="submit" value="Register"/>
 </form>
 
@@ -33,10 +33,7 @@
 
 <p>Already registered? <a href="/login">Login.</a></p>
 
-</div>
-</div>
-
-<div id="sidebar">
+<div>
  <?php $this->load->view('site/facts', array('facts' => $facts)); ?>
 
  <br/>
@@ -47,6 +44,3 @@
   <!-- TODO: more help -->
  </ul>
 </div>
-
-<div class="clearing"></div>
-

@@ -1,4 +1,4 @@
-<table class="report">
+<table>
  <tr><td><label>ID</label></td><td><?=$user->id?></td></tr>
  <tr><td><label>Username</label></td><td><?=$user->username?></td></tr>
  <tr><td><label>Administrator?</label></td><td><?=$user->is_admin ? 'Yes' : 'No'?></td></tr>
@@ -17,4 +17,3 @@
  <a href="/admin/deleteUser/<?=$user->id?>">delete</a>
 </div>
 <?php endif; ?>
-

@@ -2,10 +2,6 @@
 
 <h2>Reset your password</h2>
 
-<div id="gallery">
-
-<div class="soloform">
-
 <p>Enter your username below and click the button. An email will be sent to your registered email
  address containing instructions for re-entering <tt>yoyocase.net</tt>.</p>
 
@@ -28,12 +24,3 @@
 <br/>
 
 <p>Remember your password? <a href="/login">Login</a>.</p>
-
-</div>
-
-</div>
-
-<div id="sidebar"></div>
-
-<div class="clearing"></div>
-

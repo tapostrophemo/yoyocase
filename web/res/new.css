@@ -1,0 +1,189 @@
+/*** Skeleton overrides ***/
+
+/* Skeleton Framework (https://skeleton-framework.github.io/) does this differently than the original
+ * Skeleton (http://getskeleton.com/), and seems to have allowed the base font size to get too big
+ */
+html { font-size: 62.5% }
+body { font-size: 1.5rem; line-height: 1.6 }
+
+/* things I just want overridden */
+nav ul, footer ul, #gallery, #userList {
+  list-style: none;
+}
+
+/*** site-specific styles ***/
+body {
+  background: white url("/res/bg.png") 49% repeat-y;
+}
+
+header, section {
+  margin-bottom: 3rem;
+}
+
+footer {
+  color: white;
+  font-size: smaller;
+}
+
+@media (max-width: 559px) {
+  body {
+    background-image: none;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  nav, footer {
+    /* TODO: 1) only push the footer down;
+     *       2) make the nav a hamburger/flyover menu at the top/left of the screen
+     *          (alt) just put the menu at the top
+     */
+    background-color: black;
+    position: absolute;
+    bottom: -300px;
+  }
+}
+
+.content {
+  padding: 0 15px 15px;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.thumb-pending {
+  background: transparent url("/res/icon_gradient.png") center center no-repeat;
+  display: inline-block;
+  height: 111px;
+  position: relative;
+  text-align: center;
+  width: 111px;
+}
+
+  .thumb-pending a {
+    font-size: 9px;
+    font-weight: normal;
+    height: 100%;
+    left: 0;
+    line-height: 111px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+.block-small {
+  max-width: 300px;
+}
+
+.dialog {
+  background-color: white;
+  display: none;
+  padding: 7px;
+  position: absolute;
+  left: 50%;
+  margin-left: -175px;
+  width: 350px;
+  box-shadow: 3px 3px 7px;
+}
+
+a.dialogClose {
+  float: right;
+}
+
+.rounded {
+  border-radius: 10px;
+}
+
+.impersonating {
+  background-color: white;
+  position: absolute;
+  top: 65px;
+  left: 50%;
+  margin-left: -175px;
+  width: 340px;
+  box-shadow: 3px 3px 7px;
+  border-radius: 7px;
+  text-align: center;
+  padding: 5px;
+}
+
+.u-justify {
+  text-align: justify;
+}
+
+.d {
+  color: #888;
+  display: block;
+  font-style: italic;
+  text-align: right;
+}
+
+#slideshow img {
+  display: none;
+}
+
+.adv {
+  display: none ! important;
+}
+
+#advToggle {
+  line-height: 11px;
+  overflow: hidden;
+  padding-left: 11px;
+}
+
+#advShow, #advHide {
+  padding-left: 7px;
+}
+
+.u-inline-labels label {
+  display: inline ! important;
+}
+
+#tosRegBlock {
+  margin-bottom: 1em;
+  padding: 1em 1em 1em 0;
+  height: 250px;
+  overflow: auto;
+}
+
+@font-face {
+  font-family: 'LigatureSymbols';
+  src: url('/res/LigatureSymbols/LigatureSymbols-2.11.eot');
+  src: url('/res/LigatureSymbols/LigatureSymbols-2.11.eot?#iefix') format('embedded-opentype'),
+       url('/res/LigatureSymbols/LigatureSymbols-2.11.woff') format('woff'),
+       url('/res/LigatureSymbols/LigatureSymbols-2.11.ttf') format('truetype'),
+       url('/res/LigatureSymbols/LigatureSymbols-2.11.svg#LigatureSymbols') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.lsf-icon:before {
+  font-family: 'LigatureSymbols';
+  text-rendering: optimizeLegibility;
+  font-smoothing: antialiased;
+  margin-right: 0.3em;
+  font-size: 200%;
+  vertical-align: middle;
+}
+
+.lsf-icon.login:before { content: '\E087' }
+.lsf-icon.logout:before { content: '\E088' }
+.lsf-icon.refresh:before { content: '\E10e' }
+.lsf-icon.register:before { content: '\E073' }
+.lsf-icon.preferences:before { content: '\E055' }
+.lsf-icon.collection:before { content: '\E129' }
+.lsf-icon.report:before { content: '\E127' }
+.lsf-icon.gallery:before { content: '\E074' }
+.lsf-icon.galleries:before { content: '\E101' }
+.lsf-icon.help:before { content: '\E070' }
+.lsf-icon.admin:before { content: '\E051' }
+.lsf-icon.account:before { content: '\E137' }
+.lsf-icon.archive:before { content: '\E002' }
+.lsf-icon.engine:before { content: '\E055' }
+.lsf-icon.twitter:before { content: '\E12f' }

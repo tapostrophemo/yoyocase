@@ -5,13 +5,12 @@
  <img src="/res/icon_unknown_highlight.png" alt=""/>
 </div>
 
-<div id="gallery">
 <?php if (count($yoyos) == 0): ?>
  <p>You don't have any yoyos in your collection.</p>
  <p><a href="/yoyo">Add one?</a></p>
  <p><a href="/yoyo"><img src="/res/icon_unknown.png" alt="" onmouseover="this.src='/res/icon_unknown_highlight.png'" onmouseout="this.src='/res/icon_unknown.png'"/></a></p>
 <?php else: ?>
- <ul id="collectionList">
+ <ul id="gallery">
  <?php foreach ($yoyos as $yoyo): ?>
   <li>
    <a href="/yoyo/<?=$yoyo->id?>">
@@ -36,11 +35,7 @@
   </li>
  </ul>
 <?php endif; ?>
-</div>
 
-<div id="sidebar">
+<div>
  <?php $this->load->view('yoyos/sidebar', array('yoyos' => $yoyos)) ?>
 </div>
-
-<div class="clearing"></div>
-

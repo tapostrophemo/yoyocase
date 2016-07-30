@@ -27,8 +27,6 @@ $(document).ready(function () {
 
 <h2>Edit "<?=$yoyo->model_year?> <?=$yoyo->manufacturer?> <?=$yoyo->model_name?>"</h2>
 
-<div id="gallery">
-
 <p id="advToggle">
  <a href="#" id="advShow">show advanced fields</a>
  <a href="#" id="advHide" style="display:none">hide advanced fields</a>
@@ -46,7 +44,7 @@ $(document).ready(function () {
   </tr>
   <tr class="adv">
    <td></td>
-   <td class="advField">
+   <td>
     <label for="mod">Modded by</label>
     <input type="text" name="mod" value="<?=set_value('mod', $yoyo->mod)?>"/>
    </td>
@@ -80,13 +78,14 @@ $(document).ready(function () {
   </tr>
   <tr class="adv">
    <td><label for="acq_date">Acquired on</label>&nbsp;<small>(yyyy-mm-dd)</small></td>
-   <td class="advField">
+   <td>
     <input type="text" name="acq_date" size="10" maxlength="10" value="<?=set_value('acq_date', $yoyo->acq_date)?>"/>
-    <br/>
-    <label>by:</label> <input type="radio" name="acq_type" value="purchase" <?=set_radio('acq_type', 'purchase', $yoyo->acq_type == 'purchase')?>/><label>purchase</label>&nbsp;&nbsp;
-    <input type="radio" name="acq_type" value="trade" <?=set_radio('acq_type', 'trade', $yoyo->acq_type == 'trade')?>/><label>trade</label>
-    <input type="radio" name="acq_type" value="gift" <?=set_radio('acq_type', 'gift', $yoyo->acq_type == 'gift')?>/><label>gift</label>
-    <br/>
+    <div class="u-inline-labels">
+     <label>by:</label>
+     <input type="radio" name="acq_type" value="purchase" <?=set_radio('acq_type', 'purchase', $yoyo->acq_type == 'purchase')?>/><label>purchase</label>&nbsp;&nbsp;
+     <input type="radio" name="acq_type" value="trade" <?=set_radio('acq_type', 'trade', $yoyo->acq_type == 'trade')?>/><label>trade</label>&nbsp;&nbsp;
+     <input type="radio" name="acq_type" value="gift" <?=set_radio('acq_type', 'gift', $yoyo->acq_type == 'gift')?>/><label>gift</label>
+    </div>
     <label for="acq_party">from:</label>
     <input type="text" name="acq_party" value="<?=set_value('acq_party', $yoyo->acq_party)?>"/>
     <br/>
@@ -98,19 +97,15 @@ $(document).ready(function () {
    <td><label for="notes">Notes</label></td>
    <td><textarea name="notes" rows="2" cols="25"><?=set_value('notes', $yoyo->notes)?></textarea></td>
   </tr>
-  <tr>
-   <td colspan="2">
-    <input type="submit" value="Save"/>
-    <input type="button" value="Cancel" onclick="document.location.href='<?=$cancel_url?>'"/>
-   </td>
-  </tr>
  </table>
+ <input type="submit" value="Save"/>
+ <a class="button" href="<?php echo $cancel_url; ?>">Cancel</a>
 
 <?php if (count($photos) > 0): echo '<hr/>'; endif; ?>
 
 <?php $i = 1; foreach ($photos as $photo): ?>
  <label>Pic <?=$i?></label> <a href="<?="/photo/{$photo->id}/delete"?>">remove</a><br/>
- <img src="<?=$photo->url?>"/>
+ <img class="u-max-full-width" src="<?=$photo->url?>"/>
  <?php $i++; if ($i <= count($photos)): echo '<br/>'; endif; ?>
 <?php endforeach; ?>
 
@@ -126,14 +121,10 @@ $(document).ready(function () {
 
  <div class="submit">
   <input type="submit" value="Save"/>
-  <input type="button" value="Cancel" onclick="document.location.href='<?=$cancel_url?>'"/>
+  <a class="button" href="<?php echo $cancel_url; ?>">Cancel</a>
  </div>
 </form>
-</div>
 
-<div id="sidebar">
+<div>
  <?php $this->load->view('yoyos/sidebar', array('yoyos' => $yoyos)) ?>
 </div>
-
-<div class="clearing"></div>
-

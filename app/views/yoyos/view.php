@@ -1,7 +1,5 @@
 <h2><?=$yoyo->model_year?> <?=$yoyo->manufacturer?> <?=$yoyo->model_name?></h2>
 
-<div id="gallery">
-
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
  <tr>
   <td><label>Model name</label></td>
@@ -46,16 +44,14 @@
 
 <br/>
 
-<?=form_open("yoyo/{$yoyo->id}/edit", array('method' => 'POST'))?>
- <input type="submit" value="Edit"/>
- <input type="button" value="Back to collection" onclick="document.location.href='<?=$cancel_url?>'"/>
-</form>
+<a class="button" href="/yoyo/<?php echo $yoyo->id ?>/edit">Edit</a>
+<a class="button" href="<?php echo $cancel_url ?>">Back to collection</a>
 
 <hr/>
 
 <?php $i = 1; foreach ($photos as $photo): ?>
 <b>Pic <?=$i?></b><br/>
-<img src="<?=$photo->url?>"/>
+<img class="u-max-full-width" src="<?=$photo->url?>"/>
 <?php $i++; if ($i <= count($photos)): echo '<br/>'; endif; ?>
 <?php endforeach; ?>
 
@@ -67,11 +63,6 @@
  <input type="submit" value="Delete"/>
 </form>
 
-</div>
-
-<div id="sidebar">
+<div>
  <?php $this->load->view('yoyos/sidebar', array('yoyos' => $yoyos)) ?>
 </div>
-
-<div class="clearing"></div>
-

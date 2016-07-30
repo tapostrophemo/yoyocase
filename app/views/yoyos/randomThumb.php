@@ -1,7 +1,9 @@
-<div id="slideshow">
+<div style="position:relative; height:120px; margin:2rem">
+<div id="slideshow" class="u-center-abs">
 <?php foreach ($this->Misc->randomThumbs() as $thumb): ?>
  <img src="/thumbs/<?=$thumb?>"/>
 <?php endforeach; ?>
+</div>
 </div>
 
 <script type="text/javascript">

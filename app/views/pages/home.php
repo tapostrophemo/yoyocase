@@ -1,8 +1,8 @@
-<h2>Yoyo collecting for everyone</h2>
+<h2 class="u-text-center">Yoyo collecting for everyone</h2>
 
-<div id="gallery">
+<?php $this->load->view('yoyos/randomThumb'); ?>
 
-<h3>Put your yoyo collection online to share with friends, traders, and other yoyo enthusiasts.</h3>
+<h3 class="u-text-center">Put your yoyo collection online to share with friends, traders, and other yoyo enthusiasts.</h3>
 
 <p><tt>yoyocase.net</tt> is a website where you can show off and manage your yoyo collection. The
  site is new and growing, but already you can:</p>
@@ -15,9 +15,7 @@
 
 <br/>
 
-<span style="font-size:17px; border:2px solid #B24D17; border-radius:5px; text-align:center; padding:7px 15px">
- <a href="/register">Sign-up for a free account →</a>
-</span>
+<a class="button button-primary six columns offset-by-two" href="/register">Sign-up for a free account →</a>
 
 <br/><br/><br/>
 
@@ -30,24 +28,15 @@
 
 </div>
 
-<div id="sidebar">
-
-<div id="smallLogin">
+<div>
  <p><small>Current users, login</small></p>
  <?=form_open('login')?>
-  <label for="username">Username</label><br/>
-  <input type="text" name="username"/><br/>
-  <label for="password">Password</label><br/>
-  <input type="password" name="password"/><br/>
+  <label for="username">Username</label>
+  <input type="text" name="username"/>
+  <label for="password">Password</label>
+  <input type="password" name="password"/>
+  <br/>
   <input type="submit" value="Login"/>
  </form>
- <br/>
- <p><a href="/passwordreset">Forgot your password?</a></p>
+ <a href="/passwordreset">Forgot your password?</a>
 </div>
-
-<?php $this->load->view('yoyos/randomThumb'); ?>
-
-</div>
-
-<div class="clearing"></div>
-

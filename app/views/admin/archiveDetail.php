@@ -4,7 +4,7 @@
 <p>Username (ID): <?=$row['username'] ? $row['username'] : 'DELETED'?> (<?=$row['user_id']?>)</p>
 <?php endif; ?>
 
-<table class="report">
+<table>
  <tr>
   <th>ID</th>
   <th>Yoyo&nbsp;ID</th>
@@ -24,4 +24,3 @@
  </tr>
 <?php endforeach; ?>
 </table>
-

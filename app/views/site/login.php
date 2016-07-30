@@ -2,10 +2,6 @@
 
 <h2>Login to your account</h2>
 
-<div id="gallery">
-
-<div class="soloform">
-
 <?=form_open('login')?>
  <table border="0" cellpadding="0" cellspacing="0">
   <tr>
@@ -27,12 +23,3 @@
 
 <p>Forgot your <a href="/passwordreset">password?</a></p>
 <p>Don't have an account yet? <a href="/register">Register</a> for one.</p>
-
-</div>
-
-</div>
-
-<div id="sidebar"></div>
-
-<div class="clearing"></div>
-
