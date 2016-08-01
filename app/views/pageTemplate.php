@@ -13,17 +13,21 @@
 </head>
 <body>
 
+<nav class="drawer main-column-only">
+  <?php $this->load->view('site/_navContent'); ?>
+</nav>
+
+<input type="checkbox" id="drawer-trigger" class="drawer-trigger main-column-only"/>
+<label for="drawer-trigger" class="main-column-only"></label>
+
 <div class="container">
   <div class="row">
     <div class="four columns">&nbsp;</div>
     <div class="seven columns offset-by-one">
 
       <header class="content">
-        <?php if ($this->session->userdata('logged_in')): ?>
-          <h1><a href="/account">yoyocase.net</a></h1>
-        <?php else: ?>
-          <h1><a href="/">yoyocase.net</a></h1>
-        <?php endif; ?>
+        <?php $homeUrl = $this->session->userdata('logged_in') ? "/account" : "/"; ?>
+        <h1 class="u-text-center"><a href="<?php echo $homeUrl; ?>"><img src="/res/logo.jpg" alt="yoyocase.net"/></a></h1>
 
         <?php if ($this->session->userdata('impersonating')): ?>
           <div class="impersonating">Impersonating: <?=$this->session->userdata('username')?></div>
@@ -38,32 +42,12 @@
   <div class="row">
     <div class="four columns">
 
-      <nav class="content">
-        <ul>
-          <?php if ($this->session->userdata('logged_in')): ?>
-            <li><a href="/yoyos" class="lsf-icon collection">collection</a></li>
-            <li><a href="/preferences" class="lsf-icon preferences">preferences</a></li>
-            <?php if ($this->session->userdata('is_admin')): echo '<li><a href="/admin" class="lsf-icon admin">site admin</a></li>'; endif; ?>
-            <li><a href="/galleries" class="lsf-icon galleries">galleries</a></li>
-            <li><a href="/logout" class="lsf-icon logout">logout</a></li>
-          <?php else: ?>
-            <li><a href="/register" class="lsf-icon register">register</a></li>
-            <li><a href="/galleries" class="lsf-icon galleries">galleries</a></li>
-            <li><a href="/login" class="lsf-icon login">login</a></li>
-          <?php endif; ?>
-        </ul>
+      <nav class="content sidebar-only">
+        <?php $this->load->view('site/_navContent'); ?>
       </nav>
 
-      <footer class="content">
-        Copyright &copy; 2009-<?=date("Y")?>, <a href="http://www.eastofcleveland.com" target="_blank">Dan Parks</a>. All Rights Reserved.<br/>
-        User submissions copyright the submitter. Some other content derived from Creative Commons-licensed material.<br/>
-        <br/>
-        <ul>
-          <li><a href="/credits">credits</a></li>
-          <li><a href="/tos">terms of service</a></li>
-          <li><a href="/privacy">privacy</a></li>
-          <li><a href="http://twitter.com/yoyocase" class="lsf-icon twitter" target="_blank"></a></li>
-        </ul>
+      <footer class="content sidebar-only">
+        <?php $this->load->view('site/_footerContent'); ?>
       </footer>
 
     </div>
@@ -82,6 +66,9 @@
         <?= $content ?>
       </div>
 
+      <footer class="content main-column-only">
+        <?php $this->load->view('site/_footerContent'); ?>
+      </footer>
     </div>
   </div>
 </div>

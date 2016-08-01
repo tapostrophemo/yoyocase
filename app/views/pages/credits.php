@@ -6,6 +6,9 @@
 <p>Thanks also to the <a href="http://www.clevelandyoyoclub.com" target="_blank">Cleveland Yo-Yo Club</a>.
  I've learned a few tricks from and traded a few yoyos with its members.</p>
 
+<p>Big thanks to <a href="http://stevebrownismyhero.com" target="_blank">Steve Brown</a> for the logo.
+ It only took me a few years to re-style the site into something where the logo would fit. :-)</p>
+
 <p><cite><a href="http://www.eastofcleveland.com" target="_blank">Dan Parks</a>, builder and maintainer of <tt>yoyocase.net</tt>.</cite></p>
 
 <hr/>
@@ -21,4 +24,3 @@
  <li>http://www.ajaxload.info/</li>
  <li>http://kudakurage.com/ligature_symbols/</li>
 </ul>
-
