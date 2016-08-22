@@ -99,7 +99,7 @@ class User extends MY_Model
       SET perishable_token = ''
       WHERE id IN (SELECT user_id FROM user_pw_reset)");
 
-    $flag = $flag && $this->db->simple_query('TRUNCATE TABLE user_pw_reset');
+    $flag = $flag && $this->db->simple_query('DELETE FROM user_pw_reset');
 
     $flag = $flag && $this->db->simple_query("
       INSERT INTO user_pw_reset

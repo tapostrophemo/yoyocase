@@ -90,7 +90,7 @@ class YoyosTestCase extends MY_WebTestCase
     $this->assertText('Serial number ');
 
     // scenario: edit yoyo details
-    $this->clickSubmit('Edit');
+    $this->click('Edit');
     $this->assertField('manufacturer', 'Duncan');
     $this->setField('manufacturer', 'Nacnud');
     $this->assertField('model_year', '2005');
@@ -189,7 +189,7 @@ class YoyosTestCase extends MY_WebTestCase
     $this->clickLink('collection');
     // When
     $this->clickLink('FHZ');
-    $this->clickSubmit('Edit');
+    $this->click('Edit');
     // Then
     $this->assertField('acq_date', '2010-03-01');
     $this->assertField('acq_type', 'purchase');
@@ -214,7 +214,7 @@ class YoyosTestCase extends MY_WebTestCase
     $this->clickLink('collection');
     $this->clickLink('FHZ');
     // When
-    $this->clickSubmit('Edit');
+    $this->click('Edit');
     $this->setField('acq_date', '2009-12-13');
     $this->setField('acq_type', 'purchase');
     $this->setField('acq_party', 'yoyonation.com');
