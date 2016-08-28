@@ -37,7 +37,7 @@ $(document).ready(function () {
       $("#nameContent").html('<div class="u-text-center"><img src="/res/wait.gif" alt="loading..."></div>');
       var data = $(link).attr("data-raw");
       $("#nameContent").load(link.href, { "raw": data });
-      var middleOffset = Math.round($(window).height()/2 + $(document).scrollTop() - $("#userDetailDialog").height()/2 - parseInt($("body").css("margin-bottom"))/2);
+      var middleOffset = Math.round($(window).height()/2 + $(document).scrollTop() - $("#nameDialog").height()/2 - parseInt($("body").css("margin-bottom"))/2);
       $("#nameDialog").css({"top": (middleOffset-200)+"px"}).show();
       return false;
     });
