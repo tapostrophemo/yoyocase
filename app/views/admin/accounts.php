@@ -29,7 +29,7 @@
 
 <p><a href="/admin/accounts" class="lsf-icon refresh">refresh</a></p>
 
-<script type="text/javascript" src="/res/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/res/jquery-3.1.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
   jQuery.each($("#report tbody a"), function (i, link) {
